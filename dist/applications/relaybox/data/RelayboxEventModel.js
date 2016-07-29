@@ -6,10 +6,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = RelayboxEventModel;
 RelayboxEventModel.$inject = ['$modelFactory'];
 function RelayboxEventModel($modelFactory) {
-  var result = {
+  return $modelFactory('applications/relaybox/event-data');
+  /*var result = {
     forDataSourceAndEventTypeName: function forDataSource(dataSourceId, eventTypeName) {
       return $modelFactory('applications/relaybox/event-data/?dataSourceId' + dataSourceId + '&eventTypeName=' + eventTypeName);
     }
   };
-  return result;
+  return result;*/
 }
