@@ -6,10 +6,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = DataEngineEventModel;
 DataEngineEventModel.$inject = ['$modelFactory'];
 function DataEngineEventModel($modelFactory) {
-  var result = {
+  /*var result = {
     forDataSourceAndEventTypeName: function forDataSource(dataSourceId, eventTypeName) {
       return $modelFactory('data-engine/events/?dataSourceId' + dataSourceId + '&eventTypeName=' + eventTypeName);
     }
   };
-  return result;
+  return result;*/
+  return $modelFactory('data-engine/events');
 }
