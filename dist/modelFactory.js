@@ -10,8 +10,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   } else if (typeof module !== 'undefined' && module.exports) {
     module.exports = factory(require('angular'), require('uri-templates'), require('deep-diff'), require('ng-file-upload')); //, require('ng-file-upload')
   } else {
-      global.ModelFactory = factory(global.angular, global.UriTemplate, global.DeepDiff); //, global.ngFileUpload
-    }
+    global.ModelFactory = factory(global.angular, global.UriTemplate, global.DeepDiff); //, global.ngFileUpload
+  }
 })(undefined, function (angular, UriTemplate, DeepDiff) {
   //, ngFileUpload
 
@@ -458,16 +458,16 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             if (functionName(v) === functionName(Model) || functionName(v) === functionName(ModelCollection)) {
               value[k] = new v(value[k]); //eslint-disable-line
             } else if (typeof v === 'function') {
-                // if its a function, invoke it,
-                // this would be helpful for seralizers
-                // like: map: { date: function(val){ return moment(val) } }
-                value[k] = v(value[k], value);
+              // if its a function, invoke it,
+              // this would be helpful for seralizers
+              // like: map: { date: function(val){ return moment(val) } }
+              value[k] = v(value[k], value);
+            }
+            // In order to be able to use the constructor for resource to Post having a PK mapping set.
+            else if (!ignorePkMapping || k !== options.pk) {
+                value[k] = getPropValue(value, v);
+                // delete value[v];  // in case we would like to delete original prop ... not the case for us ...
               }
-              // In order to be able to use the constructor for resource to Post having a PK mapping set.
-              else if (!ignorePkMapping || k !== options.pk) {
-                  value[k] = getPropValue(value, v);
-                  // delete value[v];  // in case we would like to delete original prop ... not the case for us ...
-                }
           });
 
           // attach instance actions
@@ -755,23 +755,23 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 // uri += '{?param*}';
               }
             } else if (clone.method === 'GET' && angular.isObject(data)) {
-                // if its a GET request and its not the above, we can assume
-                // you want to do a query param like:
-                // ZooModel.query({ type: 'panda' }) and do /api/zoo?type=panda
-                // data = { param: data };
-                clone.params = extendDeep({}, clone.params, data);
-                // uri += '{?param*}';
+              // if its a GET request and its not the above, we can assume
+              // you want to do a query param like:
+              // ZooModel.query({ type: 'panda' }) and do /api/zoo?type=panda
+              // data = { param: data };
+              clone.params = extendDeep({}, clone.params, data);
+              // uri += '{?param*}';
 
-                //adding default query params. for query(s)
-                if (param.isPagedList) {
-                  if (!clone.params.page) {
-                    clone.params.page = clone.defaultPagedListParams.page;
-                  }
-                  if (!clone.params.pageSize) {
-                    clone.params.pagesize = clone.defaultPagedListParams.pageSize;
-                  }
+              //adding default query params. for query(s)
+              if (param.isPagedList) {
+                if (!clone.params.page) {
+                  clone.params.page = clone.defaultPagedListParams.page;
+                }
+                if (!clone.params.pageSize) {
+                  clone.params.pagesize = clone.defaultPagedListParams.pageSize;
                 }
               }
+            }
           } else {
             uri = clone.url;
           }
