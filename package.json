@@ -1,83 +1,34 @@
 {
-  "_args": [
-    [
-      "relaymark.model",
-      "C:\\Users\\denis.martinho\\Desktop\\toto"
-    ],
-    [
-      "relaymark.model",
-      "C:\\Users\\denis.martinho\\Desktop\\toto"
-    ],
-    [
-      "relaymark.model",
-      "D:\\ProjetGit\\Relaymark.Relaybox"
-    ],
-    [
-      "relaymark.model@^1.0.5",
-      "D:\\ProjetGit\\Relaymark.Relaybox"
-    ],
-    [
-      "relaymark.model@^1.0.7",
-      "D:\\ProjetGit\\Relaymark.Relaybox"
-    ],
-    [
-      "relaymark.model@^1.0.8",
-      "D:\\ProjetGit\\Relaymark.Relaybox"
-    ]
+  "name": "relaymark.model",
+  "description": "Relaymark model factory",
+  "main": "./dist/relaymark.model.js",
+  "keywords": [
+    "relaymark",
+    "model"
   ],
-  "_from": "relaymark.model@>=1.0.8 <2.0.0",
-  "_id": "relaymark.model@1.0.8",
-  "_inCache": true,
-  "_installable": true,
-  "_location": "/relaymark.model",
-  "_nodeVersion": "5.5.0",
-  "_npmUser": {},
-  "_npmVersion": "3.3.12",
-  "_phantomChildren": {},
-  "_requested": {
-    "name": "relaymark.model",
-    "raw": "relaymark.model@^1.0.8",
-    "rawSpec": "^1.0.8",
-    "scope": null,
-    "spec": ">=1.0.8 <2.0.0",
-    "type": "range"
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_shrinkwrap": null,
-  "_spec": "relaymark.model@^1.0.8",
-  "_where": "D:\\ProjetGit\\Relaymark.Relaybox",
-  "author": {
-    "name": "Relaymark"
-  },
+  "author": "Relaymark",
   "dependencies": {
     "ng-file-upload": "^12.0.4"
   },
-  "description": "Relaymark model factory",
   "devDependencies": {
     "babel-cli": "^6.6.5",
     "babel-preset-es2015": "^6.6.0",
     "rimraf": "^2.5.2"
   },
-  "dist": {
-    "shasum": "a94b436b7e8c17f92e8761371cb561fd37b34bd1",
-    "tarball": "http://npm.relaymark.com/relaymark.model/-/relaymark.model-1.0.8.tgz"
-  },
   "license": "ISC",
-  "main": "./dist/relaymark.model.js",
-  "name": "relaymark.model",
   "optionalDependencies": {},
   "publishConfig": {
     "registry": "http://npm.relaymark.com"
   },
-  "readme": "ERROR: No README data found!",
   "scripts": {
     "build": "babel src --presets babel-preset-es2015 --out-dir dist",
     "clean": "rimraf dist",
     "prepublish": "npm run build",
     "test": " "
   },
-  "version": "1.1.18"
+  "version": "1.1.18",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Relaymark/Relaymark.model.git"
+  }
 }
