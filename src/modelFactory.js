@@ -119,10 +119,9 @@
     return o;
   };
 
-  module.provider('$modelFactory', function () {
-    var provider = this;
 
-    provider.defaultOptions = {
+  let getDefaultProviderOptions = function() {
+    return {
 
       /**
        * URL Prefix for requests.  This should only really
@@ -299,8 +298,10 @@
        */
       list: {}
     };
+  };
 
-    provider.$get = ['$rootScope', '$http', '$q', '$log', '$cacheFactory', function ($rootScope, $http, $q, $log, $cacheFactory) {
+  let getFactoryFn = function() {
+    return function ($rootScope, $http, $q, $log, $cacheFactory) {
 
       /**
        * Model factory.
@@ -344,10 +345,10 @@
 
         function PagedList(value) {
           value = value || {
-            totalPages: 0,
-            totalResults: 0,
-            results: []
-          };
+              totalPages: 0,
+              totalResults: 0,
+              results: []
+            };
 
           let modelList = new Model.List(value.results);
           value.results = modelList;
@@ -993,7 +994,21 @@
       }
 
       return modelFactory;
-    }];
+    }
+  };
+
+  module.provider('$modelFactory', function () {
+    var provider = this;
+    provider.defaultOptions = getDefaultProviderOptions();
+
+    provider.$get = ['$rootScope', '$http', '$q', '$log', '$cacheFactory',getFactoryFn()];
+  });
+
+  module.provider('$relayboxApiModelFactory', function() {
+    var provider = this;
+    provider.defaultOptions = getDefaultProviderOptions();
+
+    provider.$get = ['$rootScope', '$http', '$q', '$log', '$cacheFactory',getFactoryFn()];
   });
 
   return module;

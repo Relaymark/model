@@ -115,10 +115,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     return o;
   };
 
-  module.provider('$modelFactory', function () {
-    var provider = this;
-
-    provider.defaultOptions = {
+  var getDefaultProviderOptions = function getDefaultProviderOptions() {
+    return {
 
       /**
        * URL Prefix for requests.  This should only really
@@ -295,8 +293,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
        */
       list: {}
     };
+  };
 
-    provider.$get = ['$rootScope', '$http', '$q', '$log', '$cacheFactory', function ($rootScope, $http, $q, $log, $cacheFactory) {
+  var getFactoryFn = function getFactoryFn() {
+    return function ($rootScope, $http, $q, $log, $cacheFactory) {
 
       /**
        * Model factory.
@@ -973,7 +973,21 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }
 
       return modelFactory;
-    }];
+    };
+  };
+
+  module.provider('$modelFactory', function () {
+    var provider = this;
+    provider.defaultOptions = getDefaultProviderOptions();
+
+    provider.$get = ['$rootScope', '$http', '$q', '$log', '$cacheFactory', getFactoryFn()];
+  });
+
+  module.provider('$relayboxApiModelFactory', function () {
+    var provider = this;
+    provider.defaultOptions = getDefaultProviderOptions();
+
+    provider.$get = ['$rootScope', '$http', '$q', '$log', '$cacheFactory', getFactoryFn()];
   });
 
   return module;
