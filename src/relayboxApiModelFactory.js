@@ -1,5 +1,6 @@
-//'use strict'; => use strict do not allow me to access other function arguments prop.
-
+/**
+ * Created by benoit.bacot on 29/08/2016.
+ */
 (function (global, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['angular', 'uri-templates', 'deep-diff', 'ng-file-upload'], factory);
@@ -12,7 +13,7 @@
   }
 })(this, function (angular, UriTemplate, DeepDiff) { //, ngFileUpload
 
-  var module = angular.module('modelFactory', ['ngFileUpload']);
+  var module = angular.module('relayboxApiModelFactory', ['ngFileUpload']);
   var uploadService;
   module.run(['Upload', function (Upload) {
     uploadService = Upload;
@@ -997,12 +998,12 @@
     }
   };
 
-  module.provider('$modelFactory', function () {
+  module.provider('$relayboxApiModelFactory', function() {
     var provider = this;
     provider.defaultOptions = getDefaultProviderOptions();
 
     provider.$get = ['$rootScope', '$http', '$q', '$log', '$cacheFactory',getFactoryFn()];
   });
-  
+
   return module;
 });

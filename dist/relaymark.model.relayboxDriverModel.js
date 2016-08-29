@@ -14,6 +14,6 @@ var _CmxNetworkModel2 = _interopRequireDefault(_CmxNetworkModel);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = angular.module('relaymark.model.relayboxDriver', ['$relayboxApiModelFactory']).factory('CmxNetworkModel', _CmxNetworkModel2.default).name; /**
-                                                                                                                                                              * Created by benoit.bacot on 29/08/2016.
-                                                                                                                                                              */
+exports.default = angular.module('relaymark.model.relayboxDriver', ['modelFactory']).factory('CmxNetworkModel', _CmxNetworkModel2.default).name; /**
+                                                                                                                                                  * Created by benoit.bacot on 29/08/2016.
+                                                                                                                                                  */
