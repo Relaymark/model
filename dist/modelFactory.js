@@ -983,12 +983,5 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     provider.$get = ['$rootScope', '$http', '$q', '$log', '$cacheFactory', getFactoryFn()];
   });
 
-  module.provider('$relayboxApiModelFactory', function () {
-    var provider = this;
-    provider.defaultOptions = getDefaultProviderOptions();
-
-    provider.$get = ['$rootScope', '$http', '$q', '$log', '$cacheFactory', getFactoryFn()];
-  });
-
   return module;
 });
