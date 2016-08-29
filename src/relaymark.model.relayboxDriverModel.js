@@ -6,6 +6,6 @@ import './modelFactory.js';
 import CmxNetworkModel from './Relaybox-driver-api/CmxNetworkModel.js';
 
 
-export default angular.module('relaymark.model.relayboxDriver', ['$relayboxApiModelFactory'])
+export default angular.module('relaymark.model.relayboxDriver', ['modelFactory'])
   .factory('CmxNetworkModel', CmxNetworkModel)
   .name;
