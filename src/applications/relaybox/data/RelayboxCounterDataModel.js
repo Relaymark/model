@@ -7,6 +7,6 @@ export default function RelayboxCounterDataModel($modelFactory) {
     liveForDataSourceSidAndCounter: function (dataSourceSid, counterName) {
       return $modelFactory('applications/relaybox/counter-data/' + dataSourceSid + '/' + counterName + '/live');
     }
-  };
+  }; 
   return result;
 } 
