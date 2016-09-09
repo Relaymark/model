@@ -28,6 +28,7 @@ import RelayboxPageModel from './applications/relaybox/RelayboxPageModel.js';
 import RelayboxDataSourceModel from './applications/relaybox/RelayboxDataSourceModel.js';
 
 import RelayboxCounterDataModel from './applications/relaybox/data/RelayboxCounterDataModel.js';
+import RelayboxCounterLiveDataModel from './applications/relaybox/data/RelayboxCounterLiveDataModel.js';
 import RelayboxCounterTypeModel from './applications/relaybox/data/RelayboxCounterTypeModel.js';
 import RelayboxEventModel from './applications/relaybox/data/RelayboxEventModel.js';
 
@@ -62,6 +63,7 @@ export default angular.module('relaymark.model', ['modelFactory'])
     .factory('RelayboxPageModel', RelayboxPageModel)
     .factory('RelayboxDataSourceModel', RelayboxDataSourceModel)
     .factory('RelayboxCounterDataModel', RelayboxCounterDataModel)
+    .factory('RelayboxCounterLiveDataModel', RelayboxCounterLiveDataModel)
     .factory('RelayboxCounterTypeModel', RelayboxCounterTypeModel)
     .factory('RelayboxEventModel', RelayboxEventModel)
     .factory('DataSourceRegistrationModel', DataSourceRegistrationModel)
