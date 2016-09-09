@@ -300,8 +300,11 @@
     };
   };
 
-  let getFactoryFn = function() {
-    return function ($rootScope, $http, $q, $log, $cacheFactory) {
+  module.provider('$modelFactory', function () {
+    var provider = this;
+    provider.defaultOptions = getDefaultProviderOptions();
+
+    provider.$get = ['$rootScope', '$http', '$q', '$log', '$cacheFactory', function ($rootScope, $http, $q, $log, $cacheFactory) {
 
       /**
        * Model factory.
@@ -994,14 +997,7 @@
       }
 
       return modelFactory;
-    }
-  };
-
-  module.provider('$modelFactory', function () {
-    var provider = this;
-    provider.defaultOptions = getDefaultProviderOptions();
-
-    provider.$get = ['$rootScope', '$http', '$q', '$log', '$cacheFactory',getFactoryFn()];
+    }];
   });
   
   return module;

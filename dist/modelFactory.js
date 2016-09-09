@@ -295,11 +295,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     };
   };
 
-  module.provider('$modelFactory', function () {
-    var provider = this;
-    provider.defaultOptions = getDefaultProviderOptions();
-
-    provider.$get = ['$rootScope', '$http', '$q', '$log', '$cacheFactory', function ($rootScope, $http, $q, $log, $cacheFactory) {
+  var getFactoryFn = function getFactoryFn() {
+    return function ($rootScope, $http, $q, $log, $cacheFactory) {
 
       /**
        * Model factory.
@@ -323,7 +320,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
          * for the event emitters
          */
         var nameSplit = url.split('/'),
-          prettyName = nameSplit[nameSplit.length - 1];
+            prettyName = nameSplit[nameSplit.length - 1];
 
         //set isExtendedAction === true for the ones added in models //USED FOR BEING ABLE TO SPECIFY ShortId directly in extend actions route (ex: {shortId}/member-stats )
         if (options && options.actions) {
@@ -343,10 +340,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
         function PagedList(value) {
           value = value || {
-              totalPages: 0,
-              totalResults: 0,
-              results: []
-            };
+            totalPages: 0,
+            totalResults: 0,
+            results: []
+          };
 
           var modelList = new Model.List(value.results);
           value.results = modelList;
@@ -434,7 +431,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
          */
         function Model(value, ignorePkMapping) {
           var commits = [],
-            instance = this;
+              instance = this;
 
           ignorePkMapping = ignorePkMapping || false;
 
@@ -468,9 +465,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             }
             // In order to be able to use the constructor for resource to Post having a PK mapping set.
             else if (!ignorePkMapping || k !== options.pk) {
-              value[k] = getPropValue(value, v);
-              // delete value[v];  // in case we would like to delete original prop ... not the case for us ...
-            }
+                value[k] = getPropValue(value, v);
+                // delete value[v];  // in case we would like to delete original prop ... not the case for us ...
+              }
           });
 
           // attach instance actions
@@ -491,7 +488,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           instance.$saveWithUpload = function (filesObject) {
             //filesObject is a key-value ( key == propertyName / value == files array )
             var actionType = instance[options.pk] ? 'updateWithUpload' : 'postWithUpload',
-              promise = Model[actionType](this, filesObject);
+                promise = Model[actionType](this, filesObject);
 
             instance.$pending = true;
 
@@ -523,7 +520,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
            */
           instance.$save = function (config) {
             var actionType = instance[options.pk] ? 'update' : 'post',
-              promise = Model[actionType](this, config);
+                promise = Model[actionType](this, config);
 
             instance.$pending = true;
 
@@ -585,7 +582,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
            */
           instance.$diff = function (version) {
             var currCommit = angular.toJson(instance),
-              prevCommit = commits[version || commits.length - 1];
+                prevCommit = commits[version || commits.length - 1];
 
             return DeepDiff.diff(JSON.parse(prevCommit), JSON.parse(currCommit), function (path, key) {
               return key[0] === '$';
@@ -714,26 +711,26 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             //  ==> RegistrationModel.sendRegistrationEmail({objectToPost}, {'shortId':myId});
             //  ==> or this shortcut : RegistrationModel.sendRegistrationEmail({objectToPost},myId)
             else if (param.isExtendedAction && (clone.method === 'POST' || clone.method === 'PUT')) {
-              // data will be the object to POST/PUT
-              // extras will be used for URI template var replacement.
-              var myObj = {};
-              if (angular.isObject(extras)) {
-                myObj = extras;
-              } else if (angular.isString(extras) || angular.isNumber(extras)) {
-                // if we want to pass shortId directly and it's the only param. in URI
-                myObj[options.pk] = extras;
+                // data will be the object to POST/PUT
+                // extras will be used for URI template var replacement.
+                var myObj = {};
+                if (angular.isObject(extras)) {
+                  myObj = extras;
+                } else if (angular.isString(extras) || angular.isNumber(extras)) {
+                  // if we want to pass shortId directly and it's the only param. in URI
+                  myObj[options.pk] = extras;
+                }
+                uri = Model.$url(uri, myObj, clone.method);
+              } else if (param.isExtendedAction && clone.method === 'DELETE') {
+                var myObjData = {};
+                if (angular.isObject(data)) {
+                  myObjData = data;
+                } else if (angular.isString(data) || angular.isNumber(data)) {
+                  // if we want to pass shortId directly and it's the only param. in URI
+                  myObjData[options.pk] = data;
+                }
+                uri = Model.$url(uri, myObjData, clone.method);
               }
-              uri = Model.$url(uri, myObj, clone.method);
-            } else if (param.isExtendedAction && clone.method === 'DELETE') {
-              var myObjData = {};
-              if (angular.isObject(data)) {
-                myObjData = data;
-              } else if (angular.isString(data) || angular.isNumber(data)) {
-                // if we want to pass shortId directly and it's the only param. in URI
-                myObjData[options.pk] = data;
-              }
-              uri = Model.$url(uri, myObjData, clone.method);
-            }
 
             // attach the pk referece by default if it is a 'core' type
             if (action === 'get' || action === 'post' || action === 'update' || action === 'delete' || action === 'postWithUpload' || action === 'updateWithUpload') {
@@ -976,7 +973,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }
 
       return modelFactory;
-    }];
+    };
+  };
+
+  module.provider('$modelFactory', function () {
+    var provider = this;
+    provider.defaultOptions = getDefaultProviderOptions();
+
+    provider.$get = ['$rootScope', '$http', '$q', '$log', '$cacheFactory', getFactoryFn()];
   });
 
   return module;
