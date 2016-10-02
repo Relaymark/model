@@ -36,6 +36,8 @@ import DataSourceRegistrationModel from './data-engine/DataSourceRegistrationMod
 import DataEngineCounterModel from './data-engine/DataEngineCounterModel.js';
 import DataEngineEventModel from './data-engine/DataEngineEventModel.js';
 
+import CaptivePortalModel from './captive-portal/CaptivePortalModel'
+
 export default angular.module('relaymark.model', ['modelFactory'])
     .factory('AdminModel', AdminModel)
     .factory('CommunityAppModel', CommunityAppModel)
@@ -69,4 +71,5 @@ export default angular.module('relaymark.model', ['modelFactory'])
     .factory('DataSourceRegistrationModel', DataSourceRegistrationModel)
     .factory('DataEngineCounterModel', DataEngineCounterModel)
     .factory('DataEngineEventModel', DataEngineEventModel)
+    .factory('CaptivePortalModel', CaptivePortalModel)
     .name;
