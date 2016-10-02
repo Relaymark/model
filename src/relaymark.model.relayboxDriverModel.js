@@ -16,5 +16,5 @@ export default angular.module('relaymark.model.relayboxDriver', ['relayboxApiMod
   .factory('RbDriverEquipmentModel', RbDriverEquipmentModel)
 
   .factory('RbDriverInstallationOptionsModel', RbDriverInstallationOptionsModel)
-  .factory('RbDriverAccessPointModel', RbDriverAccessPointModel)
+  .factory('RbDriverAccessPointModel', RbDriverAccessPointModel)  
   .name;
