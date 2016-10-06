@@ -1,8 +1,9 @@
 ##Publishing
-    0. git commit -am "some changes"
-    1. npm version patch
-    2. git push origin master --tags ( here a a new tag certainly created per npm version patch before ... )
-    3. npm publish
+    1. npm run build 
+    2. git commit -am "some changes"
+    3. npm version patch
+    4. git push origin master --tags ( here a a new tag certainly created per npm version patch before ... )
+    5. npm publish
 
 ##Configuration
 

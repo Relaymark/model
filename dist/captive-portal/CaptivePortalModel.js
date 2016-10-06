@@ -3,12 +3,12 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = RelayboxPageModel;
+exports.default = CaptivePortalModel;
 /**
  * Created by benjamin.speth on 28/09/2016.
  */
 
-RelayboxPageModel.$inject = ['$modelFactory'];
-function RelayboxPageModel($modelFactory) {
+CaptivePortalModel.$inject = ['$modelFactory'];
+function CaptivePortalModel($modelFactory) {
   return $modelFactory('captive-portal', {});
 }
