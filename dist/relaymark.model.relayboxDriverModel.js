@@ -22,13 +22,15 @@ var _RbDriverAccessPointModel2 = _interopRequireDefault(_RbDriverAccessPointMode
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import RbDriverRegistrationModel from './Relaybox-driver-api/RbDriverRegistrationModel';
-// import RbDriverEquipmentModel from './Relaybox-driver-api/RbDriverEquipmentModel';
-
-exports.default = angular.module('relaymark.model.relayboxDriver', ['relayboxApiModelFactory']).factory('RbDriverCmxNetworkModel', _RbDriverCmxNetworkModel2.default)
+exports.default = angular.module('relaymark.model.relayboxDriver', ['relayboxApiModelFactory'])
 // .factory('RbDriverRegistrationModel', RbDriverRegistrationModel)
 // .factory('RbDriverEquipmentModel', RbDriverEquipmentModel)
 
-.factory('RbDriverInstallationOptionsModel', _RbDriverInstallationOptionsModel2.default).factory('RbDriverAccessPointModel', _RbDriverAccessPointModel2.default).name; /**
-                                                                                                                                                                        * Created by benoit.bacot on 29/08/2016.
-                                                                                                                                                                        */
+.factory('RbDriverCmxNetworkModel', _RbDriverCmxNetworkModel2.default).factory('RbDriverInstallationOptionsModel', _RbDriverInstallationOptionsModel2.default).factory('RbDriverAccessPointModel', _RbDriverAccessPointModel2.default).name;
+
+// import RbDriverRegistrationModel from './Relaybox-driver-api/RbDriverRegistrationModel';
+// import RbDriverEquipmentModel from './Relaybox-driver-api/RbDriverEquipmentModel';
+
+/**
+ * Created by benoit.bacot on 29/08/2016.
+ */

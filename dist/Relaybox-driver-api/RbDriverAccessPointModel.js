@@ -9,5 +9,13 @@ exports.default = RbDriverAccessPointModel;
  */
 RbDriverAccessPointModel.$inject = ['$relayboxApiModelFactory'];
 function RbDriverAccessPointModel($relayboxApiModelFactory) {
-  return $relayboxApiModelFactory('access-point', {});
+  return $relayboxApiModelFactory('access-point', {
+    actions: {
+      batch: {
+        method: 'POST',
+        url: 'batch',
+        wrap: false
+      }
+    }
+  });
 }
