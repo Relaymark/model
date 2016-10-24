@@ -9,5 +9,13 @@ exports.default = RbDriverCmxNetworkModel;
  */
 RbDriverCmxNetworkModel.$inject = ['$relayboxApiModelFactory'];
 function RbDriverCmxNetworkModel($relayboxApiModelFactory) {
-  return $relayboxApiModelFactory('networks', {});
+  return $relayboxApiModelFactory('networks', {
+    actions: {
+      batch: {
+        method: 'PUT',
+        url: '{shortId}/captive-portal',
+        wrap: false
+      }
+    }
+  });
 }
