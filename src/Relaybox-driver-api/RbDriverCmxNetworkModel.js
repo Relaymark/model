@@ -7,7 +7,7 @@ export default function RbDriverCmxNetworkModel($relayboxApiModelFactory) {
     actions: {
       setCaptivePortal: {
         method: 'PUT',
-        url: '{shortId}/captive-portal',
+        url: '{networkShortId}/captive-portal',
         wrap: false
       }
     }
