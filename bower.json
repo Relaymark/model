@@ -1,0 +1,25 @@
+{
+  "name": "relaymark.model",
+  "description": "Relaymark model is a angularjs module which allows you to use the Relaymark Platform API",
+  "main": "./dist/relaymark.model.js",
+  "authors": [
+    "Relaymark"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "relaymark",
+    "model",
+    "angularjs"
+  ],
+  "homepage": "https://github.com/Relaymark/Relaymark.model",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ng-file-upload": "^12.0.4"
+  }
+}
