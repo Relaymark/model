@@ -7,7 +7,7 @@
 		exports["relaymark.model"] = factory(require("angular"));
 	else
 		root["relaymark.model"] = factory(root["angular"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_51__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_53__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -62,7 +62,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(1);
 
-	__webpack_require__(47);
+	__webpack_require__(49);
 
 	var _DirectoryModule = __webpack_require__(35);
 
@@ -96,7 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(49);
+	__webpack_require__(51);
 	module.exports = 'ngFileUpload';
 
 /***/ },
@@ -659,7 +659,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = angular.module('relaymark.model.relaybox', ['modelFactory']).factory('RelayboxPageModel', _RelayboxPageModel2.default).factory('RelayboxDataSourceModel', _RelayboxDataSourceModel2.default).factory('RelayboxCounterDataModel', _RelayboxCounterDataModel2.default).factory('RelayboxCounterLiveDataModel', _RelayboxCounterLiveDataModel2.default).factory('RelayboxCounterTypeModel', _RelayboxCounterTypeModel2.default).factory('RelayboxEventModel', _RelayboxEventModel2.default).name;
+	exports.default = angular.module('relaymark.model.relaybox', ['modelFactory']).factory('RelayboxDataSourceModel', _RelayboxDataSourceModel2.default).factory('RelayboxPageModel', _RelayboxPageModel2.default).factory('RelayboxCounterDataModel', _RelayboxCounterDataModel2.default).factory('RelayboxCounterLiveDataModel', _RelayboxCounterLiveDataModel2.default).factory('RelayboxCounterTypeModel', _RelayboxCounterTypeModel2.default).factory('RelayboxEventModel', _RelayboxEventModel2.default).name;
 
 /***/ },
 /* 19 */
@@ -854,7 +854,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = angular.module('relaymark.model.data-engine', ['modelFactory']).factory('DataSourceModel', _DataSourceModel2.default).factory('DataSourceRegistrationModel', _DataSourceRegistrationModel2.default).factory('DataEngineCounterModel', _DataEngineCounterModel2.default).factory('DataEngineEventModel', _DataEngineEventModel2.default).factory('DataEngineCustomerModel', _DataEngineCustomerModel2.default).factory('DataEngineDataChunkModel', _DataEngineDataChunkModel2.default).name;
+	exports.default = angular.module('relaymark.model.data-engine', ['modelFactory']).factory('DataEngineCounterModel', _DataEngineCounterModel2.default).factory('DataEngineCustomerModel', _DataEngineCustomerModel2.default).factory('DataEngineDataChunkModel', _DataEngineDataChunkModel2.default).factory('DataEngineEventModel', _DataEngineEventModel2.default).factory('DataSourceModel', _DataSourceModel2.default).factory('DataSourceRegistrationModel', _DataSourceRegistrationModel2.default).name;
 
 /***/ },
 /* 28 */
@@ -992,23 +992,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _AffiliationModel = __webpack_require__(40);
+	var _AffiliationModel = __webpack_require__(41);
 
 	var _AffiliationModel2 = _interopRequireDefault(_AffiliationModel);
 
-	var _AffiliationRequestModel = __webpack_require__(41);
+	var _AffiliationRequestModel = __webpack_require__(42);
 
 	var _AffiliationRequestModel2 = _interopRequireDefault(_AffiliationRequestModel);
 
-	var _AssignmentModel = __webpack_require__(42);
+	var _AssignmentModel = __webpack_require__(43);
 
 	var _AssignmentModel2 = _interopRequireDefault(_AssignmentModel);
 
-	var _EmployeeModel = __webpack_require__(44);
+	var _EmployeeModel = __webpack_require__(46);
 
 	var _EmployeeModel2 = _interopRequireDefault(_EmployeeModel);
 
-	var _OrganizationUnitModel = __webpack_require__(46);
+	var _OrganizationUnitModel = __webpack_require__(48);
 
 	var _OrganizationUnitModel2 = _interopRequireDefault(_OrganizationUnitModel);
 
@@ -1020,7 +1020,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _EventModel2 = _interopRequireDefault(_EventModel);
 
-	var _CompanyLocationModel = __webpack_require__(43);
+	var _CompanyLocationModel = __webpack_require__(45);
 
 	var _CompanyLocationModel2 = _interopRequireDefault(_CompanyLocationModel);
 
@@ -1036,13 +1036,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _UserModel2 = _interopRequireDefault(_UserModel);
 
-	var _LocationAssignmentModel = __webpack_require__(45);
+	var _LocationAssignmentModel = __webpack_require__(47);
 
 	var _LocationAssignmentModel2 = _interopRequireDefault(_LocationAssignmentModel);
 
+	var _AffiliatedNetworkModel = __webpack_require__(40);
+
+	var _AffiliatedNetworkModel2 = _interopRequireDefault(_AffiliatedNetworkModel);
+
+	var _CompanyLocationGroupModel = __webpack_require__(44);
+
+	var _CompanyLocationGroupModel2 = _interopRequireDefault(_CompanyLocationGroupModel);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = angular.module('relaymark.model.directory', ['modelFactory']).factory('AffiliationModel', _AffiliationModel2.default).factory('AffiliationRequestModel', _AffiliationRequestModel2.default).factory('AssignmentModel', _AssignmentModel2.default).factory('EmployeeModel', _EmployeeModel2.default).factory('OrganizationUnitModel', _OrganizationUnitModel2.default).factory('CompanyModel', _CompanyModel2.default).factory('EventModel', _EventModel2.default).factory('CompanyLocationModel', _CompanyLocationModel2.default).factory('NetworkModel', _NetworkModel2.default).factory('RegistrationModel', _RegistrationModel2.default).factory('UserModel', _UserModel2.default).factory('LocationAssignmentModel', _LocationAssignmentModel2.default).name;
+	exports.default = angular.module('relaymark.model.directory', ['modelFactory']).factory('CompanyModel', _CompanyModel2.default).factory('EventModel', _EventModel2.default).factory('NetworkModel', _NetworkModel2.default).factory('RegistrationModel', _RegistrationModel2.default).factory('UserModel', _UserModel2.default).factory('AffiliationNetworkModel', _AffiliatedNetworkModel2.default).factory('AffiliationModel', _AffiliationModel2.default).factory('AffiliationRequestModel', _AffiliationRequestModel2.default).factory('AssignmentModel', _AssignmentModel2.default).factory('CompanyLocationGroupModel', _CompanyLocationGroupModel2.default).factory('CompanyLocationModel', _CompanyLocationModel2.default).factory('EmployeeModel', _EmployeeModel2.default).factory('LocationAssignmentModel', _LocationAssignmentModel2.default).factory('OrganizationUnitModel', _OrganizationUnitModel2.default).name;
 
 /***/ },
 /* 36 */
@@ -1197,6 +1205,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.default = AffiliatedNetworkModel;
+	AffiliatedNetworkModel.$inject = ['$modelFactory'];
+	function AffiliatedNetworkModel($modelFactory) {
+	  var result = {
+	    forCompanyAndAffiliation: function forCompanyAndAffiliation(companyShortId, affiliationShortId) {
+	      return $modelFactory('directory/companies/' + companyShortId + '/affiliations/' + affiliationShortId + '/network');
+	    }
+	  };
+	  return result;
+	}
+
+/***/ },
+/* 41 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	exports.default = AffiliationModel;
 	AffiliationModel.$inject = ['$modelFactory', 'AssignmentModel'];
 	function AffiliationModel($modelFactory, AssignmentModel) {
@@ -1222,7 +1250,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1242,7 +1270,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1273,7 +1301,41 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 43 */
+/* 44 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = CompanyLocationGroupModel;
+	CompanyLocationGroupModel.$inject = ['$modelFactory'];
+	function CompanyLocationGroupModel($modelFactory) {
+	  var result = {
+	    forNetwork: function forNetwork(networkShortId) {
+	      return $modelFactory('directory/networks/' + networkShortId + '/company-location-groups', {
+	        instance: {
+	          sortLocationIds: function sortLocationIds() {
+	            // set companyLocationIds
+	            this.companyLocationIds = [];
+	            if (this.companyLocations) {
+	              this.companyLocationIds = this.companyLocations.map(function (item) {
+	                return item.id;
+	              });
+	            }
+	            // removing CompanyLocations list
+	            delete this.companyLocations;
+	          }
+	        }
+	      });
+	    }
+	  };
+	  return result;
+	}
+
+/***/ },
+/* 45 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1311,7 +1373,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 44 */
+/* 46 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1342,7 +1404,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 45 */
+/* 47 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1368,7 +1430,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 46 */
+/* 48 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1421,7 +1483,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/*eslint-enable no-unused-vars */
 
 /***/ },
-/* 47 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -1432,7 +1494,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	(function (global, factory) {
 	  if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(51), __webpack_require__(50), __webpack_require__(48), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(53), __webpack_require__(52), __webpack_require__(50), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  } else if (typeof module !== 'undefined' && module.exports) {
 	    module.exports = factory(require('angular'), require('uri-templates'), require('deep-diff'), require('ng-file-upload')); //, require('ng-file-upload')
 	  } else {
@@ -2395,7 +2457,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 48 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -2824,7 +2886,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 49 */
+/* 51 */
 /***/ function(module, exports) {
 
 	/**!
@@ -5631,7 +5693,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 50 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
@@ -6110,10 +6172,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 51 */
+/* 53 */
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_51__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_53__;
 
 /***/ }
 /******/ ])

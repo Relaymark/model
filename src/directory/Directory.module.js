@@ -10,19 +10,23 @@ import NetworkModel from './NetworkModel.js';
 import RegistrationModel from './RegistrationModel.js';
 import UserModel from './UserModel.js';
 import LocationAssignmentModel from './nested/LocationAssignmentModel.js';
+import AffiliationNetworkModel from './nested/AffiliatedNetworkModel.js';
+import CompanyLocationGroupModel from './nested/CompanyLocationGroupModel.js';
 
 
-export default angular.module('relaymark.model.directory', ['modelFactory']) 
-    .factory('AffiliationModel', AffiliationModel)
-    .factory('AffiliationRequestModel', AffiliationRequestModel)
-    .factory('AssignmentModel', AssignmentModel)
-    .factory('EmployeeModel', EmployeeModel)
-    .factory('OrganizationUnitModel', OrganizationUnitModel)
+export default angular.module('relaymark.model.directory', ['modelFactory'])
     .factory('CompanyModel', CompanyModel)
     .factory('EventModel', EventModel)
-    .factory('CompanyLocationModel', CompanyLocationModel)
     .factory('NetworkModel', NetworkModel)
     .factory('RegistrationModel', RegistrationModel)
     .factory('UserModel', UserModel)
+    .factory('AffiliationNetworkModel', AffiliationNetworkModel)
+    .factory('AffiliationModel', AffiliationModel)
+    .factory('AffiliationRequestModel', AffiliationRequestModel)
+    .factory('AssignmentModel', AssignmentModel)
+    .factory('CompanyLocationGroupModel', CompanyLocationGroupModel)
+    .factory('CompanyLocationModel', CompanyLocationModel)
+    .factory('EmployeeModel', EmployeeModel)
     .factory('LocationAssignmentModel', LocationAssignmentModel)
+    .factory('OrganizationUnitModel', OrganizationUnitModel)
     .name;

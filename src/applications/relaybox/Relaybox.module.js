@@ -10,8 +10,8 @@ import RelayboxEventModel from './data/RelayboxEventModel.js';
 
 
 export default angular.module('relaymark.model.relaybox', ['modelFactory'])
-    .factory('RelayboxPageModel', RelayboxPageModel)
     .factory('RelayboxDataSourceModel', RelayboxDataSourceModel)
+    .factory('RelayboxPageModel', RelayboxPageModel)
     .factory('RelayboxCounterDataModel', RelayboxCounterDataModel)
     .factory('RelayboxCounterLiveDataModel', RelayboxCounterLiveDataModel)
     .factory('RelayboxCounterTypeModel', RelayboxCounterTypeModel)
