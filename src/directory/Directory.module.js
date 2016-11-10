@@ -10,7 +10,7 @@ import NetworkModel from './NetworkModel.js';
 import RegistrationModel from './RegistrationModel.js';
 import UserModel from './UserModel.js';
 import LocationAssignmentModel from './nested/LocationAssignmentModel.js';
-import AffiliationNetworkModel from './nested/AffiliatedNetworkModel.js';
+import AffiliatedNetworkModel from './nested/AffiliatedNetworkModel.js';
 import CompanyLocationGroupModel from './nested/CompanyLocationGroupModel.js';
 
 
@@ -20,7 +20,7 @@ export default angular.module('relaymark.model.directory', ['modelFactory'])
     .factory('NetworkModel', NetworkModel)
     .factory('RegistrationModel', RegistrationModel)
     .factory('UserModel', UserModel)
-    .factory('AffiliationNetworkModel', AffiliationNetworkModel)
+    .factory('AffiliatedNetworkModel', AffiliatedNetworkModel)
     .factory('AffiliationModel', AffiliationModel)
     .factory('AffiliationRequestModel', AffiliationRequestModel)
     .factory('AssignmentModel', AssignmentModel)
