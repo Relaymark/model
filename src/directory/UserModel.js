@@ -28,6 +28,24 @@ export default function UserModel($modelFactory) {
         method: 'POST',
         url: '{shortId}/default-affiliations/{networkShortId}',
         wrap: false
+      },
+      'getMeApplications': {
+        method: 'GET',
+        url: 'me/applications',
+        isPagedList: true,
+        wrap: false
+      },
+      'getMeApplicationSetups': {
+        method: 'GET',
+        url: 'me/application-setups',
+        isPagedList: true,
+        wrap: false
+      },
+      'getMeLocationAssignments': {
+        method: 'GET',
+        url: 'me/location-assignments',
+        isPagedList: true,
+        wrap: false
       }
     }
   });

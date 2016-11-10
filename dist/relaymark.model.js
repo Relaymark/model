@@ -7,7 +7,7 @@
 		exports["relaymark.model"] = factory(require("angular"));
 	else
 		root["relaymark.model"] = factory(root["angular"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_47__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_51__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -62,21 +62,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(1);
 
-	__webpack_require__(43);
+	__webpack_require__(47);
 
-	var _DirectoryModule = __webpack_require__(31);
+	var _DirectoryModule = __webpack_require__(35);
 
 	var _DirectoryModule2 = _interopRequireDefault(_DirectoryModule);
 
-	var _CommunityModule = __webpack_require__(3);
+	var _ApplicationsModule = __webpack_require__(6);
 
-	var _CommunityModule2 = _interopRequireDefault(_CommunityModule);
+	var _ApplicationsModule2 = _interopRequireDefault(_ApplicationsModule);
 
-	var _RelayboxModule = __webpack_require__(14);
-
-	var _RelayboxModule2 = _interopRequireDefault(_RelayboxModule);
-
-	var _DataEngineModule = __webpack_require__(23);
+	var _DataEngineModule = __webpack_require__(27);
 
 	var _DataEngineModule2 = _interopRequireDefault(_DataEngineModule);
 
@@ -84,23 +80,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _AdminModel2 = _interopRequireDefault(_AdminModel);
 
-	var _CorporateInvitationModel = __webpack_require__(22);
+	var _CorporateInvitationModel = __webpack_require__(26);
 
 	var _CorporateInvitationModel2 = _interopRequireDefault(_CorporateInvitationModel);
 
-	var _CaptivePortalModel = __webpack_require__(21);
+	var _CaptivePortalModel = __webpack_require__(25);
 
 	var _CaptivePortalModel2 = _interopRequireDefault(_CaptivePortalModel);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = angular.module('relaymark.model', ['modelFactory', _CommunityModule2.default, _DirectoryModule2.default, _RelayboxModule2.default, _DataEngineModule2.default]).factory('AdminModel', _AdminModel2.default).factory('CorporateInvitationModel', _CorporateInvitationModel2.default).factory('CaptivePortalModel', _CaptivePortalModel2.default).name;
+	exports.default = angular.module('relaymark.model', ['modelFactory', _ApplicationsModule2.default, _DirectoryModule2.default, _DataEngineModule2.default]).factory('AdminModel', _AdminModel2.default).factory('CorporateInvitationModel', _CorporateInvitationModel2.default).factory('CaptivePortalModel', _CaptivePortalModel2.default).name;
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(45);
+	__webpack_require__(49);
 	module.exports = 'ngFileUpload';
 
 /***/ },
@@ -133,6 +129,96 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 3 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = ApplicationModel;
+	ApplicationModel.$inject = ['$modelFactory'];
+	function ApplicationModel($modelFactory) {
+	  return $modelFactory('directory/applications', {
+	    actions: {
+
+	      'query': {
+	        method: 'GET',
+	        /**
+	         * If true then the returned object for this action is an array.
+	         */
+	        isArray: true,
+	        /**
+	         * If true then the returned object is a paged List.
+	         */
+	        isPagedList: false //isPagedList === true bypass isArray params.
+	      }
+
+	    }
+	  });
+	}
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = ApplicationPermissionModel;
+	ApplicationPermissionModel.$inject = ['$modelFactory'];
+	function ApplicationPermissionModel($modelFactory) {
+	  return $modelFactory('directory/application-permissions', {
+	    actions: {
+	      'query': {
+	        method: 'GET',
+	        /**
+	         * If true then the returned object for this action is an array.
+	         */
+	        isArray: true,
+	        /**
+	         * If true then the returned object is a paged List.
+	         */
+	        isPagedList: false //isPagedList === true bypass isArray params.
+	      }
+	    }
+	  });
+	}
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = ApplicationSetupModel;
+	ApplicationSetupModel.$inject = ['$modelFactory'];
+	function ApplicationSetupModel($modelFactory) {
+	  return $modelFactory('directory/application-setups', {
+	    actions: {
+	      'query': {
+	        method: 'GET',
+	        /**
+	         * If true then the returned object for this action is an array.
+	         */
+	        isArray: false,
+	        /**
+	         * If true then the returned object is a paged List.
+	         */
+	        isPagedList: true //isPagedList === true bypass isArray params.
+	      }
+
+	    }
+	  });
+	}
+
+/***/ },
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -141,43 +227,77 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _CommunityAppModel = __webpack_require__(4);
+	var _RelayboxModule = __webpack_require__(18);
+
+	var _RelayboxModule2 = _interopRequireDefault(_RelayboxModule);
+
+	var _CommunityModule = __webpack_require__(7);
+
+	var _CommunityModule2 = _interopRequireDefault(_CommunityModule);
+
+	var _ApplicationModel = __webpack_require__(3);
+
+	var _ApplicationModel2 = _interopRequireDefault(_ApplicationModel);
+
+	var _ApplicationPermissionModel = __webpack_require__(4);
+
+	var _ApplicationPermissionModel2 = _interopRequireDefault(_ApplicationPermissionModel);
+
+	var _ApplicationSetupModel = __webpack_require__(5);
+
+	var _ApplicationSetupModel2 = _interopRequireDefault(_ApplicationSetupModel);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = angular.module('relaymark.model.application', ['modelFactory', _RelayboxModule2.default, _CommunityModule2.default]).factory('ApplicationModel', _ApplicationModel2.default).factory('ApplicationPermissionModel', _ApplicationPermissionModel2.default).factory('ApplicationSetupModel', _ApplicationSetupModel2.default).name;
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _CommunityAppModel = __webpack_require__(8);
 
 	var _CommunityAppModel2 = _interopRequireDefault(_CommunityAppModel);
 
-	var _CommunityCategoryModel = __webpack_require__(5);
+	var _CommunityCategoryModel = __webpack_require__(9);
 
 	var _CommunityCategoryModel2 = _interopRequireDefault(_CommunityCategoryModel);
 
-	var _CommunityConfigurationModel = __webpack_require__(6);
+	var _CommunityConfigurationModel = __webpack_require__(10);
 
 	var _CommunityConfigurationModel2 = _interopRequireDefault(_CommunityConfigurationModel);
 
-	var _CommunityLinkModel = __webpack_require__(7);
+	var _CommunityLinkModel = __webpack_require__(11);
 
 	var _CommunityLinkModel2 = _interopRequireDefault(_CommunityLinkModel);
 
-	var _CommunityPageModel = __webpack_require__(8);
+	var _CommunityPageModel = __webpack_require__(12);
 
 	var _CommunityPageModel2 = _interopRequireDefault(_CommunityPageModel);
 
-	var _CommunityPageWidgetModel = __webpack_require__(9);
+	var _CommunityPageWidgetModel = __webpack_require__(13);
 
 	var _CommunityPageWidgetModel2 = _interopRequireDefault(_CommunityPageWidgetModel);
 
-	var _CommunityPostCommentModel = __webpack_require__(10);
+	var _CommunityPostCommentModel = __webpack_require__(14);
 
 	var _CommunityPostCommentModel2 = _interopRequireDefault(_CommunityPostCommentModel);
 
-	var _CommunityPostModel = __webpack_require__(11);
+	var _CommunityPostModel = __webpack_require__(15);
 
 	var _CommunityPostModel2 = _interopRequireDefault(_CommunityPostModel);
 
-	var _CommunityPreferenceModel = __webpack_require__(12);
+	var _CommunityPreferenceModel = __webpack_require__(16);
 
 	var _CommunityPreferenceModel2 = _interopRequireDefault(_CommunityPreferenceModel);
 
-	var _CommunityWidgetModel = __webpack_require__(13);
+	var _CommunityWidgetModel = __webpack_require__(17);
 
 	var _CommunityWidgetModel2 = _interopRequireDefault(_CommunityWidgetModel);
 
@@ -186,7 +306,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = angular.module('relaymark.model.community', ['modelFactory']).factory('CommunityAppModel', _CommunityAppModel2.default).factory('CommunityCategoryModel', _CommunityCategoryModel2.default).factory('CommunityConfigurationModel', _CommunityConfigurationModel2.default).factory('CommunityLinkModel', _CommunityLinkModel2.default).factory('CommunityPageModel', _CommunityPageModel2.default).factory('CommunityPageWidgetModel', _CommunityPageWidgetModel2.default).factory('CommunityPostCommentModel', _CommunityPostCommentModel2.default).factory('CommunityPostModel', _CommunityPostModel2.default).factory('CommunityPreferenceModel', _CommunityPreferenceModel2.default).factory('CommunityWidgetModel', _CommunityWidgetModel2.default).name;
 
 /***/ },
-/* 4 */
+/* 8 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -216,7 +336,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/*eslint-enable no-unused-vars */
 
 /***/ },
-/* 5 */
+/* 9 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -236,7 +356,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 6 */
+/* 10 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -304,7 +424,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/*eslint-enable no-unused-vars */
 
 /***/ },
-/* 7 */
+/* 11 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -324,7 +444,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 8 */
+/* 12 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -344,7 +464,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 9 */
+/* 13 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -373,7 +493,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 10 */
+/* 14 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -393,7 +513,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 11 */
+/* 15 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -426,7 +546,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 12 */
+/* 16 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -476,7 +596,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 13 */
+/* 17 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -504,7 +624,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 14 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -513,27 +633,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _RelayboxPageModel = __webpack_require__(16);
+	var _RelayboxPageModel = __webpack_require__(20);
 
 	var _RelayboxPageModel2 = _interopRequireDefault(_RelayboxPageModel);
 
-	var _RelayboxDataSourceModel = __webpack_require__(15);
+	var _RelayboxDataSourceModel = __webpack_require__(19);
 
 	var _RelayboxDataSourceModel2 = _interopRequireDefault(_RelayboxDataSourceModel);
 
-	var _RelayboxCounterDataModel = __webpack_require__(17);
+	var _RelayboxCounterDataModel = __webpack_require__(21);
 
 	var _RelayboxCounterDataModel2 = _interopRequireDefault(_RelayboxCounterDataModel);
 
-	var _RelayboxCounterLiveDataModel = __webpack_require__(18);
+	var _RelayboxCounterLiveDataModel = __webpack_require__(22);
 
 	var _RelayboxCounterLiveDataModel2 = _interopRequireDefault(_RelayboxCounterLiveDataModel);
 
-	var _RelayboxCounterTypeModel = __webpack_require__(19);
+	var _RelayboxCounterTypeModel = __webpack_require__(23);
 
 	var _RelayboxCounterTypeModel2 = _interopRequireDefault(_RelayboxCounterTypeModel);
 
-	var _RelayboxEventModel = __webpack_require__(20);
+	var _RelayboxEventModel = __webpack_require__(24);
 
 	var _RelayboxEventModel2 = _interopRequireDefault(_RelayboxEventModel);
 
@@ -542,7 +662,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = angular.module('relaymark.model.relaybox', ['modelFactory']).factory('RelayboxPageModel', _RelayboxPageModel2.default).factory('RelayboxDataSourceModel', _RelayboxDataSourceModel2.default).factory('RelayboxCounterDataModel', _RelayboxCounterDataModel2.default).factory('RelayboxCounterLiveDataModel', _RelayboxCounterLiveDataModel2.default).factory('RelayboxCounterTypeModel', _RelayboxCounterTypeModel2.default).factory('RelayboxEventModel', _RelayboxEventModel2.default).name;
 
 /***/ },
-/* 15 */
+/* 19 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -557,7 +677,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 16 */
+/* 20 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -576,7 +696,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 17 */
+/* 21 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -596,7 +716,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 18 */
+/* 22 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -616,7 +736,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 19 */
+/* 23 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -631,7 +751,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 20 */
+/* 24 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -652,7 +772,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 21 */
+/* 25 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -671,7 +791,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 22 */
+/* 26 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -699,7 +819,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 23 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -708,27 +828,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _DataSourceRegistrationModel = __webpack_require__(29);
+	var _DataSourceRegistrationModel = __webpack_require__(33);
 
 	var _DataSourceRegistrationModel2 = _interopRequireDefault(_DataSourceRegistrationModel);
 
-	var _DataEngineCounterModel = __webpack_require__(24);
+	var _DataEngineCounterModel = __webpack_require__(28);
 
 	var _DataEngineCounterModel2 = _interopRequireDefault(_DataEngineCounterModel);
 
-	var _DataEngineEventModel = __webpack_require__(27);
+	var _DataEngineEventModel = __webpack_require__(31);
 
 	var _DataEngineEventModel2 = _interopRequireDefault(_DataEngineEventModel);
 
-	var _DataEngineCustomerModel = __webpack_require__(25);
+	var _DataEngineCustomerModel = __webpack_require__(29);
 
 	var _DataEngineCustomerModel2 = _interopRequireDefault(_DataEngineCustomerModel);
 
-	var _DataSourceModel = __webpack_require__(28);
+	var _DataSourceModel = __webpack_require__(32);
 
 	var _DataSourceModel2 = _interopRequireDefault(_DataSourceModel);
 
-	var _DataEngineDataChunkModel = __webpack_require__(26);
+	var _DataEngineDataChunkModel = __webpack_require__(30);
 
 	var _DataEngineDataChunkModel2 = _interopRequireDefault(_DataEngineDataChunkModel);
 
@@ -737,7 +857,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = angular.module('relaymark.model.data-engine', ['modelFactory']).factory('DataSourceModel', _DataSourceModel2.default).factory('DataSourceRegistrationModel', _DataSourceRegistrationModel2.default).factory('DataEngineCounterModel', _DataEngineCounterModel2.default).factory('DataEngineEventModel', _DataEngineEventModel2.default).factory('DataEngineCustomerModel', _DataEngineCustomerModel2.default).factory('DataEngineDataChunkModel', _DataEngineDataChunkModel2.default).name;
 
 /***/ },
-/* 24 */
+/* 28 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -757,7 +877,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 25 */
+/* 29 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -772,7 +892,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 26 */
+/* 30 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -787,7 +907,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 27 */
+/* 31 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -808,7 +928,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 28 */
+/* 32 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -823,7 +943,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 29 */
+/* 33 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -838,7 +958,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 30 */
+/* 34 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -863,7 +983,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 31 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -872,51 +992,51 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _AffiliationModel = __webpack_require__(36);
+	var _AffiliationModel = __webpack_require__(40);
 
 	var _AffiliationModel2 = _interopRequireDefault(_AffiliationModel);
 
-	var _AffiliationRequestModel = __webpack_require__(37);
+	var _AffiliationRequestModel = __webpack_require__(41);
 
 	var _AffiliationRequestModel2 = _interopRequireDefault(_AffiliationRequestModel);
 
-	var _AssignmentModel = __webpack_require__(38);
+	var _AssignmentModel = __webpack_require__(42);
 
 	var _AssignmentModel2 = _interopRequireDefault(_AssignmentModel);
 
-	var _EmployeeModel = __webpack_require__(40);
+	var _EmployeeModel = __webpack_require__(44);
 
 	var _EmployeeModel2 = _interopRequireDefault(_EmployeeModel);
 
-	var _OrganizationUnitModel = __webpack_require__(42);
+	var _OrganizationUnitModel = __webpack_require__(46);
 
 	var _OrganizationUnitModel2 = _interopRequireDefault(_OrganizationUnitModel);
 
-	var _CompanyModel = __webpack_require__(30);
+	var _CompanyModel = __webpack_require__(34);
 
 	var _CompanyModel2 = _interopRequireDefault(_CompanyModel);
 
-	var _EventModel = __webpack_require__(32);
+	var _EventModel = __webpack_require__(36);
 
 	var _EventModel2 = _interopRequireDefault(_EventModel);
 
-	var _CompanyLocationModel = __webpack_require__(39);
+	var _CompanyLocationModel = __webpack_require__(43);
 
 	var _CompanyLocationModel2 = _interopRequireDefault(_CompanyLocationModel);
 
-	var _NetworkModel = __webpack_require__(33);
+	var _NetworkModel = __webpack_require__(37);
 
 	var _NetworkModel2 = _interopRequireDefault(_NetworkModel);
 
-	var _RegistrationModel = __webpack_require__(34);
+	var _RegistrationModel = __webpack_require__(38);
 
 	var _RegistrationModel2 = _interopRequireDefault(_RegistrationModel);
 
-	var _UserModel = __webpack_require__(35);
+	var _UserModel = __webpack_require__(39);
 
 	var _UserModel2 = _interopRequireDefault(_UserModel);
 
-	var _LocationAssignmentModel = __webpack_require__(41);
+	var _LocationAssignmentModel = __webpack_require__(45);
 
 	var _LocationAssignmentModel2 = _interopRequireDefault(_LocationAssignmentModel);
 
@@ -925,7 +1045,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = angular.module('relaymark.model.directory', ['modelFactory']).factory('AffiliationModel', _AffiliationModel2.default).factory('AffiliationRequestModel', _AffiliationRequestModel2.default).factory('AssignmentModel', _AssignmentModel2.default).factory('EmployeeModel', _EmployeeModel2.default).factory('OrganizationUnitModel', _OrganizationUnitModel2.default).factory('CompanyModel', _CompanyModel2.default).factory('EventModel', _EventModel2.default).factory('CompanyLocationModel', _CompanyLocationModel2.default).factory('NetworkModel', _NetworkModel2.default).factory('RegistrationModel', _RegistrationModel2.default).factory('UserModel', _UserModel2.default).factory('LocationAssignmentModel', _LocationAssignmentModel2.default).name;
 
 /***/ },
-/* 32 */
+/* 36 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -940,7 +1060,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 33 */
+/* 37 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -983,7 +1103,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 34 */
+/* 38 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1006,7 +1126,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 35 */
+/* 39 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1045,13 +1165,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	        method: 'POST',
 	        url: '{shortId}/default-affiliations/{networkShortId}',
 	        wrap: false
+	      },
+	      'getMeApplications': {
+	        method: 'GET',
+	        url: 'me/applications',
+	        isPagedList: true,
+	        wrap: false
+	      },
+	      'getMeApplicationSetups': {
+	        method: 'GET',
+	        url: 'me/application-setups',
+	        isPagedList: true,
+	        wrap: false
+	      },
+	      'getMeLocationAssignments': {
+	        method: 'GET',
+	        url: 'me/location-assignments',
+	        isPagedList: true,
+	        wrap: false
 	      }
 	    }
 	  });
 	}
 
 /***/ },
-/* 36 */
+/* 40 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1084,7 +1222,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 37 */
+/* 41 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1104,7 +1242,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 38 */
+/* 42 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1135,7 +1273,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 39 */
+/* 43 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1173,7 +1311,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 40 */
+/* 44 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1204,7 +1342,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 41 */
+/* 45 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1216,15 +1354,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	LocationAssignmentModel.$inject = ['$modelFactory'];
 	function LocationAssignmentModel($modelFactory) {
 	    var result = {
+	        forCompany: function forCompany(companyId) {
+	            return $modelFactory('directory/companies/' + companyId + '/location-assignments');
+	        },
 	        forNetwork: function forNetwork(networkId) {
 	            return $modelFactory('directory/networks/' + networkId + '/location-assignments');
+	        },
+	        forNetworkAndOrganizationUnit: function forNetworkAndOrganizationUnit(networkShortId, ouShortId) {
+	            return $modelFactory('directory/networks/' + networkShortId + '/organization-units/' + ouShortId + '/location-assignments');
 	        }
 	    };
 	    return result;
 	}
 
 /***/ },
-/* 42 */
+/* 46 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1277,7 +1421,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/*eslint-enable no-unused-vars */
 
 /***/ },
-/* 43 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -1288,7 +1432,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	(function (global, factory) {
 	  if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(47), __webpack_require__(46), __webpack_require__(44), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(51), __webpack_require__(50), __webpack_require__(48), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	  } else if (typeof module !== 'undefined' && module.exports) {
 	    module.exports = factory(require('angular'), require('uri-templates'), require('deep-diff'), require('ng-file-upload')); //, require('ng-file-upload')
 	  } else {
@@ -2251,7 +2395,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 44 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -2680,7 +2824,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 45 */
+/* 49 */
 /***/ function(module, exports) {
 
 	/**!
@@ -5487,7 +5631,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 46 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
@@ -5966,10 +6110,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 47 */
+/* 51 */
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_47__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_51__;
 
 /***/ }
 /******/ ])
