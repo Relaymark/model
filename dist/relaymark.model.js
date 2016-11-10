@@ -967,6 +967,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        method: 'GET',
 	        url: '{shortId}/member-stats',
 	        wrap: false
+	      },
+	      getStatistics: {
+	        method: 'GET',
+	        url: '{shortId}/statistics',
+	        wrap: false
+	      },
+	      getGraph: {
+	        method: 'GET',
+	        url: '{shortId}/graph',
+	        wrap: false
 	      }
 	    }
 	  });
