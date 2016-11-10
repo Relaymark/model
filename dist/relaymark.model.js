@@ -2099,28 +2099,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	          params.data = Model.$strip(params.data);
 
 	          if (params.method === 'POSTWITHUPLOAD' || params.method === 'PUTWITHUPLOAD') {
-	            var filesToUpload = params.files;
-	            var keys = [];
-	            var files = [];
-	            for (var key in filesToUpload) {
-	              if (filesToUpload[key]) {
-	                for (var i = 0; i < filesToUpload[key].length; i++) {
-	                  var newKey = key;
-	                  if (angular.isDefined(filesToUpload[key][i].coordinates)) {
-	                    newKey += filesToUpload[key][i].coordinates;
-	                  }
-	                  keys.push(newKey);
-	                  files.push(filesToUpload[key][i]);
-	                }
-	              }
-	            }
+
+	            var newData = { data: JSON.stringify(params.data) };
+	            angular.extend(newData, params.files);
 
 	            promise = uploadService.upload({
 	              url: params.url,
 	              method: params.method === 'POSTWITHUPLOAD' ? 'POST' : 'PUT',
-	              data: params.data,
-	              file: files,
-	              fileFormDataName: keys
+	              data: newData
 	            });
 	          } else {
 	            promise = $http(params);

@@ -842,28 +842,14 @@
 
 
           if (params.method === 'POSTWITHUPLOAD' || params.method === 'PUTWITHUPLOAD') {
-            let filesToUpload = params.files;
-            let keys = [];
-            let files = [];
-            for (let key in filesToUpload) {
-              if (filesToUpload[key]) {
-                for (let i = 0; i < filesToUpload[key].length; i++) {
-                  let newKey = key;
-                  if (angular.isDefined(filesToUpload[key][i].coordinates)) {
-                    newKey += filesToUpload[key][i].coordinates;
-                  }
-                  keys.push(newKey);
-                  files.push(filesToUpload[key][i]);
-                }
-              }
-            }
+
+            var newData = {data: JSON.stringify(params.data)};
+            angular.extend(newData, params.files);
 
             promise = uploadService.upload({
               url: params.url,
               method: params.method === 'POSTWITHUPLOAD' ? 'POST' : 'PUT',
-              data: params.data,
-              file: files,
-              fileFormDataName: keys
+              data: newData
             });
           }
           else {
