@@ -537,6 +537,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            method: 'POST',
 	            url: '{shortId}/attachmentAccepted',
 	            wrap: false
+	          },
+	          seen: {
+	            method: 'POST',
+	            url: '{shortId}/seen',
+	            wrap: false
 	          }
 	        }
 	      });
