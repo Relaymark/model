@@ -565,6 +565,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var result = {
 	    forNetwork: function forNetwork(networkId) {
 	      return $modelFactory('applications/networks/' + networkId + '/community/preferences', {
+	        addPkToRoutes: false,
 	        actions: {
 	          getFavoriteLinks: {
 	            method: 'GET',

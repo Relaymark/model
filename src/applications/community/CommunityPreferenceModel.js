@@ -4,6 +4,7 @@ export default function CommunityPreferenceModel($modelFactory) {
     forNetwork: function (networkId) {
       return $modelFactory('applications/networks/' + networkId + '/community/preferences',
         {
+          addPkToRoutes: false,
           actions: {
             getFavoriteLinks: {
               method: 'GET',
