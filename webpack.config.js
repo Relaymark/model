@@ -1,10 +1,13 @@
 var webpack = require('webpack');
 module.exports = {
-    entry: "./src/relaymark.model.js",
+    entry: {
+        "relaymark.model": "./src/relaymark.model.js",
+        "relaymark.model.relayboxDriverModel": "./src/relaymark.model.relayboxDriverModel.js",
+    },
     output: {
         path: "dist",
-        filename: "relaymark.model.js",
-        library: "relaymark.model",
+        filename: "[name].js",
+        library: "[name]",
         libraryTarget: 'umd'
     },
     target: "web",

@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["angular"], factory);
 	else if(typeof exports === 'object')
-		exports["relaymark.model"] = factory(require("angular"));
+		exports["relaymark.model.relayboxDriverModel"] = factory(require("angular"));
 	else
-		root["relaymark.model"] = factory(root["angular"]);
+		root["relaymark.model.relayboxDriverModel"] = factory(root["angular"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_5__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -50,57 +50,59 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	__webpack_require__(1);
 
-	__webpack_require__(56);
+	__webpack_require__(57);
 
-	var _DirectoryModule = __webpack_require__(42);
+	var _RbDriverCmxNetworkModel = __webpack_require__(7);
 
-	var _DirectoryModule2 = _interopRequireDefault(_DirectoryModule);
+	var _RbDriverCmxNetworkModel2 = _interopRequireDefault(_RbDriverCmxNetworkModel);
 
-	var _ApplicationsModule = __webpack_require__(13);
+	var _RbDriverInstallationOptionsModel = __webpack_require__(8);
 
-	var _ApplicationsModule2 = _interopRequireDefault(_ApplicationsModule);
+	var _RbDriverInstallationOptionsModel2 = _interopRequireDefault(_RbDriverInstallationOptionsModel);
 
-	var _DataEngineModule = __webpack_require__(34);
+	var _RbDriverAccessPointModel = __webpack_require__(6);
 
-	var _DataEngineModule2 = _interopRequireDefault(_DataEngineModule);
-
-	var _AdminModel = __webpack_require__(9);
-
-	var _AdminModel2 = _interopRequireDefault(_AdminModel);
-
-	var _CorporateInvitationModel = __webpack_require__(33);
-
-	var _CorporateInvitationModel2 = _interopRequireDefault(_CorporateInvitationModel);
-
-	var _CaptivePortalModel = __webpack_require__(32);
-
-	var _CaptivePortalModel2 = _interopRequireDefault(_CaptivePortalModel);
+	var _RbDriverAccessPointModel2 = _interopRequireDefault(_RbDriverAccessPointModel);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = angular.module('relaymark.model', ['modelFactory', _ApplicationsModule2.default, _DirectoryModule2.default, _DataEngineModule2.default]).factory('AdminModel', _AdminModel2.default).factory('CorporateInvitationModel', _CorporateInvitationModel2.default).factory('CaptivePortalModel', _CaptivePortalModel2.default).name;
+	exports.default = angular.module('relaymark.model.relayboxDriver', ['relayboxApiModelFactory'])
+	// .factory('RbDriverRegistrationModel', RbDriverRegistrationModel)
+	// .factory('RbDriverEquipmentModel', RbDriverEquipmentModel)
+
+	.factory('RbDriverCmxNetworkModel', _RbDriverCmxNetworkModel2.default).factory('RbDriverInstallationOptionsModel', _RbDriverInstallationOptionsModel2.default).factory('RbDriverAccessPointModel', _RbDriverAccessPointModel2.default).name;
+
+	// import RbDriverRegistrationModel from './Relaybox-driver-api/RbDriverRegistrationModel';
+	// import RbDriverEquipmentModel from './Relaybox-driver-api/RbDriverEquipmentModel';
+
+	/**
+	 * Created by benoit.bacot on 29/08/2016.
+	 */
 
 /***/ },
-/* 1 */
+
+/***/ 1:
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(3);
 	module.exports = 'ngFileUpload';
 
 /***/ },
-/* 2 */
+
+/***/ 2:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -529,7 +531,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 3 */
+
+/***/ 3:
 /***/ function(module, exports) {
 
 	/**!
@@ -3336,7 +3339,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 4 */
+
+/***/ 4:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
@@ -3815,16 +3819,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 5 */
+
+/***/ 5:
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
 
 /***/ },
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */
+
+/***/ 6:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3832,621 +3835,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = AdminModel;
-	AdminModel.$inject = ['$modelFactory'];
-	function AdminModel($modelFactory) {
-	  return $modelFactory('admin', {
-	    actions: {
-	      resetPwd: {
-	        method: 'POST',
-	        url: 'reset-pwd',
-	        wrap: false
-	      },
-	      lostPwd: {
-	        method: 'POST',
-	        url: 'lost-pwd',
-	        wrap: false
-	      }
-	    }
-	  });
-	}
-
-/***/ },
-/* 10 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = ApplicationModel;
-	ApplicationModel.$inject = ['$modelFactory'];
-	function ApplicationModel($modelFactory) {
-	  return $modelFactory('directory/applications', {
-	    actions: {
-
-	      'query': {
-	        method: 'GET',
-	        /**
-	         * If true then the returned object for this action is an array.
-	         */
-	        isArray: true,
-	        /**
-	         * If true then the returned object is a paged List.
-	         */
-	        isPagedList: false //isPagedList === true bypass isArray params.
-	      }
-
-	    }
-	  });
-	}
-
-/***/ },
-/* 11 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = ApplicationPermissionModel;
-	ApplicationPermissionModel.$inject = ['$modelFactory'];
-	function ApplicationPermissionModel($modelFactory) {
-	  return $modelFactory('directory/application-permissions', {
-	    actions: {
-	      'query': {
-	        method: 'GET',
-	        /**
-	         * If true then the returned object for this action is an array.
-	         */
-	        isArray: true,
-	        /**
-	         * If true then the returned object is a paged List.
-	         */
-	        isPagedList: false //isPagedList === true bypass isArray params.
-	      }
-	    }
-	  });
-	}
-
-/***/ },
-/* 12 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = ApplicationSetupModel;
-	ApplicationSetupModel.$inject = ['$modelFactory'];
-	function ApplicationSetupModel($modelFactory) {
-	  return $modelFactory('directory/application-setups', {
-	    actions: {
-	      'query': {
-	        method: 'GET',
-	        /**
-	         * If true then the returned object for this action is an array.
-	         */
-	        isArray: false,
-	        /**
-	         * If true then the returned object is a paged List.
-	         */
-	        isPagedList: true //isPagedList === true bypass isArray params.
-	      }
-
-	    }
-	  });
-	}
-
-/***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _RelayboxModule = __webpack_require__(25);
-
-	var _RelayboxModule2 = _interopRequireDefault(_RelayboxModule);
-
-	var _CommunityModule = __webpack_require__(14);
-
-	var _CommunityModule2 = _interopRequireDefault(_CommunityModule);
-
-	var _ApplicationModel = __webpack_require__(10);
-
-	var _ApplicationModel2 = _interopRequireDefault(_ApplicationModel);
-
-	var _ApplicationPermissionModel = __webpack_require__(11);
-
-	var _ApplicationPermissionModel2 = _interopRequireDefault(_ApplicationPermissionModel);
-
-	var _ApplicationSetupModel = __webpack_require__(12);
-
-	var _ApplicationSetupModel2 = _interopRequireDefault(_ApplicationSetupModel);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = angular.module('relaymark.model.application', ['modelFactory', _RelayboxModule2.default, _CommunityModule2.default]).factory('ApplicationModel', _ApplicationModel2.default).factory('ApplicationPermissionModel', _ApplicationPermissionModel2.default).factory('ApplicationSetupModel', _ApplicationSetupModel2.default).name;
-
-/***/ },
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _CommunityAppModel = __webpack_require__(15);
-
-	var _CommunityAppModel2 = _interopRequireDefault(_CommunityAppModel);
-
-	var _CommunityCategoryModel = __webpack_require__(16);
-
-	var _CommunityCategoryModel2 = _interopRequireDefault(_CommunityCategoryModel);
-
-	var _CommunityConfigurationModel = __webpack_require__(17);
-
-	var _CommunityConfigurationModel2 = _interopRequireDefault(_CommunityConfigurationModel);
-
-	var _CommunityLinkModel = __webpack_require__(18);
-
-	var _CommunityLinkModel2 = _interopRequireDefault(_CommunityLinkModel);
-
-	var _CommunityPageModel = __webpack_require__(19);
-
-	var _CommunityPageModel2 = _interopRequireDefault(_CommunityPageModel);
-
-	var _CommunityPageWidgetModel = __webpack_require__(20);
-
-	var _CommunityPageWidgetModel2 = _interopRequireDefault(_CommunityPageWidgetModel);
-
-	var _CommunityPostCommentModel = __webpack_require__(21);
-
-	var _CommunityPostCommentModel2 = _interopRequireDefault(_CommunityPostCommentModel);
-
-	var _CommunityPostModel = __webpack_require__(22);
-
-	var _CommunityPostModel2 = _interopRequireDefault(_CommunityPostModel);
-
-	var _CommunityPreferenceModel = __webpack_require__(23);
-
-	var _CommunityPreferenceModel2 = _interopRequireDefault(_CommunityPreferenceModel);
-
-	var _CommunityWidgetModel = __webpack_require__(24);
-
-	var _CommunityWidgetModel2 = _interopRequireDefault(_CommunityWidgetModel);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = angular.module('relaymark.model.community', ['modelFactory']).factory('CommunityAppModel', _CommunityAppModel2.default).factory('CommunityCategoryModel', _CommunityCategoryModel2.default).factory('CommunityConfigurationModel', _CommunityConfigurationModel2.default).factory('CommunityLinkModel', _CommunityLinkModel2.default).factory('CommunityPageModel', _CommunityPageModel2.default).factory('CommunityPageWidgetModel', _CommunityPageWidgetModel2.default).factory('CommunityPostCommentModel', _CommunityPostCommentModel2.default).factory('CommunityPostModel', _CommunityPostModel2.default).factory('CommunityPreferenceModel', _CommunityPreferenceModel2.default).factory('CommunityWidgetModel', _CommunityWidgetModel2.default).name;
-
-/***/ },
-/* 15 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = CommunityAppModel;
-	/*eslint-disable no-unused-vars */
-	CommunityAppModel.$inject = ['$modelFactory', 'CommunityConfigurationModel'];
-	function CommunityAppModel($modelFactory, CommunityConfigurationModel) {
-	  var result = {
-	    forNetwork: function forNetwork(networkId) {
-	      return $modelFactory('applications/networks/' + networkId + '/community', {
-	        addPkToRoutes: false, //here we're accessing community by the network way, not by the community Id.So don't inject it into routes as for normal cases.
-	        map: {
-	          configuration: function configuration(_configuration, communityApp) {
-	            var Factory = CommunityConfigurationModel.forNetwork(networkId);
-	            return new Factory(_configuration);
-	          }
-	        }
-	      });
-	    }
-	  };
-	  return result;
-	}
-	/*eslint-enable no-unused-vars */
-
-/***/ },
-/* 16 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = CommunityCategoryModel;
-	CommunityCategoryModel.$inject = ['$modelFactory'];
-	function CommunityCategoryModel($modelFactory) {
-	  var result = {
-	    forNetwork: function forNetwork(networkId) {
-	      return $modelFactory('applications/networks/' + networkId + '/community/configuration/categories');
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 17 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = CommunityConfigurationModel;
-	/*eslint-disable no-unused-vars */
-	CommunityConfigurationModel.$inject = ['$modelFactory', 'CommunityWidgetModel', 'CommunityLinkModel', 'CommunityPageModel', 'CommunityCategoryModel'];
-	function CommunityConfigurationModel($modelFactory, CommunityWidgetModel, CommunityLinkModel, CommunityPageModel, CommunityCategoryModel) {
-	  var result = {
-	    forNetwork: function forNetwork(networkId) {
-	      return $modelFactory('applications/networks/' + networkId + '/community/configuration', {
-	        actions: {
-	          updateUserPermissions: {
-	            method: 'PUT',
-	            url: 'userpermissions',
-	            isArray: true, //not a paged result for now ...
-	            wrap: false
-	          }
-	        },
-	        map: {
-	          //'userPermissions': function(userPermissions, communityConfig) { //FINALLY do not map here as we are just doing a PUT action with the full collection ...
-	          //  var Factory = CommunityUserPermissionModel.forNetwork(networkId);
-	          //  return userPermissions ? userPermissions.map(function(x){
-	          //    var model = new Factory(x);
-	          //    return model;
-	          //  }) : [];
-	          //},
-	          widgets: function widgets(_widgets, communityConfig) {
-	            var Factory = CommunityWidgetModel.forNetwork(networkId);
-	            return _widgets ? _widgets.map(function (x) {
-	              var model = new Factory(x);
-	              return model;
-	            }) : [];
-	          },
-	          links: function links(_links, communityConfig) {
-	            var Factory = CommunityLinkModel.forNetwork(networkId);
-	            return _links ? _links.map(function (x) {
-	              var model = new Factory(x);
-	              return model;
-	            }) : [];
-	          },
-	          pages: function pages(_pages, communityConfig) {
-	            var Factory = CommunityPageModel.forNetwork(networkId);
-	            return _pages ? _pages.map(function (x) {
-	              var model = new Factory(x);
-	              return model;
-	            }) : [];
-	          },
-	          categories: function categories(_categories, communityConfig) {
-	            var Factory = CommunityCategoryModel.forNetwork(networkId);
-	            return _categories ? _categories.map(function (x) {
-	              var model = new Factory(x);
-	              return model;
-	            }) : [];
-	          }
-	        }
-	      });
-	    }
-	  };
-	  return result;
-	}
-	/*eslint-enable no-unused-vars */
-
-/***/ },
-/* 18 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = CommunityLinkModel;
-	CommunityLinkModel.$inject = ['$modelFactory'];
-	function CommunityLinkModel($modelFactory) {
-	  var result = {
-	    forNetwork: function forNetwork(networkId) {
-	      return $modelFactory('applications/networks/' + networkId + '/community/links');
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 19 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = CommunityPageModel;
-	CommunityPageModel.$inject = ['$modelFactory'];
-	function CommunityPageModel($modelFactory) {
-	  var result = {
-	    forNetwork: function forNetwork(networkId) {
-	      return $modelFactory('applications/networks/' + networkId + '/community/pages');
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 20 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = CommunityPageWidgetModel;
-	CommunityPageWidgetModel.$inject = ['$modelFactory'];
-	function CommunityPageWidgetModel($modelFactory) {
-	  var result = {
-	    forNetworkAndPage: function forNetworkAndPage(networkId, pageId) {
-	      return $modelFactory('applications/networks/' + networkId + '/community/pages/' + pageId + '/widgets', {
-	        actions: {
-	          getData: {
-	            method: 'GET',
-	            url: '{shortId}/data',
-	            isArray: true, //not a paged result for now ...
-	            wrap: false
-	          }
-	        }
-	      });
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 21 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = CommunityPostCommentModel;
-	CommunityPostCommentModel.$inject = ['$modelFactory'];
-	function CommunityPostCommentModel($modelFactory) {
-	  var result = {
-	    forNetworkAndPost: function forNetworkAndPost(networkId, postId) {
-	      return $modelFactory('applications/networks/' + networkId + '/community/posts/' + postId + '/comments');
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 22 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = CommunityPostModel;
-	CommunityPostModel.$inject = ['$modelFactory'];
-	function CommunityPostModel($modelFactory) {
-	  var result = {
-	    forNetwork: function forNetwork(networkId) {
-	      return $modelFactory('applications/networks/' + networkId + '/community/posts', {
-	        actions: {
-	          acceptReadReceipt: {
-	            method: 'POST',
-	            url: '{shortId}/readReceiptAccepted',
-	            wrap: false
-	          },
-	          acceptAttachment: {
-	            method: 'POST',
-	            url: '{shortId}/attachmentAccepted',
-	            wrap: false
-	          },
-	          seen: {
-	            method: 'POST',
-	            url: '{shortId}/seen',
-	            wrap: false
-	          }
-	        }
-	      });
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 23 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = CommunityPreferenceModel;
-	CommunityPreferenceModel.$inject = ['$modelFactory'];
-	function CommunityPreferenceModel($modelFactory) {
-	  var result = {
-	    forNetwork: function forNetwork(networkId) {
-	      return $modelFactory('applications/networks/' + networkId + '/community/preferences', {
-	        addPkToRoutes: false,
-	        actions: {
-	          getFavoriteLinks: {
-	            method: 'GET',
-	            url: 'favorite-links',
-	            isArray: true,
-	            wrap: false
-	          },
-	          addLinkToFavorites: {
-	            method: 'PUT',
-	            url: 'favorite-links/{shortId}',
-	            wrap: false
-	          },
-	          removeLinkFromFavorites: {
-	            method: 'DELETE',
-	            url: 'favorite-links/{shortId}',
-	            wrap: false
-	          },
-	          getLinkOrders: {
-	            method: 'GET',
-	            url: 'link-orders',
-	            isArray: true,
-	            wrap: false
-	          },
-	          setLinkOrders: {
-	            method: 'PUT',
-	            url: 'link-orders',
-	            wrap: false
-	          }
-	        }
-	      });
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 24 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = CommunityWidgetModel;
-	CommunityWidgetModel.$inject = ['$modelFactory'];
-	function CommunityWidgetModel($modelFactory) {
-	  var result = {
-	    forNetwork: function forNetwork(networkId) {
-	      return $modelFactory('applications/networks/' + networkId + '/community/configuration/widgets', {
-	        actions: {
-	          testConnection: {
-	            method: 'GET',
-	            url: '{shortId}/test',
-	            wrap: false
-	          }
-	        }
-	      });
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 25 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _RelayboxPageModel = __webpack_require__(27);
-
-	var _RelayboxPageModel2 = _interopRequireDefault(_RelayboxPageModel);
-
-	var _RelayboxDataSourceModel = __webpack_require__(26);
-
-	var _RelayboxDataSourceModel2 = _interopRequireDefault(_RelayboxDataSourceModel);
-
-	var _RelayboxCounterDataModel = __webpack_require__(28);
-
-	var _RelayboxCounterDataModel2 = _interopRequireDefault(_RelayboxCounterDataModel);
-
-	var _RelayboxCounterLiveDataModel = __webpack_require__(29);
-
-	var _RelayboxCounterLiveDataModel2 = _interopRequireDefault(_RelayboxCounterLiveDataModel);
-
-	var _RelayboxCounterTypeModel = __webpack_require__(30);
-
-	var _RelayboxCounterTypeModel2 = _interopRequireDefault(_RelayboxCounterTypeModel);
-
-	var _RelayboxEventModel = __webpack_require__(31);
-
-	var _RelayboxEventModel2 = _interopRequireDefault(_RelayboxEventModel);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = angular.module('relaymark.model.relaybox', ['modelFactory']).factory('RelayboxDataSourceModel', _RelayboxDataSourceModel2.default).factory('RelayboxPageModel', _RelayboxPageModel2.default).factory('RelayboxCounterDataModel', _RelayboxCounterDataModel2.default).factory('RelayboxCounterLiveDataModel', _RelayboxCounterLiveDataModel2.default).factory('RelayboxCounterTypeModel', _RelayboxCounterTypeModel2.default).factory('RelayboxEventModel', _RelayboxEventModel2.default).name;
-
-/***/ },
-/* 26 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = RelayboxDataSourceModel;
-	RelayboxDataSourceModel.$inject = ['$modelFactory'];
-	function RelayboxDataSourceModel($modelFactory) {
-	    return $modelFactory('applications/relaybox/data-sources');
-	}
-
-/***/ },
-/* 27 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = RelayboxPageModel;
+	exports.default = RbDriverAccessPointModel;
 	/**
-	 * Created by benjamin.speth on 24/03/2016.
+	 * Created by benoit.bacot on 02/10/2016.
 	 */
-
-	RelayboxPageModel.$inject = ['$modelFactory'];
-	function RelayboxPageModel($modelFactory) {
-	  return $modelFactory('applications/relaybox/pages', {});
-	}
-
-/***/ },
-/* 28 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = RelayboxCounterDataModel;
-	RelayboxCounterDataModel.$inject = ['$modelFactory'];
-	function RelayboxCounterDataModel($modelFactory) {
-	  var result = {
-	    forDataSourceSidAndCounter: function forDataSourceSid(dataSourceSid, counterName) {
-	      return $modelFactory('applications/relaybox/counter-data/' + dataSourceSid + '/' + counterName);
+	RbDriverAccessPointModel.$inject = ['$relayboxApiModelFactory'];
+	function RbDriverAccessPointModel($relayboxApiModelFactory) {
+	  return $relayboxApiModelFactory('access-point', {
+	    actions: {
+	      batch: {
+	        method: 'POST',
+	        url: 'batch',
+	        wrap: false
+	      }
 	    }
-	  };
-	  return result;
+	  });
 	}
 
 /***/ },
-/* 29 */
+
+/***/ 7:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4454,94 +3862,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = RelayboxCounterLiveDataModel;
-	RelayboxCounterLiveDataModel.$inject = ['$modelFactory'];
-	function RelayboxCounterLiveDataModel($modelFactory) {
-	  var result = {
-	    forDataSourceSidAndCounter: function forDataSourceSid(dataSourceSid, counterName) {
-	      return $modelFactory('applications/relaybox/counter-data/' + dataSourceSid + '/' + counterName + '/live');
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 30 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = RelayboxCounterTypeModel;
-	RelayboxCounterTypeModel.$inject = ['$modelFactory'];
-	function RelayboxCounterTypeModel($modelFactory) {
-	  return $modelFactory('applications/relaybox/counter-types');
-	}
-
-/***/ },
-/* 31 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = RelayboxEventModel;
-	RelayboxEventModel.$inject = ['$modelFactory'];
-	function RelayboxEventModel($modelFactory) {
-	  return $modelFactory('applications/relaybox/event-data');
-	  /*var result = {
-	    forDataSourceAndEventTypeName: function forDataSource(dataSourceId, eventTypeName) {
-	      return $modelFactory('applications/relaybox/event-data/?dataSourceId' + dataSourceId + '&eventTypeName=' + eventTypeName);
-	    }
-	  };
-	  return result;*/
-	}
-
-/***/ },
-/* 32 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = CaptivePortalModel;
+	exports.default = RbDriverCmxNetworkModel;
 	/**
-	 * Created by benjamin.speth on 28/09/2016.
+	 * Created by benoit.bacot on 29/08/2016.
 	 */
-
-	CaptivePortalModel.$inject = ['$modelFactory'];
-	function CaptivePortalModel($modelFactory) {
-	  return $modelFactory('captive-portal', {});
-	}
-
-/***/ },
-/* 33 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = CorporateInvitationModel;
-	CorporateInvitationModel.$inject = ['$modelFactory'];
-	function CorporateInvitationModel($modelFactory) {
-	  return $modelFactory('communication/corporate-invitations', {
+	RbDriverCmxNetworkModel.$inject = ['$relayboxApiModelFactory'];
+	function RbDriverCmxNetworkModel($relayboxApiModelFactory) {
+	  return $relayboxApiModelFactory('networks', {
 	    actions: {
-	      getStatuses: {
-	        method: 'GET',
-	        url: 'statuses',
-	        wrap: false
-	      },
-	      unban: {
-	        method: 'POST',
-	        url: 'unban',
+	      setCaptivePortal: {
+	        method: 'PUT',
+	        url: '{networkShortId}/captive-portal',
 	        wrap: false
 	      }
 	    }
@@ -4549,45 +3880,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 34 */
-/***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _DataSourceRegistrationModel = __webpack_require__(40);
-
-	var _DataSourceRegistrationModel2 = _interopRequireDefault(_DataSourceRegistrationModel);
-
-	var _DataEngineCounterModel = __webpack_require__(35);
-
-	var _DataEngineCounterModel2 = _interopRequireDefault(_DataEngineCounterModel);
-
-	var _DataEngineEventModel = __webpack_require__(38);
-
-	var _DataEngineEventModel2 = _interopRequireDefault(_DataEngineEventModel);
-
-	var _DataEngineCustomerModel = __webpack_require__(36);
-
-	var _DataEngineCustomerModel2 = _interopRequireDefault(_DataEngineCustomerModel);
-
-	var _DataSourceModel = __webpack_require__(39);
-
-	var _DataSourceModel2 = _interopRequireDefault(_DataSourceModel);
-
-	var _DataEngineDataChunkModel = __webpack_require__(37);
-
-	var _DataEngineDataChunkModel2 = _interopRequireDefault(_DataEngineDataChunkModel);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = angular.module('relaymark.model.data-engine', ['modelFactory']).factory('DataEngineCounterModel', _DataEngineCounterModel2.default).factory('DataEngineCustomerModel', _DataEngineCustomerModel2.default).factory('DataEngineDataChunkModel', _DataEngineDataChunkModel2.default).factory('DataEngineEventModel', _DataEngineEventModel2.default).factory('DataSourceModel', _DataSourceModel2.default).factory('DataSourceRegistrationModel', _DataSourceRegistrationModel2.default).name;
-
-/***/ },
-/* 35 */
+/***/ 8:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4595,633 +3889,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = DataEngineCounterModel;
-	DataEngineCounterModel.$inject = ['$modelFactory'];
-	function DataEngineCounterModel($modelFactory) {
-	  var result = {
-	    forDataSourceAndCounter: function forDataSource(dataSourceId, counterName) {
-	      return $modelFactory('data-engine/counters/' + dataSourceId + '/' + counterName);
-	    }
-	  };
-	  return result;
+	exports.default = RbDriverInstallationOptionsModel;
+	/**
+	 * Created by benoit.bacot on 02/10/2016.
+	 */
+	RbDriverInstallationOptionsModel.$inject = ['$relayboxApiModelFactory'];
+	function RbDriverInstallationOptionsModel($relayboxApiModelFactory) {
+	  return $relayboxApiModelFactory('installation-options', {});
 	}
 
 /***/ },
-/* 36 */
-/***/ function(module, exports) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = DataEngineCustomerModel;
-	DataEngineCustomerModel.$inject = ['$modelFactory'];
-	function DataEngineCustomerModel($modelFactory) {
-	  return $modelFactory('data-engine/customers');
-	}
-
-/***/ },
-/* 37 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = DataEngineDataChunkModel;
-	DataEngineDataChunkModel.$inject = ['$modelFactory'];
-	function DataEngineDataChunkModel($modelFactory) {
-	  return $modelFactory('data-engine/data-chunks');
-	}
-
-/***/ },
-/* 38 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = DataEngineEventModel;
-	DataEngineEventModel.$inject = ['$modelFactory'];
-	function DataEngineEventModel($modelFactory) {
-	  /*var result = {
-	    forDataSourceAndEventTypeName: function forDataSource(dataSourceId, eventTypeName) {
-	      return $modelFactory('data-engine/events/?dataSourceId' + dataSourceId + '&eventTypeName=' + eventTypeName);
-	    }
-	  };
-	  return result;*/
-	  return $modelFactory('data-engine/events');
-	}
-
-/***/ },
-/* 39 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = DataSourceModel;
-	DataSourceModel.$inject = ['$modelFactory'];
-	function DataSourceModel($modelFactory) {
-	  return $modelFactory('data-engine/data-sources');
-	}
-
-/***/ },
-/* 40 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = DataSourceRegistrationModel;
-	DataSourceRegistrationModel.$inject = ['$modelFactory'];
-	function DataSourceRegistrationModel($modelFactory) {
-	  return $modelFactory('data-engine/registrations');
-	}
-
-/***/ },
-/* 41 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = CompanyModel;
-	CompanyModel.$inject = ['$modelFactory', 'EmployeeModel'];
-	function CompanyModel($modelFactory, EmployeeModel) {
-	  return $modelFactory('directory/companies', {
-	    map: {
-	      employees: function employees(_employees, company) {
-	        var Factory = EmployeeModel.forCompany(company.shortId);
-	        return _employees ? _employees.map(function (x) {
-	          var model = new Factory(x);
-	          return model;
-	        }) : [];
-	      }
-	    }
-	  });
-	}
-
-/***/ },
-/* 42 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _AffiliationModel = __webpack_require__(48);
-
-	var _AffiliationModel2 = _interopRequireDefault(_AffiliationModel);
-
-	var _AffiliationRequestModel = __webpack_require__(49);
-
-	var _AffiliationRequestModel2 = _interopRequireDefault(_AffiliationRequestModel);
-
-	var _AssignmentModel = __webpack_require__(50);
-
-	var _AssignmentModel2 = _interopRequireDefault(_AssignmentModel);
-
-	var _EmployeeModel = __webpack_require__(53);
-
-	var _EmployeeModel2 = _interopRequireDefault(_EmployeeModel);
-
-	var _OrganizationUnitModel = __webpack_require__(55);
-
-	var _OrganizationUnitModel2 = _interopRequireDefault(_OrganizationUnitModel);
-
-	var _CompanyModel = __webpack_require__(41);
-
-	var _CompanyModel2 = _interopRequireDefault(_CompanyModel);
-
-	var _EventModel = __webpack_require__(43);
-
-	var _EventModel2 = _interopRequireDefault(_EventModel);
-
-	var _CompanyLocationModel = __webpack_require__(52);
-
-	var _CompanyLocationModel2 = _interopRequireDefault(_CompanyLocationModel);
-
-	var _NetworkModel = __webpack_require__(44);
-
-	var _NetworkModel2 = _interopRequireDefault(_NetworkModel);
-
-	var _RegistrationModel = __webpack_require__(45);
-
-	var _RegistrationModel2 = _interopRequireDefault(_RegistrationModel);
-
-	var _UserModel = __webpack_require__(46);
-
-	var _UserModel2 = _interopRequireDefault(_UserModel);
-
-	var _LocationAssignmentModel = __webpack_require__(54);
-
-	var _LocationAssignmentModel2 = _interopRequireDefault(_LocationAssignmentModel);
-
-	var _AffiliatedNetworkModel = __webpack_require__(47);
-
-	var _AffiliatedNetworkModel2 = _interopRequireDefault(_AffiliatedNetworkModel);
-
-	var _CompanyLocationGroupModel = __webpack_require__(51);
-
-	var _CompanyLocationGroupModel2 = _interopRequireDefault(_CompanyLocationGroupModel);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = angular.module('relaymark.model.directory', ['modelFactory']).factory('CompanyModel', _CompanyModel2.default).factory('EventModel', _EventModel2.default).factory('NetworkModel', _NetworkModel2.default).factory('RegistrationModel', _RegistrationModel2.default).factory('UserModel', _UserModel2.default).factory('AffiliatedNetworkModel', _AffiliatedNetworkModel2.default).factory('AffiliationModel', _AffiliationModel2.default).factory('AffiliationRequestModel', _AffiliationRequestModel2.default).factory('AssignmentModel', _AssignmentModel2.default).factory('CompanyLocationGroupModel', _CompanyLocationGroupModel2.default).factory('CompanyLocationModel', _CompanyLocationModel2.default).factory('EmployeeModel', _EmployeeModel2.default).factory('LocationAssignmentModel', _LocationAssignmentModel2.default).factory('OrganizationUnitModel', _OrganizationUnitModel2.default).name;
-
-/***/ },
-/* 43 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = EventModel;
-	EventModel.$inject = ['$modelFactory'];
-	function EventModel($modelFactory) {
-	  return $modelFactory('events');
-	}
-
-/***/ },
-/* 44 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = NetworkModel;
-	NetworkModel.$inject = ['$modelFactory', 'OrganizationUnitModel', 'LocationAssignmentModel'];
-	function NetworkModel($modelFactory, OrganizationUnitModel, LocationAssignmentModel) {
-	  return $modelFactory('directory/networks', {
-	    map: {
-	      organizationUnit: function organizationUnit(_organizationUnit, network) {
-	        var Factory = OrganizationUnitModel.forNetwork(network.shortId);
-	        return new Factory(_organizationUnit);
-	      },
-	      locationAssignment: function locationAssignment(_locationAssignment, network) {
-	        var Factory = LocationAssignmentModel.forNetwork(network.shortId);
-	        return new Factory();
-	      }
-	    },
-	    actions: {
-	      getMemberStatistics: {
-	        method: 'GET',
-	        url: '{shortId}/member-stats',
-	        wrap: false
-	      },
-	      getStatistics: {
-	        method: 'GET',
-	        url: '{shortId}/statistics',
-	        wrap: false
-	      },
-	      getGraph: {
-	        method: 'GET',
-	        url: '{shortId}/graph',
-	        wrap: false
-	      }
-	    }
-	  });
-	}
-
-/***/ },
-/* 45 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = RegistrationModel;
-	RegistrationModel.$inject = ['$modelFactory'];
-	function RegistrationModel($modelFactory) {
-	  return $modelFactory('registrations', {
-	    actions: {
-	      sendRegistrationEmail: {
-	        method: 'POST',
-	        url: '{shortId}/operators', //the call will be RegistrationModel.sendRegistrationEmail(dataObj, uriTemplateParamsObject)
-	        wrap: false
-	      }
-	    }
-	  });
-	}
-
-/***/ },
-/* 46 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = UserModel;
-	UserModel.$inject = ['$modelFactory'];
-	function UserModel($modelFactory) {
-	  return $modelFactory('directory/users', {
-	    actions: {
-	      getMe: {
-	        method: 'GET',
-	        url: 'me',
-	        wrap: false
-	      },
-	      getMeCompanies: {
-	        method: 'GET',
-	        url: 'me/companies',
-	        isPagedList: true,
-	        wrap: false
-	      },
-	      getMeNetworks: {
-	        method: 'GET',
-	        url: 'me/networks',
-	        isPagedList: true,
-	        wrap: false
-	      },
-	      getDefaultAffiliations: {
-	        method: 'GET',
-	        url: '{shortId}/default-affiliations',
-	        wrap: false
-	      },
-	      setDefaultAffiliationForNetwork: {
-	        method: 'POST',
-	        url: '{shortId}/default-affiliations/{networkShortId}',
-	        wrap: false
-	      },
-	      'getMeApplications': {
-	        method: 'GET',
-	        url: 'me/applications',
-	        isPagedList: true,
-	        wrap: false
-	      },
-	      'getMeApplicationSetups': {
-	        method: 'GET',
-	        url: 'me/application-setups',
-	        isPagedList: true,
-	        wrap: false
-	      },
-	      'getMeLocationAssignments': {
-	        method: 'GET',
-	        url: 'me/location-assignments',
-	        isPagedList: true,
-	        wrap: false
-	      }
-	    }
-	  });
-	}
-
-/***/ },
-/* 47 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = AffiliatedNetworkModel;
-	AffiliatedNetworkModel.$inject = ['$modelFactory'];
-	function AffiliatedNetworkModel($modelFactory) {
-	  var result = {
-	    forCompanyAndAffiliation: function forCompanyAndAffiliation(companyShortId, affiliationShortId) {
-	      return $modelFactory('directory/companies/' + companyShortId + '/affiliations/' + affiliationShortId + '/network');
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 48 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = AffiliationModel;
-	AffiliationModel.$inject = ['$modelFactory', 'AssignmentModel'];
-	function AffiliationModel($modelFactory, AssignmentModel) {
-	  var result = {
-	    forCompany: function forCompany(companyId) {
-	      return $modelFactory('directory/companies/' + companyId + '/affiliations', {
-	        map: {
-	          assignments: function assignments(_assignments, affiliation) {
-	            var Factory = AssignmentModel.forCompanyAndAffiliation(companyId, affiliation.shortId);
-	            return _assignments ? _assignments.map(function (x) {
-	              var model = new Factory(x);
-	              return model;
-	            }) : [];
-	          }
-	        }
-	      });
-	    },
-	    forNetwork: function forNetwork(networkId) {
-	      return $modelFactory('directory/networks/' + networkId + '/affiliations');
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 49 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = AffiliationRequestModel;
-	AffiliationRequestModel.$inject = ['$modelFactory'];
-	function AffiliationRequestModel($modelFactory) {
-	  var result = {
-	    forNetwork: function forNetwork(networkId) {
-	      return $modelFactory('directory/networks/' + networkId + '/affiliation-requests');
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 50 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = AssignmentModel;
-	AssignmentModel.$inject = ['$modelFactory'];
-	function AssignmentModel($modelFactory) {
-	  var result = {
-	    forCompanyAndAffiliation: function forCompanyAndAffiliation(companyId, affiliationId) {
-	      return $modelFactory('directory/companies/' + companyId + '/affiliations/' + affiliationId + '/assignments', {
-	        map: {
-	          shortId: 'user.shortId'
-	        }
-	      });
-	    },
-	    forNetworkAndOu: function forNetworkAndOu(networkId, organizationUnitId) {
-	      return $modelFactory('directory/networks/' + networkId + '/organization-units/' + organizationUnitId + '/assignments', {
-	        map: {
-	          shortId: 'user.shortId'
-	        }
-	      });
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 51 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = CompanyLocationGroupModel;
-	CompanyLocationGroupModel.$inject = ['$modelFactory'];
-	function CompanyLocationGroupModel($modelFactory) {
-	  var result = {
-	    forNetwork: function forNetwork(networkShortId) {
-	      return $modelFactory('directory/networks/' + networkShortId + '/company-location-groups', {
-	        instance: {
-	          sortLocationIds: function sortLocationIds() {
-	            // set companyLocationIds
-	            this.companyLocationIds = [];
-	            if (this.companyLocations) {
-	              this.companyLocationIds = this.companyLocations.map(function (item) {
-	                return item.id;
-	              });
-	            }
-	            // removing CompanyLocations list
-	            delete this.companyLocations;
-	          }
-	        }
-	      });
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 52 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = CompanyLocationModel;
-	CompanyLocationModel.$inject = ['$modelFactory'];
-	function CompanyLocationModel($modelFactory) {
-	    var result = {
-	        forCompany: function forCompany(companyId) {
-	            return $modelFactory('directory/companies/' + companyId + '/locations', {
-	                instance: {
-	                    getFormattedAddress: function getFormattedAddress() {
-	                        var str = '';
-	                        if (this.address) {
-	                            str += this.address.number ? this.address.number : '';
-	                            str += this.address.street ? ' ' + this.address.street : '';
-	                            str += this.address.complement ? ' ' + this.address.complement : '';
-	                            str += this.address.zipCode ? ' ' + this.address.zipCode : '';
-	                            str += this.address.city ? ' ' + this.address.city : '';
-	                            str += this.address.country ? ' ' + this.address.country : '';
-	                        }
-	                        return str;
-	                    },
-	                    canGeocodeAddress: function canGeocodeAddress() {
-	                        return this.address && (this.address.street && this.address.zipCode || this.address.city);
-	                    }
-	                }
-	            });
-	        }
-	    };
-	    return result;
-	}
-
-/***/ },
-/* 53 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = EmployeeModel;
-	EmployeeModel.$inject = ['$modelFactory'];
-	function EmployeeModel($modelFactory) {
-	  var result = {
-	    forCompany: function forCompany(companyId) {
-	      return $modelFactory('directory/companies/' + companyId + '/employees', {
-	        map: {
-	          shortId: 'user.shortId'
-	        },
-	        actions: {
-	          getStatistics: {
-	            method: 'GET',
-	            url: 'statistics',
-	            wrap: false
-	          }
-	        }
-	      });
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 54 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = LocationAssignmentModel;
-	LocationAssignmentModel.$inject = ['$modelFactory'];
-	function LocationAssignmentModel($modelFactory) {
-	    var result = {
-	        forCompany: function forCompany(companyId) {
-	            return $modelFactory('directory/companies/' + companyId + '/location-assignments');
-	        },
-	        forNetwork: function forNetwork(networkId) {
-	            return $modelFactory('directory/networks/' + networkId + '/location-assignments');
-	        },
-	        forNetworkAndOrganizationUnit: function forNetworkAndOrganizationUnit(networkShortId, ouShortId) {
-	            return $modelFactory('directory/networks/' + networkShortId + '/organization-units/' + ouShortId + '/location-assignments');
-	        }
-	    };
-	    return result;
-	}
-
-/***/ },
-/* 55 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = OrganizationUnitModel;
-	/*eslint-disable no-unused-vars */
-	OrganizationUnitModel.$inject = ['$modelFactory', 'AssignmentModel', 'AffiliationModel', 'AffiliationRequestModel'];
-	function OrganizationUnitModel($modelFactory, AssignmentModel, AffiliationModel, AffiliationRequestModel) {
-	  var self = this;
-	  self.forNetwork = function (networkId) {
-	    return $modelFactory('directory/networks/' + networkId + '/organization-units', {
-	      map: {
-	        children: function children(_children, ou) {
-	          var Factory = self.forNetwork(networkId);
-	          return _children ? _children.map(function (x) {
-	            var model = new Factory(x);
-	            return model;
-	          }) : [];
-	        },
-	        networkAssignments: function networkAssignments(assignments, ou) {
-	          var Factory = AssignmentModel.forNetworkAndOu(networkId, ou.shortId);
-	          return assignments ? assignments.map(function (x) {
-	            var model = new Factory(x);
-	            return model;
-	          }) : [];
-	        },
-	        affiliations: function affiliations(_affiliations, ou) {
-	          var Factory = AffiliationModel.forNetwork(networkId);
-	          return _affiliations ? _affiliations.map(function (x) {
-	            var model = new Factory(x);
-	            return model;
-	          }) : [];
-	        },
-	        affiliationRequests: function affiliationRequests(_affiliationRequests, ou) {
-	          var Factory = AffiliationRequestModel.forNetwork(networkId);
-	          return _affiliationRequests ? _affiliationRequests.map(function (x) {
-	            var model = new Factory(x);
-	            return model;
-	          }) : [];
-	        }
-	      }
-	    });
-	  };
-
-	  return self;
-	}
-	/*eslint-enable no-unused-vars */
-
-/***/ },
-/* 56 */
+/***/ 57:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	//'use strict'; => use strict do not allow me to access other function arguments prop.
-
+	/**
+	 * Created by benoit.bacot on 29/08/2016.
+	 */
 	(function (global, factory) {
 	  if (true) {
 	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(5), __webpack_require__(4), __webpack_require__(2), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -5233,7 +3921,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(undefined, function (angular, UriTemplate, DeepDiff) {
 	  //, ngFileUpload
 
-	  var module = angular.module('modelFactory', ['ngFileUpload']);
+	  var module = angular.module('relayboxApiModelFactory', ['ngFileUpload']);
 	  var uploadService;
 	  module.run(['Upload', function (Upload) {
 	    uploadService = Upload;
@@ -5513,7 +4201,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  };
 
-	  module.provider('$modelFactory', function () {
+	  module.provider('$relayboxApiModelFactory', function () {
 	    var provider = this;
 	    provider.defaultOptions = getDefaultProviderOptions();
 
@@ -6045,14 +4733,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	          params.data = Model.$strip(params.data);
 
 	          if (params.method === 'POSTWITHUPLOAD' || params.method === 'PUTWITHUPLOAD') {
-
-	            var newData = { data: JSON.stringify(params.data) };
-	            angular.extend(newData, params.files);
+	            var filesToUpload = params.files;
+	            var keys = [];
+	            var files = [];
+	            for (var key in filesToUpload) {
+	              if (filesToUpload[key]) {
+	                for (var i = 0; i < filesToUpload[key].length; i++) {
+	                  var newKey = key;
+	                  if (angular.isDefined(filesToUpload[key][i].coordinates)) {
+	                    newKey += filesToUpload[key][i].coordinates;
+	                  }
+	                  keys.push(newKey);
+	                  files.push(filesToUpload[key][i]);
+	                }
+	              }
+	            }
 
 	            promise = uploadService.upload({
 	              url: params.url,
 	              method: params.method === 'POSTWITHUPLOAD' ? 'POST' : 'PUT',
-	              data: newData
+	              data: params.data,
+	              file: files,
+	              fileFormDataName: keys
 	            });
 	          } else {
 	            promise = $http(params);
@@ -6187,6 +4889,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ }
-/******/ ])
+
+/******/ })
 });
 ;
