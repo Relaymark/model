@@ -25,16 +25,20 @@ import RegistrationModel from './directory/RegistrationModel.js';
 import UserModel from './directory/UserModel.js';
 
 import RelayboxPageModel from './applications/relaybox/RelayboxPageModel.js';
-import RelayboxDataSourceModel from './applications/relaybox/RelayboxDataSourceModel.js';
 
-import RelayboxCounterDataModel from './applications/relaybox/data/RelayboxCounterDataModel.js';
-import RelayboxCounterLiveDataModel from './applications/relaybox/data/RelayboxCounterLiveDataModel.js';
-import RelayboxCounterTypeModel from './applications/relaybox/data/RelayboxCounterTypeModel.js';
-import RelayboxEventModel from './applications/relaybox/data/RelayboxEventModel.js';
+import DataEngineConsumeCounterSampleLiveModel from './data-engine/consume/DataEngineConsumeCounterSampleLiveModel.js';
+import DataEngineConsumeCounterSampleModel from './data-engine/consume/DataEngineConsumeCounterSampleModel.js';
+import DataEngineConsumeCounterTypeModel from './data-engine/consume/DataEngineConsumeCounterTypeModel.js';
+import DataEngineConsumeCustomerModel from './data-engine/consume/DataEngineConsumeCustomerModel.js';
+import DataEngineConsumeDataSourcesModel from './data-engine/consume/DataEngineConsumeDataSourcesModel.js';
+import DataEngineConsumeEventModel from './data-engine/consume/DataEngineConsumeEventModel.js';
 
-import DataSourceRegistrationModel from './data-engine/DataSourceRegistrationModel.js';
-import DataEngineCounterModel from './data-engine/DataEngineCounterModel.js';
-import DataEngineEventModel from './data-engine/DataEngineEventModel.js';
+import DataEngineDeclareDataSourceModel from './data-engine/declare/DataEngineDeclareDataSourceModel.js';
+import DataEngineDeclareRegistrationModel from './data-engine/declare/DataEngineDeclareRegistrationModel.js';
+
+import DataEnginePopulateCounterSampleModel from './data-engine/populate/DataEnginePopulateCounterSampleModel.js';
+import DataEnginePopulateDataChunkModel from './data-engine/populate/DataEnginePopulateDataChunkModel.js';
+import DataEnginePopulateEventModel from './data-engine/populate/DataEnginePopulateEventModel.js';
 
 import CaptivePortalModel from './captive-portal/CaptivePortalModel'
 
@@ -62,14 +66,22 @@ export default angular.module('relaymark.model', ['modelFactory'])
     .factory('NetworkModel', NetworkModel)
     .factory('RegistrationModel', RegistrationModel)
     .factory('UserModel', UserModel)
+    
     .factory('RelayboxPageModel', RelayboxPageModel)
-    .factory('RelayboxDataSourceModel', RelayboxDataSourceModel)
-    .factory('RelayboxCounterDataModel', RelayboxCounterDataModel)
-    .factory('RelayboxCounterLiveDataModel', RelayboxCounterLiveDataModel)
-    .factory('RelayboxCounterTypeModel', RelayboxCounterTypeModel)
-    .factory('RelayboxEventModel', RelayboxEventModel)
-    .factory('DataSourceRegistrationModel', DataSourceRegistrationModel)
-    .factory('DataEngineCounterModel', DataEngineCounterModel)
-    .factory('DataEngineEventModel', DataEngineEventModel)
+
     .factory('CaptivePortalModel', CaptivePortalModel)
+
+    .factory('DataEngineConsumeCounterSampleLiveModel', DataEngineConsumeCounterSampleLiveModel)
+    .factory('DataEngineConsumeCounterSampleModel', DataEngineConsumeCounterSampleModel)
+    .factory('DataEngineConsumeCounterTypeModel', DataEngineConsumeCounterTypeModel)
+    .factory('DataEngineConsumeCustomerModel', DataEngineConsumeCustomerModel)
+    .factory('DataEngineConsumeDataSourcesModel', DataEngineConsumeDataSourcesModel)
+    .factory('DataEngineConsumeEventModel', DataEngineConsumeEventModel)
+
+    .factory('DataEngineDeclareDataSourceModel', DataEngineDeclareDataSourceModel)
+    .factory('DataEngineDeclareRegistrationModel', DataEngineDeclareRegistrationModel)
+
+    .factory('DataEnginePopulateCounterSampleModel', DataEnginePopulateCounterSampleModel)
+    .factory('DataEnginePopulateDataChunkModel', DataEnginePopulateDataChunkModel)
+    .factory('DataEnginePopulateEventModel', DataEnginePopulateEventModel)
     .name;

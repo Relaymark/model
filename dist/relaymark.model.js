@@ -104,37 +104,49 @@ var _RelayboxPageModel = require('./applications/relaybox/RelayboxPageModel.js')
 
 var _RelayboxPageModel2 = _interopRequireDefault(_RelayboxPageModel);
 
-var _RelayboxDataSourceModel = require('./applications/relaybox/RelayboxDataSourceModel.js');
+var _DataEngineConsumeCounterSampleLiveModel = require('./data-engine/consume/DataEngineConsumeCounterSampleLiveModel.js');
 
-var _RelayboxDataSourceModel2 = _interopRequireDefault(_RelayboxDataSourceModel);
+var _DataEngineConsumeCounterSampleLiveModel2 = _interopRequireDefault(_DataEngineConsumeCounterSampleLiveModel);
 
-var _RelayboxCounterDataModel = require('./applications/relaybox/data/RelayboxCounterDataModel.js');
+var _DataEngineConsumeCounterSampleModel = require('./data-engine/consume/DataEngineConsumeCounterSampleModel.js');
 
-var _RelayboxCounterDataModel2 = _interopRequireDefault(_RelayboxCounterDataModel);
+var _DataEngineConsumeCounterSampleModel2 = _interopRequireDefault(_DataEngineConsumeCounterSampleModel);
 
-var _RelayboxCounterLiveDataModel = require('./applications/relaybox/data/RelayboxCounterLiveDataModel.js');
+var _DataEngineConsumeCounterTypeModel = require('./data-engine/consume/DataEngineConsumeCounterTypeModel.js');
 
-var _RelayboxCounterLiveDataModel2 = _interopRequireDefault(_RelayboxCounterLiveDataModel);
+var _DataEngineConsumeCounterTypeModel2 = _interopRequireDefault(_DataEngineConsumeCounterTypeModel);
 
-var _RelayboxCounterTypeModel = require('./applications/relaybox/data/RelayboxCounterTypeModel.js');
+var _DataEngineConsumeCustomerModel = require('./data-engine/consume/DataEngineConsumeCustomerModel.js');
 
-var _RelayboxCounterTypeModel2 = _interopRequireDefault(_RelayboxCounterTypeModel);
+var _DataEngineConsumeCustomerModel2 = _interopRequireDefault(_DataEngineConsumeCustomerModel);
 
-var _RelayboxEventModel = require('./applications/relaybox/data/RelayboxEventModel.js');
+var _DataEngineConsumeDataSourcesModel = require('./data-engine/consume/DataEngineConsumeDataSourcesModel.js');
 
-var _RelayboxEventModel2 = _interopRequireDefault(_RelayboxEventModel);
+var _DataEngineConsumeDataSourcesModel2 = _interopRequireDefault(_DataEngineConsumeDataSourcesModel);
 
-var _DataSourceRegistrationModel = require('./data-engine/DataSourceRegistrationModel.js');
+var _DataEngineConsumeEventModel = require('./data-engine/consume/DataEngineConsumeEventModel.js');
 
-var _DataSourceRegistrationModel2 = _interopRequireDefault(_DataSourceRegistrationModel);
+var _DataEngineConsumeEventModel2 = _interopRequireDefault(_DataEngineConsumeEventModel);
 
-var _DataEngineCounterModel = require('./data-engine/DataEngineCounterModel.js');
+var _DataEngineDeclareDataSourceModel = require('./data-engine/declare/DataEngineDeclareDataSourceModel.js');
 
-var _DataEngineCounterModel2 = _interopRequireDefault(_DataEngineCounterModel);
+var _DataEngineDeclareDataSourceModel2 = _interopRequireDefault(_DataEngineDeclareDataSourceModel);
 
-var _DataEngineEventModel = require('./data-engine/DataEngineEventModel.js');
+var _DataEngineDeclareRegistrationModel = require('./data-engine/declare/DataEngineDeclareRegistrationModel.js');
 
-var _DataEngineEventModel2 = _interopRequireDefault(_DataEngineEventModel);
+var _DataEngineDeclareRegistrationModel2 = _interopRequireDefault(_DataEngineDeclareRegistrationModel);
+
+var _DataEnginePopulateCounterSampleModel = require('./data-engine/populate/DataEnginePopulateCounterSampleModel.js');
+
+var _DataEnginePopulateCounterSampleModel2 = _interopRequireDefault(_DataEnginePopulateCounterSampleModel);
+
+var _DataEnginePopulateDataChunkModel = require('./data-engine/populate/DataEnginePopulateDataChunkModel.js');
+
+var _DataEnginePopulateDataChunkModel2 = _interopRequireDefault(_DataEnginePopulateDataChunkModel);
+
+var _DataEnginePopulateEventModel = require('./data-engine/populate/DataEnginePopulateEventModel.js');
+
+var _DataEnginePopulateEventModel2 = _interopRequireDefault(_DataEnginePopulateEventModel);
 
 var _CaptivePortalModel = require('./captive-portal/CaptivePortalModel');
 
@@ -142,4 +154,4 @@ var _CaptivePortalModel2 = _interopRequireDefault(_CaptivePortalModel);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = angular.module('relaymark.model', ['modelFactory']).factory('AdminModel', _AdminModel2.default).factory('CommunityAppModel', _CommunityAppModel2.default).factory('CommunityCategoryModel', _CommunityCategoryModel2.default).factory('CommunityConfigurationModel', _CommunityConfigurationModel2.default).factory('CommunityLinkModel', _CommunityLinkModel2.default).factory('CommunityPageModel', _CommunityPageModel2.default).factory('CommunityPageWidgetModel', _CommunityPageWidgetModel2.default).factory('CommunityPostCommentModel', _CommunityPostCommentModel2.default).factory('CommunityPostModel', _CommunityPostModel2.default).factory('CommunityPreferenceModel', _CommunityPreferenceModel2.default).factory('CommunityWidgetModel', _CommunityWidgetModel2.default).factory('CorporateInvitationModel', _CorporateInvitationModel2.default).factory('AffiliationModel', _AffiliationModel2.default).factory('AffiliationRequestModel', _AffiliationRequestModel2.default).factory('AssignmentModel', _AssignmentModel2.default).factory('EmployeeModel', _EmployeeModel2.default).factory('OrganizationUnitModel', _OrganizationUnitModel2.default).factory('CompanyModel', _CompanyModel2.default).factory('EventModel', _EventModel2.default).factory('CompanyLocationModel', _CompanyLocationModel2.default).factory('NetworkModel', _NetworkModel2.default).factory('RegistrationModel', _RegistrationModel2.default).factory('UserModel', _UserModel2.default).factory('RelayboxPageModel', _RelayboxPageModel2.default).factory('RelayboxDataSourceModel', _RelayboxDataSourceModel2.default).factory('RelayboxCounterDataModel', _RelayboxCounterDataModel2.default).factory('RelayboxCounterLiveDataModel', _RelayboxCounterLiveDataModel2.default).factory('RelayboxCounterTypeModel', _RelayboxCounterTypeModel2.default).factory('RelayboxEventModel', _RelayboxEventModel2.default).factory('DataSourceRegistrationModel', _DataSourceRegistrationModel2.default).factory('DataEngineCounterModel', _DataEngineCounterModel2.default).factory('DataEngineEventModel', _DataEngineEventModel2.default).factory('CaptivePortalModel', _CaptivePortalModel2.default).name;
+exports.default = angular.module('relaymark.model', ['modelFactory']).factory('AdminModel', _AdminModel2.default).factory('CommunityAppModel', _CommunityAppModel2.default).factory('CommunityCategoryModel', _CommunityCategoryModel2.default).factory('CommunityConfigurationModel', _CommunityConfigurationModel2.default).factory('CommunityLinkModel', _CommunityLinkModel2.default).factory('CommunityPageModel', _CommunityPageModel2.default).factory('CommunityPageWidgetModel', _CommunityPageWidgetModel2.default).factory('CommunityPostCommentModel', _CommunityPostCommentModel2.default).factory('CommunityPostModel', _CommunityPostModel2.default).factory('CommunityPreferenceModel', _CommunityPreferenceModel2.default).factory('CommunityWidgetModel', _CommunityWidgetModel2.default).factory('CorporateInvitationModel', _CorporateInvitationModel2.default).factory('AffiliationModel', _AffiliationModel2.default).factory('AffiliationRequestModel', _AffiliationRequestModel2.default).factory('AssignmentModel', _AssignmentModel2.default).factory('EmployeeModel', _EmployeeModel2.default).factory('OrganizationUnitModel', _OrganizationUnitModel2.default).factory('CompanyModel', _CompanyModel2.default).factory('EventModel', _EventModel2.default).factory('CompanyLocationModel', _CompanyLocationModel2.default).factory('NetworkModel', _NetworkModel2.default).factory('RegistrationModel', _RegistrationModel2.default).factory('UserModel', _UserModel2.default).factory('RelayboxPageModel', _RelayboxPageModel2.default).factory('CaptivePortalModel', _CaptivePortalModel2.default).factory('DataEngineConsumeCounterSampleLiveModel', _DataEngineConsumeCounterSampleLiveModel2.default).factory('DataEngineConsumeCounterSampleModel', _DataEngineConsumeCounterSampleModel2.default).factory('DataEngineConsumeCounterTypeModel', _DataEngineConsumeCounterTypeModel2.default).factory('DataEngineConsumeCustomerModel', _DataEngineConsumeCustomerModel2.default).factory('DataEngineConsumeDataSourcesModel', _DataEngineConsumeDataSourcesModel2.default).factory('DataEngineConsumeEventModel', _DataEngineConsumeEventModel2.default).factory('DataEngineDeclareDataSourceModel', _DataEngineDeclareDataSourceModel2.default).factory('DataEngineDeclareRegistrationModel', _DataEngineDeclareRegistrationModel2.default).factory('DataEnginePopulateCounterSampleModel', _DataEnginePopulateCounterSampleModel2.default).factory('DataEnginePopulateDataChunkModel', _DataEnginePopulateDataChunkModel2.default).factory('DataEnginePopulateEventModel', _DataEnginePopulateEventModel2.default).name;

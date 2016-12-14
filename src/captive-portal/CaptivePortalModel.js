@@ -4,5 +4,5 @@
 
 RelayboxPageModel.$inject = ['$modelFactory'];
 export default function RelayboxPageModel($modelFactory) {
-    return $modelFactory('captive-portal', { });
+    return $modelFactory('captive-portal', {});
 }
