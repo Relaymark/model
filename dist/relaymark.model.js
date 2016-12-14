@@ -4475,7 +4475,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = angular.module('relaymark.model.relaybox', ['modelFactory']).factory('RelayboxDataSourceModel', RelayboxDataSourceModel).factory('RelayboxPageModel', _RelayboxPageModel2.default).factory('RelayboxCounterDataModel', RelayboxCounterDataModel).factory('RelayboxCounterLiveDataModel', RelayboxCounterLiveDataModel).factory('RelayboxCounterTypeModel', RelayboxCounterTypeModel).factory('RelayboxEventModel', RelayboxEventModel).name;
+	exports.default = angular.module('relaymark.model.relaybox', ['modelFactory']).factory('RelayboxPageModel', _RelayboxPageModel2.default).name;
 
 /***/ },
 /* 27 */
