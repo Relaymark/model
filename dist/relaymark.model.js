@@ -68,23 +68,27 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _DirectoryModule2 = _interopRequireDefault(_DirectoryModule);
 
-	var _ApplicationsModule = __webpack_require__(13);
+	var _ApplicationsModule = __webpack_require__(14);
 
 	var _ApplicationsModule2 = _interopRequireDefault(_ApplicationsModule);
 
-	var _DataEngineModule = __webpack_require__(34);
+	var _DataEngineModule = __webpack_require__(29);
 
 	var _DataEngineModule2 = _interopRequireDefault(_DataEngineModule);
 
-	var _AdminModel = __webpack_require__(9);
+	var _RelayboxPageModel = __webpack_require__(6);
+
+	var _RelayboxPageModel2 = _interopRequireDefault(_RelayboxPageModel);
+
+	var _AdminModel = __webpack_require__(10);
 
 	var _AdminModel2 = _interopRequireDefault(_AdminModel);
 
-	var _CorporateInvitationModel = __webpack_require__(33);
+	var _CorporateInvitationModel = __webpack_require__(28);
 
 	var _CorporateInvitationModel2 = _interopRequireDefault(_CorporateInvitationModel);
 
-	var _CaptivePortalModel = __webpack_require__(32);
+	var _CaptivePortalModel = __webpack_require__(27);
 
 	var _CaptivePortalModel2 = _interopRequireDefault(_CaptivePortalModel);
 
@@ -533,11 +537,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	/**!
-	 * AngularJS file upload directives and services. Supoorts: file upload/drop/paste, resume, cancel/abort,
+	 * AngularJS file upload directives and services. Supports: file upload/drop/paste, resume, cancel/abort,
 	 * progress, resize, thumbnail, preview, validation and CORS
 	 * FileAPI Flash shim for old browsers not supporting FormData
 	 * @author  Danial  <danial.farid@gmail.com>
-	 * @version 12.0.4
+	 * @version 12.2.9
 	 */
 
 	(function () {
@@ -958,7 +962,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * AngularJS file upload directives and services. Supoorts: file upload/drop/paste, resume, cancel/abort,
 	 * progress, resize, thumbnail, preview, validation and CORS
 	 * @author  Danial  <danial.farid@gmail.com>
-	 * @version 12.0.4
+	 * @version 12.2.9
 	 */
 
 	if (window.XMLHttpRequest && !(window.FileAPI && FileAPI.shouldLoad)) {
@@ -979,7 +983,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var ngFileUpload = angular.module('ngFileUpload', []);
 
-	ngFileUpload.version = '12.0.4';
+	ngFileUpload.version = '12.2.9';
 
 	ngFileUpload.service('UploadBase', ['$http', '$q', '$timeout', function ($http, $q, $timeout) {
 	  var upload = this;
@@ -1046,10 +1050,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function uploadWithAngular() {
 	      $http(config).then(function (r) {
 	          if (resumeSupported && config._chunkSize && !config._finished && config._file) {
+	            var fileSize = config._file && config._file.size || 0;
 	            notifyProgress({
-	                loaded: config._end,
-	                total: config._file && config._file.size,
-	                config: config, type: 'progress'
+	                loaded: Math.min(config._end, fileSize),
+	                total: fileSize,
+	                config: config,
+	                type: 'progress'
 	              }
 	            );
 	            upload.upload(config, true);
@@ -1088,6 +1094,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    } else if (config.resumeSize) {
 	      config.resumeSize().then(function (size) {
 	        config._start = size;
+	        if (config._chunkSize) {
+	          config._end = config._start + config._chunkSize;
+	        }
 	        uploadWithAngular();
 	      }, function (e) {
 	        throw e;
@@ -1141,9 +1150,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    upload.promisesCount++;
-	    promise['finally'](function () {
-	      upload.promisesCount--;
-	    });
+	    if (promise['finally'] && promise['finally'] instanceof Function) {
+	      promise['finally'](function () {
+	        upload.promisesCount--;
+	      });
+	    }
 	    return promise;
 	  }
 
@@ -1327,9 +1338,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var arrayBufferView = new Uint8Array(resp.data);
 	      var type = resp.headers('content-type') || 'image/WebP';
 	      var blob = new window.Blob([arrayBufferView], {type: type});
+	      var matches = url.match(/.*\/(.+?)(\?.*)?$/);
+	      if (matches.length > 1) {
+	        blob.name = matches[1];
+	      }
 	      defer.resolve(blob);
-	      //var split = type.split('[/;]');
-	      //blob.name = url.substring(0, 150).replace(/\W+/g, '') + '.' + (split.length > 1 ? split[1] : 'jpg');
 	    }, function (e) {
 	      defer.reject(e);
 	    });
@@ -1377,7 +1390,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 
 	  upload.shouldUpdateOn = function (type, attr, scope) {
-	    var modelOptions = upload.attrGetter('ngModelOptions', attr, scope);
+	    var modelOptions = upload.attrGetter('ngfModelOptions', attr, scope);
 	    if (modelOptions && modelOptions.updateOn) {
 	      return modelOptions.updateOn.split(' ').indexOf(type) > -1;
 	    }
@@ -1432,7 +1445,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (!resizeVal || !upload.isResizeSupported() || !files.length) return upload.emptyPromise();
 	    if (resizeVal instanceof Function) {
 	      var defer = $q.defer();
-	      resizeVal(files).then(function (p) {
+	      return resizeVal(files).then(function (p) {
 	        resizeWithParams(p, files, attr, scope).then(function (r) {
 	          defer.resolve(r);
 	        }, function (e) {
@@ -1446,17 +1459,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }
 
-	  function resizeWithParams(param, files, attr, scope) {
+	  function resizeWithParams(params, files, attr, scope) {
 	    var promises = [upload.emptyPromise()];
 
 	    function handleFile(f, i) {
 	      if (f.type.indexOf('image') === 0) {
-	        if (param.pattern && !upload.validatePattern(f, param.pattern)) return;
-	        var promise = upload.resize(f, param.width, param.height, param.quality,
-	          param.type, param.ratio, param.centerCrop, function (width, height) {
-	            return upload.attrGetter('ngfResizeIf', attr, scope,
-	              {$width: width, $height: height, $file: f});
-	          }, param.restoreExif !== false);
+	        if (params.pattern && !upload.validatePattern(f, params.pattern)) return;
+	        params.resizeIf = function (width, height) {
+	          return upload.attrGetter('ngfResizeIf', attr, scope,
+	            {$width: width, $height: height, $file: f});
+	        };
+	        var promise = upload.resize(f, params);
 	        promises.push(promise);
 	        promise.then(function (resizedFile) {
 	          files.splice(i, 1, resizedFile);
@@ -1549,18 +1562,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return angular.isArray(v) ? v : [v];
 	    }
 
-	    function separateInvalids() {
-	      valids = [];
-	      invalids = [];
-	      angular.forEach(allNewFiles, function (file) {
-	        if (file.$error) {
-	          invalids.push(file);
-	        } else {
-	          valids.push(file);
-	        }
-	      });
-	    }
-
 	    function resizeAndUpdate() {
 	      function updateModel() {
 	        $timeout(function () {
@@ -1572,10 +1573,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      resize(validateAfterResize ? allNewFiles : valids, attr, scope).then(function () {
 	        if (validateAfterResize) {
-	          upload.validate(allNewFiles, prevValidFiles.length, ngModel, attr, scope).then(function () {
-	            separateInvalids();
-	            updateModel();
-	          });
+	          upload.validate(allNewFiles, keep ? prevValidFiles.length : 0, ngModel, attr, scope)
+	            .then(function (validationResult) {
+	              valids = validationResult.validsFiles;
+	              invalids = validationResult.invalidsFiles;
+	              updateModel();
+	            });
 	        } else {
 	          updateModel();
 	        }
@@ -1610,13 +1613,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var validateAfterResize = upload.attrGetter('ngfValidateAfterResize', attr, scope);
 
-	    var options = upload.attrGetter('ngModelOptions', attr, scope);
-	    upload.validate(allNewFiles, prevValidFiles.length, ngModel, attr, scope).then(function () {
+	    var options = upload.attrGetter('ngfModelOptions', attr, scope);
+	    upload.validate(allNewFiles, keep ? prevValidFiles.length : 0, ngModel, attr, scope)
+	      .then(function (validationResult) {
 	      if (noDelay) {
 	        update(allNewFiles, [], files, dupFiles, isSingleModel);
 	      } else {
 	        if ((!options || !options.allowInvalid) && !validateAfterResize) {
-	          separateInvalids();
+	          valids = validationResult.validFiles;
+	          invalids = validationResult.invalidFiles;
 	        } else {
 	          valids = allNewFiles;
 	        }
@@ -1653,7 +1658,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /** @namespace attr.ngfSelect */
 	    /** @namespace attr.ngfChange */
 	    /** @namespace attr.ngModel */
-	    /** @namespace attr.ngModelOptions */
+	    /** @namespace attr.ngfModelOptions */
 	    /** @namespace attr.ngfMultiple */
 	    /** @namespace attr.ngfCapture */
 	    /** @namespace attr.ngfValidate */
@@ -1673,6 +1678,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function changeFn(evt) {
 	      if (upload.shouldUpdateOn('change', attr, scope)) {
 	        var fileList = evt.__files_ || (evt.target && evt.target.files), files = [];
+	        /* Handle duplicate call in  IE11 */
+	        if (!fileList) return;
 	        for (var i = 0; i < fileList.length; i++) {
 	          files.push(fileList[i]);
 	        }
@@ -1684,15 +1691,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	    upload.registerModelChangeValidator(ngModel, attr, scope);
 
 	    var unwatches = [];
-	    unwatches.push(scope.$watch(attrGetter('ngfMultiple'), function () {
-	      fileElem.attr('multiple', attrGetter('ngfMultiple', scope));
-	    }));
-	    unwatches.push(scope.$watch(attrGetter('ngfCapture'), function () {
-	      fileElem.attr('capture', attrGetter('ngfCapture', scope));
-	    }));
-	    unwatches.push(scope.$watch(attrGetter('ngfAccept'), function () {
-	      fileElem.attr('accept', attrGetter('ngfAccept', scope));
-	    }));
+	    if (attrGetter('ngfMultiple')) {
+	      unwatches.push(scope.$watch(attrGetter('ngfMultiple'), function () {
+	        fileElem.attr('multiple', attrGetter('ngfMultiple', scope));
+	      }));
+	    }
+	    if (attrGetter('ngfCapture')) {
+	      unwatches.push(scope.$watch(attrGetter('ngfCapture'), function () {
+	        fileElem.attr('capture', attrGetter('ngfCapture', scope));
+	      }));
+	    }
+	    if (attrGetter('ngfAccept')) {
+	      unwatches.push(scope.$watch(attrGetter('ngfAccept'), function () {
+	        fileElem.attr('accept', attrGetter('ngfAccept', scope));
+	      }));
+	    }
 	    attr.$observe('accept', function () {
 	      fileElem.attr('accept', attrGetter('accept'));
 	    });
@@ -1700,16 +1713,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (attr.$$observers) delete attr.$$observers.accept;
 	    });
 	    function bindAttrToFileInput(fileElem) {
-	      if (elem !== fileElem) {
-	        for (var i = 0; i < elem[0].attributes.length; i++) {
-	          var attribute = elem[0].attributes[i];
-	          if (attribute.name !== 'type' && attribute.name !== 'class' && attribute.name !== 'style') {
-	            if (attribute.value == null || attribute.value === '') {
-	              if (attribute.name === 'required') attribute.value = 'required';
-	              if (attribute.name === 'multiple') attribute.value = 'multiple';
-	            }
-	            fileElem.attr(attribute.name, attribute.name === 'id' ? 'ngf-' + attribute.value : attribute.value);
+	      for (var i = 0; i < elem[0].attributes.length; i++) {
+	        var attribute = elem[0].attributes[i];
+	        if (attribute.name !== 'type' && attribute.name !== 'class' && attribute.name !== 'style') {
+	          if (attribute.value == null || attribute.value === '') {
+	            if (attribute.name === 'required') attribute.value = 'required';
+	            if (attribute.name === 'multiple') attribute.value = 'multiple';
 	          }
+	          fileElem.attr(attribute.name, attribute.name === 'id' ? 'ngf-' + attribute.value : attribute.value);
 	        }
 	      }
 	    }
@@ -1727,6 +1738,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      label.css('visibility', 'hidden').css('position', 'absolute').css('overflow', 'hidden')
 	        .css('width', '0px').css('height', '0px').css('border', 'none')
 	        .css('margin', '0px').css('padding', '0px').attr('tabindex', '-1');
+	      if (elem.attr('id')) {
+	        label.attr('id', 'ngf-label-' + elem.attr('id'));
+	      }
 	      generatedElems.push({el: elem, ref: label});
 
 	      document.body.appendChild(label.append(fileElem)[0]);
@@ -1734,13 +1748,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return fileElem;
 	    }
 
-	    var initialTouchStartY = 0;
-
 	    function clickHandler(evt) {
 	      if (elem.attr('disabled')) return false;
 	      if (attrGetter('ngfSelectDisabled', scope)) return;
 
-	      var r = handleTouch(evt);
+	      var r = detectSwipe(evt);
+	      // prevent the click if it is a swipe
 	      if (r != null) return r;
 
 	      resetModel(evt);
@@ -1765,19 +1778,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return false;
 	    }
 
-	    function handleTouch(evt) {
-	      var touches = evt.changedTouches || (evt.originalEvent && evt.originalEvent.changedTouches);
-	      if (evt.type === 'touchstart') {
-	        initialTouchStartY = touches ? touches[0].clientY : 0;
-	        return true; // don't block event default
-	      } else {
-	        evt.stopPropagation();
-	        evt.preventDefault();
 
-	        // prevent scroll from triggering event
-	        if (evt.type === 'touchend') {
-	          var currentLocation = touches ? touches[0].clientY : 0;
-	          if (Math.abs(currentLocation - initialTouchStartY) > 20) return false;
+	    var initialTouchStartY = 0;
+	    var initialTouchStartX = 0;
+
+	    function detectSwipe(evt) {
+	      var touches = evt.changedTouches || (evt.originalEvent && evt.originalEvent.changedTouches);
+	      if (touches) {
+	        if (evt.type === 'touchstart') {
+	          initialTouchStartX = touches[0].clientX;
+	          initialTouchStartY = touches[0].clientY;
+	          return true; // don't block event default
+	        } else {
+	          // prevent scroll from triggering event
+	          if (evt.type === 'touchend') {
+	            var currentX = touches[0].clientX;
+	            var currentY = touches[0].clientY;
+	            if ((Math.abs(currentX - initialTouchStartX) > 20) ||
+	            (Math.abs(currentY - initialTouchStartY) > 20)) {
+	              evt.stopPropagation();
+	              evt.preventDefault();
+	              return false;
+	            }
+	          }
+	          return true;
 	        }
 	      }
 	    }
@@ -2008,7 +2032,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var size = resizeParams;
 	        if (directiveName === 'ngfThumbnail') {
 	          if (!size) {
-	            size = {width: elem[0].clientWidth, height: elem[0].clientHeight};
+	            size = {width: elem[0].naturalWidth || elem[0].clientWidth,
+	              height: elem[0].naturalHeight || elem[0].clientHeight};
 	          }
 	          if (size.width === 0 && window.getComputedStyle) {
 	            var style = getComputedStyle(elem[0]);
@@ -2030,7 +2055,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (file && file.type && file.type.search(getTagType(elem[0])) === 0 &&
 	          (!isBackground || file.type.indexOf('image') === 0)) {
 	          if (size && Upload.isResizeSupported()) {
-	            Upload.resize(file, size.width, size.height, size.quality).then(
+	            size.resizeIf = function (width, height) {
+	              return Upload.attrGetter('ngfResizeIf', attr, scope,
+	                {$width: width, $height: height, $file: file});
+	            };
+	            Upload.resize(file, size).then(
 	              function (f) {
 	                constructDataUrl(f);
 	              }, function (e) {
@@ -2092,8 +2121,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }]);
 
 	  ngFileUpload.config(['$compileProvider', function ($compileProvider) {
-	    if ($compileProvider.imgSrcSanitizationWhitelist) $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|local|file|data|blob):/);
-	    if ($compileProvider.aHrefSanitizationWhitelist) $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|local|file|data|blob):/);
+	    if ($compileProvider.imgSrcSanitizationWhitelist) $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|webcal|local|file|data|blob):/);
+	    if ($compileProvider.aHrefSanitizationWhitelist) $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|webcal|local|file|data|blob):/);
 	  }]);
 
 	  ngFileUpload.filter('ngfDataUrl', ['UploadDataUrl', '$sce', function (UploadDataUrl, $sce) {
@@ -2241,11 +2270,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return upload.attrGetter(name, attr, scope, params);
 	    };
 
+	    var ignoredErrors = (upload.attrGetter('ngfIgnoreInvalid', attr, scope) || '').split(' ');
+	    var runAllValidation = upload.attrGetter('ngfRunAllValidations', attr, scope);
+
 	    if (files == null || files.length === 0) {
-	      return upload.emptyPromise(ngModel);
+	      return upload.emptyPromise({'validFiles': files, 'invalidFiles': []});
 	    }
 
 	    files = files.length === undefined ? [files] : files.slice(0);
+	    var invalidFiles = [];
 
 	    function validateSync(name, validationName, fn) {
 	      if (files) {
@@ -2256,11 +2289,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var val = upload.getValidationAttr(attr, scope, name, validationName, file);
 	            if (val != null) {
 	              if (!fn(file, val, i)) {
-	                file.$error = name;
-	                (file.$errorMessages = (file.$errorMessages || {}))[name] = true;
-	                file.$errorParam = val;
-	                files.splice(i, 1);
-	                valid = false;
+	                if (ignoredErrors.indexOf(name) === -1) {
+	                  file.$error = name;
+	                  (file.$errorMessages = (file.$errorMessages || {}))[name] = true;
+	                  file.$errorParam = val;
+	                  if (invalidFiles.indexOf(file) === -1) {
+	                    invalidFiles.push(file);
+	                  }
+	                  if (!runAllValidation) {
+	                    files.splice(i, 1);
+	                  }
+	                  valid = false;
+	                } else {
+	                  files.splice(i, 1);
+	                }
 	              }
 	            }
 	          }
@@ -2271,9 +2313,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 
-	    validateSync('maxFiles', null, function (file, val, i) {
-	      return prevLength + i < val;
-	    });
 	    validateSync('pattern', null, upload.validatePattern);
 	    validateSync('minSize', 'size.min', function (file, val) {
 	      return file.size + 0.1 >= upload.translateScalars(val);
@@ -2296,44 +2335,56 @@ return /******/ (function(modules) { // webpackBootstrap
 	    });
 
 	    if (!files.length) {
-	      return upload.emptyPromise(ngModel, ngModel.$ngfValidations);
+	      return upload.emptyPromise({'validFiles': [], 'invalidFiles': invalidFiles});
 	    }
 
 	    function validateAsync(name, validationName, type, asyncFn, fn) {
 	      function resolveResult(defer, file, val) {
+	        function resolveInternal(fn) {
+	          if (fn()) {
+	            if (ignoredErrors.indexOf(name) === -1) {
+	              file.$error = name;
+	              (file.$errorMessages = (file.$errorMessages || {}))[name] = true;
+	              file.$errorParam = val;
+	              if (invalidFiles.indexOf(file) === -1) {
+	                invalidFiles.push(file);
+	              }
+	              if (!runAllValidation) {
+	                files.splice(files.indexOf(file), 1);
+	              }
+	              defer.resolve(false);
+	            } else {
+	              files.splice(files.indexOf(file), 1);
+	              defer.resolve(true);
+	            }
+	          } else {
+	            defer.resolve(true);
+	          }
+	        }
+
 	        if (val != null) {
 	          asyncFn(file, val).then(function (d) {
-	            if (!fn(d, val)) {
-	              file.$error = name;
-	              (file.$errorMessages = (file.$errorMessages || {}))[name] = true;
-	              file.$errorParam = val;
-	              defer.reject();
-	            } else {
-	              defer.resolve();
-	            }
+	            resolveInternal(function () {
+	              return !fn(d, val);
+	            });
 	          }, function () {
-	            if (attrGetter('ngfValidateForce', {$file: file})) {
-	              file.$error = name;
-	              (file.$errorMessages = (file.$errorMessages || {}))[name] = true;
-	              file.$errorParam = val;
-	              defer.reject();
-	            } else {
-	              defer.resolve();
-	            }
+	            resolveInternal(function () {
+	              return attrGetter('ngfValidateForce', {$file: file});
+	            });
 	          });
 	        } else {
-	          defer.resolve();
+	          defer.resolve(true);
 	        }
 	      }
 
-	      var promises = [upload.emptyPromise()];
+	      var promises = [upload.emptyPromise(true)];
 	      if (files) {
 	        files = files.length === undefined ? [files] : files;
 	        angular.forEach(files, function (file) {
 	          var defer = $q.defer();
 	          promises.push(defer.promise);
 	          if (type && (file.type == null || file.type.search(type) !== 0)) {
-	            defer.resolve();
+	            defer.resolve(true);
 	            return;
 	          }
 	          if (name === 'dimensions' && upload.attrGetter('ngfDimensions', attr) != null) {
@@ -2341,96 +2392,120 @@ return /******/ (function(modules) { // webpackBootstrap
 	              resolveResult(defer, file,
 	                attrGetter('ngfDimensions', {$file: file, $width: d.width, $height: d.height}));
 	            }, function () {
-	              defer.reject();
+	              defer.resolve(false);
 	            });
 	          } else if (name === 'duration' && upload.attrGetter('ngfDuration', attr) != null) {
 	            upload.mediaDuration(file).then(function (d) {
 	              resolveResult(defer, file,
 	                attrGetter('ngfDuration', {$file: file, $duration: d}));
 	            }, function () {
-	              defer.reject();
+	              defer.resolve(false);
 	            });
 	          } else {
 	            resolveResult(defer, file,
 	              upload.getValidationAttr(attr, scope, name, validationName, file));
 	          }
 	        });
-	        return $q.all(promises).then(function () {
-	          ngModel.$ngfValidations.push({name: name, valid: true});
-	        }, function () {
-	          ngModel.$ngfValidations.push({name: name, valid: false});
-	        });
 	      }
+	      var deffer = $q.defer();
+	      $q.all(promises).then(function (values) {
+	        var isValid = true;
+	        for (var i = 0; i < values.length; i++) {
+	          if (!values[i]) {
+	            isValid = false;
+	            break;
+	          }
+	        }
+	        ngModel.$ngfValidations.push({name: name, valid: isValid});
+	        deffer.resolve(isValid);
+	      });
+	      return deffer.promise;
 	    }
 
 	    var deffer = $q.defer();
 	    var promises = [];
 
-	    promises.push(upload.happyPromise(validateAsync('maxHeight', 'height.max', /image/,
+	    promises.push(validateAsync('maxHeight', 'height.max', /image/,
 	      this.imageDimensions, function (d, val) {
 	        return d.height <= val;
-	      })));
-	    promises.push(upload.happyPromise(validateAsync('minHeight', 'height.min', /image/,
+	      }));
+	    promises.push(validateAsync('minHeight', 'height.min', /image/,
 	      this.imageDimensions, function (d, val) {
 	        return d.height >= val;
-	      })));
-	    promises.push(upload.happyPromise(validateAsync('maxWidth', 'width.max', /image/,
+	      }));
+	    promises.push(validateAsync('maxWidth', 'width.max', /image/,
 	      this.imageDimensions, function (d, val) {
 	        return d.width <= val;
-	      })));
-	    promises.push(upload.happyPromise(validateAsync('minWidth', 'width.min', /image/,
+	      }));
+	    promises.push(validateAsync('minWidth', 'width.min', /image/,
 	      this.imageDimensions, function (d, val) {
 	        return d.width >= val;
-	      })));
-	    promises.push(upload.happyPromise(validateAsync('dimensions', null, /image/,
+	      }));
+	    promises.push(validateAsync('dimensions', null, /image/,
 	      function (file, val) {
 	        return upload.emptyPromise(val);
 	      }, function (r) {
 	        return r;
-	      })));
-	    promises.push(upload.happyPromise(validateAsync('ratio', null, /image/,
+	      }));
+	    promises.push(validateAsync('ratio', null, /image/,
 	      this.imageDimensions, function (d, val) {
 	        var split = val.toString().split(','), valid = false;
 	        for (var i = 0; i < split.length; i++) {
-	          if (Math.abs((d.width / d.height) - upload.ratioToFloat(split[i])) < 0.0001) {
+	          if (Math.abs((d.width / d.height) - upload.ratioToFloat(split[i])) < 0.01) {
 	            valid = true;
 	          }
 	        }
 	        return valid;
-	      })));
-	    promises.push(upload.happyPromise(validateAsync('maxRatio', 'ratio.max', /image/,
+	      }));
+	    promises.push(validateAsync('maxRatio', 'ratio.max', /image/,
 	      this.imageDimensions, function (d, val) {
 	        return (d.width / d.height) - upload.ratioToFloat(val) < 0.0001;
-	      })));
-	    promises.push(upload.happyPromise(validateAsync('minRatio', 'ratio.min', /image/,
+	      }));
+	    promises.push(validateAsync('minRatio', 'ratio.min', /image/,
 	      this.imageDimensions, function (d, val) {
 	        return (d.width / d.height) - upload.ratioToFloat(val) > -0.0001;
-	      })));
-	    promises.push(upload.happyPromise(validateAsync('maxDuration', 'duration.max', /audio|video/,
+	      }));
+	    promises.push(validateAsync('maxDuration', 'duration.max', /audio|video/,
 	      this.mediaDuration, function (d, val) {
 	        return d <= upload.translateScalars(val);
-	      })));
-	    promises.push(upload.happyPromise(validateAsync('minDuration', 'duration.min', /audio|video/,
+	      }));
+	    promises.push(validateAsync('minDuration', 'duration.min', /audio|video/,
 	      this.mediaDuration, function (d, val) {
 	        return d >= upload.translateScalars(val);
-	      })));
-	    promises.push(upload.happyPromise(validateAsync('duration', null, /audio|video/,
+	      }));
+	    promises.push(validateAsync('duration', null, /audio|video/,
 	      function (file, val) {
 	        return upload.emptyPromise(val);
 	      }, function (r) {
 	        return r;
-	      })));
+	      }));
 
-	    promises.push(upload.happyPromise(validateAsync('validateAsyncFn', null, null,
+	    promises.push(validateAsync('validateAsyncFn', null, null,
 	      function (file, val) {
 	        return val;
 	      }, function (r) {
 	        return r === true || r === null || r === '';
-	      })));
+	      }));
 
-	    return $q.all(promises).then(function () {
-	      deffer.resolve(ngModel, ngModel.$ngfValidations);
+	    $q.all(promises).then(function () {
+
+	      if (runAllValidation) {
+	        for (var i = 0; i < files.length; i++) {
+	          var file = files[i];
+	          if (file.$error) {
+	            files.splice(i--, 1);
+	          }
+	        }
+	      }
+
+	      runAllValidation = false;
+	      validateSync('maxFiles', null, function (file, val, i) {
+	        return prevLength + i < val;
+	      });
+
+	      deffer.resolve({'validFiles': files, 'invalidFiles': invalidFiles});
 	    });
+	    return deffer.promise;
 	  };
 
 	  upload.imageDimensions = function (file) {
@@ -2455,8 +2530,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	          .css('max-width', 'none !important').css('max-height', 'none !important');
 
 	        function success() {
-	          var width = img[0].clientWidth;
-	          var height = img[0].clientHeight;
+	          var width = img[0].naturalWidth || img[0].clientWidth;
+	          var height = img[0].naturalHeight || img[0].clientHeight;
 	          img.remove();
 	          file.$ngfWidth = width;
 	          file.$ngfHeight = height;
@@ -2470,23 +2545,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        img.on('load', success);
 	        img.on('error', error);
-	        var count = 0;
 
-	        function checkLoadError() {
+	        var secondsCounter = 0;
+	        function checkLoadErrorInCaseOfNoCallback() {
 	          $timeout(function () {
 	            if (img[0].parentNode) {
 	              if (img[0].clientWidth) {
 	                success();
-	              } else if (count > 10) {
+	              } else if (secondsCounter++ > 10) {
 	                error();
 	              } else {
-	                checkLoadError();
+	                checkLoadErrorInCaseOfNoCallback();
 	              }
 	            }
 	          }, 1000);
 	        }
 
-	        checkLoadError();
+	        checkLoadErrorInCaseOfNoCallback();
 
 	        angular.element(document.getElementsByTagName('body')[0]).append(img);
 	      }, function () {
@@ -2597,31 +2672,35 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var deferred = $q.defer();
 	    var canvasElement = document.createElement('canvas');
 	    var imageElement = document.createElement('img');
+	    imageElement.setAttribute('style', 'visibility:hidden;position:fixed;z-index:-100000');
+	    document.body.appendChild(imageElement);
 
 	    imageElement.onload = function () {
-	      if (resizeIf != null && resizeIf(imageElement.width, imageElement.height) === false) {
+	      var imgWidth = imageElement.width, imgHeight = imageElement.height;
+	      imageElement.parentNode.removeChild(imageElement);
+	      if (resizeIf != null && resizeIf(imgWidth, imgHeight) === false) {
 	        deferred.reject('resizeIf');
 	        return;
 	      }
 	      try {
 	        if (ratio) {
 	          var ratioFloat = upload.ratioToFloat(ratio);
-	          var imgRatio = imageElement.width / imageElement.height;
+	          var imgRatio = imgWidth / imgHeight;
 	          if (imgRatio < ratioFloat) {
-	            width = imageElement.width;
+	            width = imgWidth;
 	            height = width / ratioFloat;
 	          } else {
-	            height = imageElement.height;
+	            height = imgHeight;
 	            width = height * ratioFloat;
 	          }
 	        }
 	        if (!width) {
-	          width = imageElement.width;
+	          width = imgWidth;
 	        }
 	        if (!height) {
-	          height = imageElement.height;
+	          height = imgHeight;
 	        }
-	        var dimensions = calculateAspectRatioFit(imageElement.width, imageElement.height, width, height, centerCrop);
+	        var dimensions = calculateAspectRatioFit(imgWidth, imgHeight, width, height, centerCrop);
 	        canvasElement.width = Math.min(dimensions.width, width);
 	        canvasElement.height = Math.min(dimensions.height, height);
 	        var context = canvasElement.getContext('2d');
@@ -2634,6 +2713,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    };
 	    imageElement.onerror = function () {
+	      imageElement.parentNode.removeChild(imageElement);
 	      deferred.reject();
 	    };
 	    imageElement.src = imagen;
@@ -2670,14 +2750,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    });
 	  }
 
-	  upload.resize = function (file, width, height, quality, type, ratio, centerCrop, resizeIf, restoreExif) {
+	  upload.resize = function (file, options) {
 	    if (file.type.indexOf('image') !== 0) return upload.emptyPromise(file);
 
 	    var deferred = $q.defer();
 	    upload.dataUrl(file, true).then(function (url) {
-	      resize(url, width, height, quality, type || file.type, ratio, centerCrop, resizeIf)
+	      resize(url, options.width, options.height, options.quality, options.type || file.type,
+	        options.ratio, options.centerCrop, options.resizeIf)
 	        .then(function (dataUrl) {
-	          if (file.type === 'image/jpeg' && restoreExif) {
+	          if (file.type === 'image/jpeg' && options.restoreExif !== false) {
 	            try {
 	              dataUrl = upload.restoreExif(url, dataUrl);
 	            } catch (e) {
@@ -2706,13 +2787,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	}]);
 
 	(function () {
-	  ngFileUpload.directive('ngfDrop', ['$parse', '$timeout', '$location', 'Upload', '$http', '$q',
-	    function ($parse, $timeout, $location, Upload, $http, $q) {
+	  ngFileUpload.directive('ngfDrop', ['$parse', '$timeout', '$window', 'Upload', '$http', '$q',
+	    function ($parse, $timeout, $window, Upload, $http, $q) {
 	      return {
 	        restrict: 'AEC',
 	        require: '?ngModel',
 	        link: function (scope, elem, attr, ngModel) {
-	          linkDrop(scope, elem, attr, ngModel, $parse, $timeout, $location, Upload, $http, $q);
+	          linkDrop(scope, elem, attr, ngModel, $parse, $timeout, $window, Upload, $http, $q);
 	        }
 	      };
 	    }]);
@@ -2737,7 +2818,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  }]);
 
-	  function linkDrop(scope, elem, attr, ngModel, $parse, $timeout, $location, upload, $http, $q) {
+	  function linkDrop(scope, elem, attr, ngModel, $parse, $timeout, $window, upload, $http, $q) {
 	    var available = dropAvailable();
 
 	    var attrGetter = function (name, scope, params) {
@@ -2870,7 +2951,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    function extractFilesFromHtml(updateOn, html) {
-	      if (!upload.shouldUpdateOn(updateOn, attr, scope) || !html) return upload.rejectPromise([]);
+	      if (!upload.shouldUpdateOn(updateOn, attr, scope) || typeof html !== 'string') return upload.rejectPromise([]);
 	      var urls = [];
 	      html.replace(/<(img src|img [^>]* src) *=\"([^\"]*)\"/gi, function (m, n, src) {
 	        urls.push(src);
@@ -2921,8 +3002,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    function extractFiles(items, fileList, allowDir, multiple) {
-	      var maxFiles = upload.getValidationAttr(attr, scope, 'maxFiles') || Number.MAX_VALUE;
-	      var maxTotalSize = upload.getValidationAttr(attr, scope, 'maxTotalSize') || Number.MAX_VALUE;
+	      var maxFiles = upload.getValidationAttr(attr, scope, 'maxFiles');
+	      if (maxFiles == null) {
+	        maxFiles = Number.MAX_VALUE;
+	      }
+	      var maxTotalSize = upload.getValidationAttr(attr, scope, 'maxTotalSize');
+	      if (maxTotalSize == null) {
+	        maxTotalSize = Number.MAX_VALUE;
+	      }
 	      var includeDir = attrGetter('ngfIncludeDir', scope);
 	      var files = [], totalSize = 0;
 
@@ -2933,7 +3020,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var promises = [upload.emptyPromise()];
 	            if (includeDir) {
 	              var file = {type: 'directory'};
-	              file.name = file.path = (path || '') + entry.name + entry.name;
+	              file.name = file.path = (path || '') + entry.name;
 	              files.push(file);
 	            }
 	            var dirReader = entry.createReader();
@@ -2987,7 +3074,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      var promises = [upload.emptyPromise()];
 
-	      if (items && items.length > 0 && $location.protocol() !== 'file') {
+	      if (items && items.length > 0 && $window.location.protocol !== 'file:') {
 	        for (var i = 0; i < items.length; i++) {
 	          if (items[i].webkitGetAsEntry && items[i].webkitGetAsEntry() && items[i].webkitGetAsEntry().isDirectory) {
 	            var entry = items[i].webkitGetAsEntry();
@@ -3821,10 +3908,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
 
 /***/ },
-/* 6 */,
+/* 6 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = RelayboxPageModel;
+	/**
+	 * Created by benjamin.speth on 24/03/2016.
+	 */
+
+	RelayboxPageModel.$inject = ['$modelFactory'];
+	function RelayboxPageModel($modelFactory) {
+	  return $modelFactory('applications/relaybox/pages', {});
+	}
+
+/***/ },
 /* 7 */,
 /* 8 */,
-/* 9 */
+/* 9 */,
+/* 10 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3852,7 +3958,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3883,7 +3989,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3912,7 +4018,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3942,40 +4048,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _RelayboxModule = __webpack_require__(25);
-
-	var _RelayboxModule2 = _interopRequireDefault(_RelayboxModule);
-
-	var _CommunityModule = __webpack_require__(14);
-
-	var _CommunityModule2 = _interopRequireDefault(_CommunityModule);
-
-	var _ApplicationModel = __webpack_require__(10);
-
-	var _ApplicationModel2 = _interopRequireDefault(_ApplicationModel);
-
-	var _ApplicationPermissionModel = __webpack_require__(11);
-
-	var _ApplicationPermissionModel2 = _interopRequireDefault(_ApplicationPermissionModel);
-
-	var _ApplicationSetupModel = __webpack_require__(12);
-
-	var _ApplicationSetupModel2 = _interopRequireDefault(_ApplicationSetupModel);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = angular.module('relaymark.model.application', ['modelFactory', _RelayboxModule2.default, _CommunityModule2.default]).factory('ApplicationModel', _ApplicationModel2.default).factory('ApplicationPermissionModel', _ApplicationPermissionModel2.default).factory('ApplicationSetupModel', _ApplicationSetupModel2.default).name;
-
-/***/ },
 /* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -3985,43 +4057,77 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _CommunityAppModel = __webpack_require__(15);
+	var _RelayboxModule = __webpack_require__(26);
+
+	var _RelayboxModule2 = _interopRequireDefault(_RelayboxModule);
+
+	var _CommunityModule = __webpack_require__(15);
+
+	var _CommunityModule2 = _interopRequireDefault(_CommunityModule);
+
+	var _ApplicationModel = __webpack_require__(11);
+
+	var _ApplicationModel2 = _interopRequireDefault(_ApplicationModel);
+
+	var _ApplicationPermissionModel = __webpack_require__(12);
+
+	var _ApplicationPermissionModel2 = _interopRequireDefault(_ApplicationPermissionModel);
+
+	var _ApplicationSetupModel = __webpack_require__(13);
+
+	var _ApplicationSetupModel2 = _interopRequireDefault(_ApplicationSetupModel);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = angular.module('relaymark.model.application', ['modelFactory', _RelayboxModule2.default, _CommunityModule2.default]).factory('ApplicationModel', _ApplicationModel2.default).factory('ApplicationPermissionModel', _ApplicationPermissionModel2.default).factory('ApplicationSetupModel', _ApplicationSetupModel2.default).name;
+
+/***/ },
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _CommunityAppModel = __webpack_require__(16);
 
 	var _CommunityAppModel2 = _interopRequireDefault(_CommunityAppModel);
 
-	var _CommunityCategoryModel = __webpack_require__(16);
+	var _CommunityCategoryModel = __webpack_require__(17);
 
 	var _CommunityCategoryModel2 = _interopRequireDefault(_CommunityCategoryModel);
 
-	var _CommunityConfigurationModel = __webpack_require__(17);
+	var _CommunityConfigurationModel = __webpack_require__(18);
 
 	var _CommunityConfigurationModel2 = _interopRequireDefault(_CommunityConfigurationModel);
 
-	var _CommunityLinkModel = __webpack_require__(18);
+	var _CommunityLinkModel = __webpack_require__(19);
 
 	var _CommunityLinkModel2 = _interopRequireDefault(_CommunityLinkModel);
 
-	var _CommunityPageModel = __webpack_require__(19);
+	var _CommunityPageModel = __webpack_require__(20);
 
 	var _CommunityPageModel2 = _interopRequireDefault(_CommunityPageModel);
 
-	var _CommunityPageWidgetModel = __webpack_require__(20);
+	var _CommunityPageWidgetModel = __webpack_require__(21);
 
 	var _CommunityPageWidgetModel2 = _interopRequireDefault(_CommunityPageWidgetModel);
 
-	var _CommunityPostCommentModel = __webpack_require__(21);
+	var _CommunityPostCommentModel = __webpack_require__(22);
 
 	var _CommunityPostCommentModel2 = _interopRequireDefault(_CommunityPostCommentModel);
 
-	var _CommunityPostModel = __webpack_require__(22);
+	var _CommunityPostModel = __webpack_require__(23);
 
 	var _CommunityPostModel2 = _interopRequireDefault(_CommunityPostModel);
 
-	var _CommunityPreferenceModel = __webpack_require__(23);
+	var _CommunityPreferenceModel = __webpack_require__(24);
 
 	var _CommunityPreferenceModel2 = _interopRequireDefault(_CommunityPreferenceModel);
 
-	var _CommunityWidgetModel = __webpack_require__(24);
+	var _CommunityWidgetModel = __webpack_require__(25);
 
 	var _CommunityWidgetModel2 = _interopRequireDefault(_CommunityWidgetModel);
 
@@ -4030,7 +4136,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = angular.module('relaymark.model.community', ['modelFactory']).factory('CommunityAppModel', _CommunityAppModel2.default).factory('CommunityCategoryModel', _CommunityCategoryModel2.default).factory('CommunityConfigurationModel', _CommunityConfigurationModel2.default).factory('CommunityLinkModel', _CommunityLinkModel2.default).factory('CommunityPageModel', _CommunityPageModel2.default).factory('CommunityPageWidgetModel', _CommunityPageWidgetModel2.default).factory('CommunityPostCommentModel', _CommunityPostCommentModel2.default).factory('CommunityPostModel', _CommunityPostModel2.default).factory('CommunityPreferenceModel', _CommunityPreferenceModel2.default).factory('CommunityWidgetModel', _CommunityWidgetModel2.default).name;
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4060,7 +4166,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/*eslint-enable no-unused-vars */
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4080,7 +4186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4148,7 +4254,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/*eslint-enable no-unused-vars */
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4168,7 +4274,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4188,7 +4294,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4217,7 +4323,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4237,7 +4343,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4275,7 +4381,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4326,7 +4432,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4354,7 +4460,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4363,146 +4469,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _RelayboxPageModel = __webpack_require__(27);
+	var _RelayboxPageModel = __webpack_require__(6);
 
 	var _RelayboxPageModel2 = _interopRequireDefault(_RelayboxPageModel);
 
-	var _RelayboxDataSourceModel = __webpack_require__(26);
-
-	var _RelayboxDataSourceModel2 = _interopRequireDefault(_RelayboxDataSourceModel);
-
-	var _RelayboxCounterDataModel = __webpack_require__(28);
-
-	var _RelayboxCounterDataModel2 = _interopRequireDefault(_RelayboxCounterDataModel);
-
-	var _RelayboxCounterLiveDataModel = __webpack_require__(29);
-
-	var _RelayboxCounterLiveDataModel2 = _interopRequireDefault(_RelayboxCounterLiveDataModel);
-
-	var _RelayboxCounterTypeModel = __webpack_require__(30);
-
-	var _RelayboxCounterTypeModel2 = _interopRequireDefault(_RelayboxCounterTypeModel);
-
-	var _RelayboxEventModel = __webpack_require__(31);
-
-	var _RelayboxEventModel2 = _interopRequireDefault(_RelayboxEventModel);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = angular.module('relaymark.model.relaybox', ['modelFactory']).factory('RelayboxDataSourceModel', _RelayboxDataSourceModel2.default).factory('RelayboxPageModel', _RelayboxPageModel2.default).factory('RelayboxCounterDataModel', _RelayboxCounterDataModel2.default).factory('RelayboxCounterLiveDataModel', _RelayboxCounterLiveDataModel2.default).factory('RelayboxCounterTypeModel', _RelayboxCounterTypeModel2.default).factory('RelayboxEventModel', _RelayboxEventModel2.default).name;
-
-/***/ },
-/* 26 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = RelayboxDataSourceModel;
-	RelayboxDataSourceModel.$inject = ['$modelFactory'];
-	function RelayboxDataSourceModel($modelFactory) {
-	    return $modelFactory('applications/relaybox/data-sources');
-	}
+	exports.default = angular.module('relaymark.model.relaybox', ['modelFactory']).factory('RelayboxDataSourceModel', RelayboxDataSourceModel).factory('RelayboxPageModel', _RelayboxPageModel2.default).factory('RelayboxCounterDataModel', RelayboxCounterDataModel).factory('RelayboxCounterLiveDataModel', RelayboxCounterLiveDataModel).factory('RelayboxCounterTypeModel', RelayboxCounterTypeModel).factory('RelayboxEventModel', RelayboxEventModel).name;
 
 /***/ },
 /* 27 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = RelayboxPageModel;
-	/**
-	 * Created by benjamin.speth on 24/03/2016.
-	 */
-
-	RelayboxPageModel.$inject = ['$modelFactory'];
-	function RelayboxPageModel($modelFactory) {
-	  return $modelFactory('applications/relaybox/pages', {});
-	}
-
-/***/ },
-/* 28 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = RelayboxCounterDataModel;
-	RelayboxCounterDataModel.$inject = ['$modelFactory'];
-	function RelayboxCounterDataModel($modelFactory) {
-	  var result = {
-	    forDataSourceSidAndCounter: function forDataSourceSid(dataSourceSid, counterName) {
-	      return $modelFactory('applications/relaybox/counter-data/' + dataSourceSid + '/' + counterName);
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 29 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = RelayboxCounterLiveDataModel;
-	RelayboxCounterLiveDataModel.$inject = ['$modelFactory'];
-	function RelayboxCounterLiveDataModel($modelFactory) {
-	  var result = {
-	    forDataSourceSidAndCounter: function forDataSourceSid(dataSourceSid, counterName) {
-	      return $modelFactory('applications/relaybox/counter-data/' + dataSourceSid + '/' + counterName + '/live');
-	    }
-	  };
-	  return result;
-	}
-
-/***/ },
-/* 30 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = RelayboxCounterTypeModel;
-	RelayboxCounterTypeModel.$inject = ['$modelFactory'];
-	function RelayboxCounterTypeModel($modelFactory) {
-	  return $modelFactory('applications/relaybox/counter-types');
-	}
-
-/***/ },
-/* 31 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = RelayboxEventModel;
-	RelayboxEventModel.$inject = ['$modelFactory'];
-	function RelayboxEventModel($modelFactory) {
-	  return $modelFactory('applications/relaybox/event-data');
-	  /*var result = {
-	    forDataSourceAndEventTypeName: function forDataSource(dataSourceId, eventTypeName) {
-	      return $modelFactory('applications/relaybox/event-data/?dataSourceId' + dataSourceId + '&eventTypeName=' + eventTypeName);
-	    }
-	  };
-	  return result;*/
-	}
-
-/***/ },
-/* 32 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4521,7 +4497,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 33 */
+/* 28 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4549,7 +4525,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 34 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4558,33 +4534,138 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _DataSourceRegistrationModel = __webpack_require__(40);
+	var _DataEngineConsumeCounterSampleLiveModel = __webpack_require__(30);
 
-	var _DataSourceRegistrationModel2 = _interopRequireDefault(_DataSourceRegistrationModel);
+	var _DataEngineConsumeCounterSampleLiveModel2 = _interopRequireDefault(_DataEngineConsumeCounterSampleLiveModel);
 
-	var _DataEngineCounterModel = __webpack_require__(35);
+	var _DataEngineConsumeCounterSampleModel = __webpack_require__(31);
 
-	var _DataEngineCounterModel2 = _interopRequireDefault(_DataEngineCounterModel);
+	var _DataEngineConsumeCounterSampleModel2 = _interopRequireDefault(_DataEngineConsumeCounterSampleModel);
 
-	var _DataEngineEventModel = __webpack_require__(38);
+	var _DataEngineConsumeCounterTypeModel = __webpack_require__(32);
 
-	var _DataEngineEventModel2 = _interopRequireDefault(_DataEngineEventModel);
+	var _DataEngineConsumeCounterTypeModel2 = _interopRequireDefault(_DataEngineConsumeCounterTypeModel);
 
-	var _DataEngineCustomerModel = __webpack_require__(36);
+	var _DataEngineConsumeCustomerModel = __webpack_require__(33);
 
-	var _DataEngineCustomerModel2 = _interopRequireDefault(_DataEngineCustomerModel);
+	var _DataEngineConsumeCustomerModel2 = _interopRequireDefault(_DataEngineConsumeCustomerModel);
 
-	var _DataSourceModel = __webpack_require__(39);
+	var _DataEngineConsumeDataSourcesModel = __webpack_require__(34);
 
-	var _DataSourceModel2 = _interopRequireDefault(_DataSourceModel);
+	var _DataEngineConsumeDataSourcesModel2 = _interopRequireDefault(_DataEngineConsumeDataSourcesModel);
 
-	var _DataEngineDataChunkModel = __webpack_require__(37);
+	var _DataEngineConsumeEventModel = __webpack_require__(35);
 
-	var _DataEngineDataChunkModel2 = _interopRequireDefault(_DataEngineDataChunkModel);
+	var _DataEngineConsumeEventModel2 = _interopRequireDefault(_DataEngineConsumeEventModel);
+
+	var _DataEngineDeclareDataSourceModel = __webpack_require__(36);
+
+	var _DataEngineDeclareDataSourceModel2 = _interopRequireDefault(_DataEngineDeclareDataSourceModel);
+
+	var _DataEngineDeclareRegistrationModel = __webpack_require__(37);
+
+	var _DataEngineDeclareRegistrationModel2 = _interopRequireDefault(_DataEngineDeclareRegistrationModel);
+
+	var _DataEnginePopulateCounterSampleModel = __webpack_require__(38);
+
+	var _DataEnginePopulateCounterSampleModel2 = _interopRequireDefault(_DataEnginePopulateCounterSampleModel);
+
+	var _DataEnginePopulateDataChunkModel = __webpack_require__(39);
+
+	var _DataEnginePopulateDataChunkModel2 = _interopRequireDefault(_DataEnginePopulateDataChunkModel);
+
+	var _DataEnginePopulateEventModel = __webpack_require__(40);
+
+	var _DataEnginePopulateEventModel2 = _interopRequireDefault(_DataEnginePopulateEventModel);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = angular.module('relaymark.model.data-engine', ['modelFactory']).factory('DataEngineCounterModel', _DataEngineCounterModel2.default).factory('DataEngineCustomerModel', _DataEngineCustomerModel2.default).factory('DataEngineDataChunkModel', _DataEngineDataChunkModel2.default).factory('DataEngineEventModel', _DataEngineEventModel2.default).factory('DataSourceModel', _DataSourceModel2.default).factory('DataSourceRegistrationModel', _DataSourceRegistrationModel2.default).name;
+	exports.default = angular.module('relaymark.model.data-engine', ['modelFactory']).factory('DataEngineConsumeCounterSampleLiveModel', _DataEngineConsumeCounterSampleLiveModel2.default).factory('DataEngineConsumeCounterSampleModel', _DataEngineConsumeCounterSampleModel2.default).factory('DataEngineConsumeCounterTypeModel', _DataEngineConsumeCounterTypeModel2.default).factory('DataEngineConsumeCustomerModel', _DataEngineConsumeCustomerModel2.default).factory('DataEngineConsumeDataSourcesModel', _DataEngineConsumeDataSourcesModel2.default).factory('DataEngineConsumeEventModel', _DataEngineConsumeEventModel2.default).factory('DataEngineDeclareDataSourceModel', _DataEngineDeclareDataSourceModel2.default).factory('DataEngineDeclareRegistrationModel', _DataEngineDeclareRegistrationModel2.default).factory('DataEnginePopulateCounterSampleModel', _DataEnginePopulateCounterSampleModel2.default).factory('DataEnginePopulateDataChunkModel', _DataEnginePopulateDataChunkModel2.default).factory('DataEnginePopulateEventModel', _DataEnginePopulateEventModel2.default).name;
+
+/***/ },
+/* 30 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = DataEngineConsumeCounterSampleLiveModel;
+	DataEngineConsumeCounterSampleLiveModel.$inject = ['$modelFactory'];
+	function DataEngineConsumeCounterSampleLiveModel($modelFactory) {
+	  var result = {
+	    forDataSourceSidAndCounter: function forDataSourceSid(dataSourceSid, counterName) {
+	      return $modelFactory('data-engine/consume/counters/' + dataSourceSid + '/' + counterName + '/live');
+	    }
+	  };
+	  return result;
+	}
+
+/***/ },
+/* 31 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = DataEngineConsumeCounterSampleModel;
+	DataEngineConsumeCounterSampleModel.$inject = ['$modelFactory'];
+	function DataEngineConsumeCounterSampleModel($modelFactory) {
+	  var result = {
+	    forDataSourceSidAndCounter: function forDataSourceSid(dataSourceSid, counterName) {
+	      return $modelFactory('data-engine/consume/counters/' + dataSourceSid + '/' + counterName);
+	    }
+	  };
+	  return result;
+	}
+
+/***/ },
+/* 32 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = DataEngineConsumeCounterTypeModel;
+	DataEngineConsumeCounterTypeModel.$inject = ['$modelFactory'];
+	function DataEngineConsumeCounterTypeModel($modelFactory) {
+	  return $modelFactory('data-engine/consume/counter-types');
+	}
+
+/***/ },
+/* 33 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = DataEngineConsumeCustomerModel;
+	DataEngineConsumeCustomerModel.$inject = ['$modelFactory'];
+	function DataEngineConsumeCustomerModel($modelFactory) {
+	  return $modelFactory('data-engine/consume/customers');
+	}
+
+/***/ },
+/* 34 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = DataEngineConsumeDataSourcesModel;
+	DataEngineConsumeDataSourcesModel.$inject = ['$modelFactory'];
+	function DataEngineConsumeDataSourcesModel($modelFactory) {
+	    return $modelFactory('data-engine/consume/data-sources');
+	}
 
 /***/ },
 /* 35 */
@@ -4595,15 +4676,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = DataEngineCounterModel;
-	DataEngineCounterModel.$inject = ['$modelFactory'];
-	function DataEngineCounterModel($modelFactory) {
-	  var result = {
-	    forDataSourceAndCounter: function forDataSource(dataSourceId, counterName) {
-	      return $modelFactory('data-engine/counters/' + dataSourceId + '/' + counterName);
-	    }
-	  };
-	  return result;
+	exports.default = DataEngineConsumeEventModel;
+	DataEngineConsumeEventModel.$inject = ['$modelFactory'];
+	function DataEngineConsumeEventModel($modelFactory) {
+	  return $modelFactory('data-engine/consume/events');
 	}
 
 /***/ },
@@ -4615,10 +4691,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = DataEngineCustomerModel;
-	DataEngineCustomerModel.$inject = ['$modelFactory'];
-	function DataEngineCustomerModel($modelFactory) {
-	  return $modelFactory('data-engine/customers');
+	exports.default = DataEngineDeclareDataSourceModel;
+	DataEngineDeclareDataSourceModel.$inject = ['$modelFactory'];
+	function DataEngineDeclareDataSourceModel($modelFactory) {
+	  return $modelFactory('data-engine/declare/data-sources');
 	}
 
 /***/ },
@@ -4630,10 +4706,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = DataEngineDataChunkModel;
-	DataEngineDataChunkModel.$inject = ['$modelFactory'];
-	function DataEngineDataChunkModel($modelFactory) {
-	  return $modelFactory('data-engine/data-chunks');
+	exports.default = DataEngineDeclareRegistrationModel;
+	DataEngineDeclareRegistrationModel.$inject = ['$modelFactory'];
+	function DataEngineDeclareRegistrationModel($modelFactory) {
+	  return $modelFactory('data-engine/declare/registrations');
 	}
 
 /***/ },
@@ -4645,16 +4721,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = DataEngineEventModel;
-	DataEngineEventModel.$inject = ['$modelFactory'];
-	function DataEngineEventModel($modelFactory) {
-	  /*var result = {
-	    forDataSourceAndEventTypeName: function forDataSource(dataSourceId, eventTypeName) {
-	      return $modelFactory('data-engine/events/?dataSourceId' + dataSourceId + '&eventTypeName=' + eventTypeName);
+	exports.default = DataEnginePopulateCounterSampleModel;
+	DataEnginePopulateCounterSampleModel.$inject = ['$modelFactory'];
+	function DataEnginePopulateCounterSampleModel($modelFactory) {
+	  var result = {
+	    forDataSourceAndCounter: function forDataSource(dataSourceSid, counterName) {
+	      return $modelFactory('data-engine/populate/counters/' + dataSourceSid + '/' + counterName);
 	    }
 	  };
-	  return result;*/
-	  return $modelFactory('data-engine/events');
+	  return result;
 	}
 
 /***/ },
@@ -4666,10 +4741,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = DataSourceModel;
-	DataSourceModel.$inject = ['$modelFactory'];
-	function DataSourceModel($modelFactory) {
-	  return $modelFactory('data-engine/data-sources');
+	exports.default = DataEnginePopulateDataChunkModel;
+	DataEnginePopulateDataChunkModel.$inject = ['$modelFactory'];
+	function DataEnginePopulateDataChunkModel($modelFactory) {
+	  return $modelFactory('data-engine/populate/data-chunks');
 	}
 
 /***/ },
@@ -4681,10 +4756,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = DataSourceRegistrationModel;
-	DataSourceRegistrationModel.$inject = ['$modelFactory'];
-	function DataSourceRegistrationModel($modelFactory) {
-	  return $modelFactory('data-engine/registrations');
+	exports.default = DataEnginePopulateEventModel;
+	DataEnginePopulateEventModel.$inject = ['$modelFactory'];
+	function DataEnginePopulateEventModel($modelFactory) {
+	  return $modelFactory('data-engine/populate/events');
 	}
 
 /***/ },
