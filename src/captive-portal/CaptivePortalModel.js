@@ -2,7 +2,7 @@
  * Created by benjamin.speth on 28/09/2016.
  */
 
-RelayboxPageModel.$inject = ['$modelFactory'];
-export default function RelayboxPageModel($modelFactory) {
-    return $modelFactory('captive-portal', {});
+CaptivePortalModel.$inject = ['$modelFactory'];
+export default function CaptivePortalModel($modelFactory) {
+    return $modelFactory('captive-portal', { });
 }

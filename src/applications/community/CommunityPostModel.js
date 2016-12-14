@@ -13,6 +13,11 @@ export default function CommunityPostModel($modelFactory) {
             method: 'POST',
             url: '{shortId}/attachmentAccepted',
             wrap: false
+          },
+          seen: {
+            method: 'POST',
+            url: '{shortId}/seen',
+            wrap: false
           }
         }
       });

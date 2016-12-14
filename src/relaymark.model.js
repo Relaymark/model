@@ -1,31 +1,12 @@
 import 'ng-file-upload';
 import './modelFactory.js';
-import AdminModel from './admin/AdminModel.js';
-import CommunityAppModel from './applications/community/CommunityAppModel.js';
-import CommunityCategoryModel from './applications/community/CommunityCategoryModel.js';
-import CommunityConfigurationModel from './applications/community/CommunityConfigurationModel.js';
-import CommunityLinkModel from './applications/community/CommunityLinkModel.js';
-import CommunityPageModel from './applications/community/CommunityPageModel.js';
-import CommunityPageWidgetModel from './applications/community/CommunityPageWidgetModel.js';
-import CommunityPostCommentModel from './applications/community/CommunityPostCommentModel.js';
-import CommunityPostModel from './applications/community/CommunityPostModel.js';
-import CommunityPreferenceModel from './applications/community/CommunityPreferenceModel.js';
-import CommunityWidgetModel from './applications/community/CommunityWidgetModel.js';
-import CorporateInvitationModel from './communication/CorporateInvitationModel.js';
-import AffiliationModel from './directory/nested/AffiliationModel.js';
-import AffiliationRequestModel from './directory/nested/AffiliationRequestModel.js';
-import AssignmentModel from './directory/nested/AssignmentModel.js';
-import EmployeeModel from './directory/nested/EmployeeModel.js';
-import OrganizationUnitModel from './directory/nested/OrganizationUnitModel.js';
-import CompanyModel from './directory/CompanyModel.js';
-import EventModel from './directory/EventModel.js';
-import CompanyLocationModel from './directory/nested/CompanyLocationModel.js';
-import NetworkModel from './directory/NetworkModel.js';
-import RegistrationModel from './directory/RegistrationModel.js';
-import UserModel from './directory/UserModel.js';
+import DirectoryModule from './directory/Directory.module.js';
 
+import ApplicationModule from './applications/Applications.module.js';
+import DataEngineModule from './data-engine/DataEngine.module.js';
 import RelayboxPageModel from './applications/relaybox/RelayboxPageModel.js';
 
+import AdminModel from './admin/AdminModel.js';
 import DataEngineConsumeCounterSampleLiveModel from './data-engine/consume/DataEngineConsumeCounterSampleLiveModel.js';
 import DataEngineConsumeCounterSampleModel from './data-engine/consume/DataEngineConsumeCounterSampleModel.js';
 import DataEngineConsumeCounterTypeModel from './data-engine/consume/DataEngineConsumeCounterTypeModel.js';
@@ -33,6 +14,7 @@ import DataEngineConsumeCustomerModel from './data-engine/consume/DataEngineCons
 import DataEngineConsumeDataSourcesModel from './data-engine/consume/DataEngineConsumeDataSourcesModel.js';
 import DataEngineConsumeEventModel from './data-engine/consume/DataEngineConsumeEventModel.js';
 
+import CorporateInvitationModel from './communication/CorporateInvitationModel.js';
 import DataEngineDeclareDataSourceModel from './data-engine/declare/DataEngineDeclareDataSourceModel.js';
 import DataEngineDeclareRegistrationModel from './data-engine/declare/DataEngineDeclareRegistrationModel.js';
 
@@ -42,33 +24,9 @@ import DataEnginePopulateEventModel from './data-engine/populate/DataEnginePopul
 
 import CaptivePortalModel from './captive-portal/CaptivePortalModel'
 
-export default angular.module('relaymark.model', ['modelFactory'])
+export default angular.module('relaymark.model', ['modelFactory', ApplicationModule, DirectoryModule, DataEngineModule])
     .factory('AdminModel', AdminModel)
-    .factory('CommunityAppModel', CommunityAppModel)
-    .factory('CommunityCategoryModel', CommunityCategoryModel)
-    .factory('CommunityConfigurationModel', CommunityConfigurationModel)
-    .factory('CommunityLinkModel', CommunityLinkModel)
-    .factory('CommunityPageModel', CommunityPageModel)
-    .factory('CommunityPageWidgetModel', CommunityPageWidgetModel)
-    .factory('CommunityPostCommentModel', CommunityPostCommentModel)
-    .factory('CommunityPostModel', CommunityPostModel)
-    .factory('CommunityPreferenceModel', CommunityPreferenceModel)
-    .factory('CommunityWidgetModel', CommunityWidgetModel)
     .factory('CorporateInvitationModel', CorporateInvitationModel)
-    .factory('AffiliationModel', AffiliationModel)
-    .factory('AffiliationRequestModel', AffiliationRequestModel)
-    .factory('AssignmentModel', AssignmentModel)
-    .factory('EmployeeModel', EmployeeModel)
-    .factory('OrganizationUnitModel', OrganizationUnitModel)
-    .factory('CompanyModel', CompanyModel)
-    .factory('EventModel', EventModel)
-    .factory('CompanyLocationModel', CompanyLocationModel)
-    .factory('NetworkModel', NetworkModel)
-    .factory('RegistrationModel', RegistrationModel)
-    .factory('UserModel', UserModel)
-    
-    .factory('RelayboxPageModel', RelayboxPageModel)
-
     .factory('CaptivePortalModel', CaptivePortalModel)
 
     .factory('DataEngineConsumeCounterSampleLiveModel', DataEngineConsumeCounterSampleLiveModel)
