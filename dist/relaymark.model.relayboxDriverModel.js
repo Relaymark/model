@@ -63,13 +63,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(1);
 
-	__webpack_require__(57);
+	__webpack_require__(58);
 
-	var _RbDriverCmxNetworkModel = __webpack_require__(8);
+	var _RbDriverCmxNetworkModel = __webpack_require__(9);
 
 	var _RbDriverCmxNetworkModel2 = _interopRequireDefault(_RbDriverCmxNetworkModel);
 
-	var _RbDriverInstallationOptionsModel = __webpack_require__(9);
+	var _RbDriverInstallationOptionsModel = __webpack_require__(10);
 
 	var _RbDriverInstallationOptionsModel2 = _interopRequireDefault(_RbDriverInstallationOptionsModel);
 
@@ -77,13 +77,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _RbDriverAccessPointModel2 = _interopRequireDefault(_RbDriverAccessPointModel);
 
+	var _RbDriverCmxNetworkMerakiConfigurationModel = __webpack_require__(8);
+
+	var _RbDriverCmxNetworkMerakiConfigurationModel2 = _interopRequireDefault(_RbDriverCmxNetworkMerakiConfigurationModel);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = angular.module('relaymark.model.relayboxDriver', ['relayboxApiModelFactory'])
-	// .factory('RbDriverRegistrationModel', RbDriverRegistrationModel)
-	// .factory('RbDriverEquipmentModel', RbDriverEquipmentModel)
-
-	.factory('RbDriverCmxNetworkModel', _RbDriverCmxNetworkModel2.default).factory('RbDriverInstallationOptionsModel', _RbDriverInstallationOptionsModel2.default).factory('RbDriverAccessPointModel', _RbDriverAccessPointModel2.default).name;
 
 	// import RbDriverRegistrationModel from './Relaybox-driver-api/RbDriverRegistrationModel';
 	// import RbDriverEquipmentModel from './Relaybox-driver-api/RbDriverEquipmentModel';
@@ -91,6 +89,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Created by benoit.bacot on 29/08/2016.
 	 */
+	exports.default = angular.module('relaymark.model.relayboxDriver', ['relayboxApiModelFactory'])
+	// .factory('RbDriverRegistrationModel', RbDriverRegistrationModel)
+	// .factory('RbDriverEquipmentModel', RbDriverEquipmentModel)
+
+	.factory('RbDriverCmxNetworkModel', _RbDriverCmxNetworkModel2.default).factory('RbDriverInstallationOptionsModel', _RbDriverInstallationOptionsModel2.default).factory('RbDriverAccessPointModel', _RbDriverAccessPointModel2.default).factory('RbDriverCmxNetworkMerakiConfigurationModel', _RbDriverCmxNetworkMerakiConfigurationModel2.default).name;
 
 /***/ },
 
@@ -3945,6 +3948,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.default = RbDriverCmxNetworkMerakiConfigurationModel;
+	RbDriverCmxNetworkMerakiConfigurationModel.$inject = ['$relayboxApiModelFactory'];
+	function RbDriverCmxNetworkMerakiConfigurationModel($relayboxApiModelFactory) {
+	  return {
+	    forNetwork: function forNetwork(networkShortId) {
+	      return $relayboxApiModelFactory('networks/' + networkShortId + '/meraki-configuration');
+	    }
+	  };
+	}
+
+/***/ },
+
+/***/ 9:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	exports.default = RbDriverCmxNetworkModel;
 	/**
 	 * Created by benoit.bacot on 29/08/2016.
@@ -3964,7 +3987,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 9:
+/***/ 10:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3983,7 +4006,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 57:
+/***/ 58:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
