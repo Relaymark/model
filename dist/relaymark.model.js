@@ -5267,11 +5267,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.default = CompanyLocationModel;
-	CompanyLocationModel.$inject = ['$modelFactory'];
-	function CompanyLocationModel($modelFactory) {
+	exports.default = NetworkLocationModel;
+	NetworkLocationModel.$inject = ['$modelFactory'];
+	function NetworkLocationModel($modelFactory) {
 	    var result = {
-	        forCompany: function forCompany(networkId) {
+	        forNetwork: function forNetwork(networkId) {
 	            return $modelFactory('directory/networks/' + networkId + '/locations');
 	        }
 	    };

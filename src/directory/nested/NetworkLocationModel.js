@@ -1,7 +1,7 @@
-CompanyLocationModel.$inject = ['$modelFactory'];
-export default function CompanyLocationModel($modelFactory) {
+NetworkLocationModel.$inject = ['$modelFactory'];
+export default function NetworkLocationModel($modelFactory) {
     var result = {
-        forCompany: function (networkId) {
+        forNetwork: function (networkId) {
             return $modelFactory('directory/networks/' + networkId + '/locations');
         }
     };
