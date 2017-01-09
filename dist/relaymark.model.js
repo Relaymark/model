@@ -4891,7 +4891,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 	exports.default = LocationModel;
-	CompanyModel.$inject = ['$modelFactory'];
+	LocationModel.$inject = ['$modelFactory'];
 	function LocationModel($modelFactory) {
 	  return $modelFactory('directory/locations');
 	}
