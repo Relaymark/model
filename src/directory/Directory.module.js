@@ -13,6 +13,8 @@ import LocationAssignmentModel from './nested/LocationAssignmentModel.js';
 import AffiliatedNetworkModel from './nested/AffiliatedNetworkModel.js';
 import CompanyLocationGroupModel from './nested/CompanyLocationGroupModel.js';
 
+import LocationModel from './LocationModel';
+import NetworkLocationModel from './nested/NetworkLocationModel';
 
 export default angular.module('relaymark.model.directory', ['modelFactory'])
     .factory('CompanyModel', CompanyModel)
@@ -29,4 +31,6 @@ export default angular.module('relaymark.model.directory', ['modelFactory'])
     .factory('EmployeeModel', EmployeeModel)
     .factory('LocationAssignmentModel', LocationAssignmentModel)
     .factory('OrganizationUnitModel', OrganizationUnitModel)
+    .factory('LocationModel', LocationModel)
+    .factory('NetworkLocationModel', NetworkLocationModel)
     .name;

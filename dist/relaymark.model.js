@@ -62,7 +62,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(1);
 
-	__webpack_require__(57);
+	__webpack_require__(59);
 
 	var _DirectoryModule = __webpack_require__(43);
 
@@ -4798,23 +4798,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _AffiliationModel = __webpack_require__(49);
+	var _AffiliationModel = __webpack_require__(50);
 
 	var _AffiliationModel2 = _interopRequireDefault(_AffiliationModel);
 
-	var _AffiliationRequestModel = __webpack_require__(50);
+	var _AffiliationRequestModel = __webpack_require__(51);
 
 	var _AffiliationRequestModel2 = _interopRequireDefault(_AffiliationRequestModel);
 
-	var _AssignmentModel = __webpack_require__(51);
+	var _AssignmentModel = __webpack_require__(52);
 
 	var _AssignmentModel2 = _interopRequireDefault(_AssignmentModel);
 
-	var _EmployeeModel = __webpack_require__(54);
+	var _EmployeeModel = __webpack_require__(55);
 
 	var _EmployeeModel2 = _interopRequireDefault(_EmployeeModel);
 
-	var _OrganizationUnitModel = __webpack_require__(56);
+	var _OrganizationUnitModel = __webpack_require__(58);
 
 	var _OrganizationUnitModel2 = _interopRequireDefault(_OrganizationUnitModel);
 
@@ -4826,37 +4826,45 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _EventModel2 = _interopRequireDefault(_EventModel);
 
-	var _CompanyLocationModel = __webpack_require__(53);
+	var _CompanyLocationModel = __webpack_require__(54);
 
 	var _CompanyLocationModel2 = _interopRequireDefault(_CompanyLocationModel);
 
-	var _NetworkModel = __webpack_require__(45);
+	var _NetworkModel = __webpack_require__(46);
 
 	var _NetworkModel2 = _interopRequireDefault(_NetworkModel);
 
-	var _RegistrationModel = __webpack_require__(46);
+	var _RegistrationModel = __webpack_require__(47);
 
 	var _RegistrationModel2 = _interopRequireDefault(_RegistrationModel);
 
-	var _UserModel = __webpack_require__(47);
+	var _UserModel = __webpack_require__(48);
 
 	var _UserModel2 = _interopRequireDefault(_UserModel);
 
-	var _LocationAssignmentModel = __webpack_require__(55);
+	var _LocationAssignmentModel = __webpack_require__(56);
 
 	var _LocationAssignmentModel2 = _interopRequireDefault(_LocationAssignmentModel);
 
-	var _AffiliatedNetworkModel = __webpack_require__(48);
+	var _AffiliatedNetworkModel = __webpack_require__(49);
 
 	var _AffiliatedNetworkModel2 = _interopRequireDefault(_AffiliatedNetworkModel);
 
-	var _CompanyLocationGroupModel = __webpack_require__(52);
+	var _CompanyLocationGroupModel = __webpack_require__(53);
 
 	var _CompanyLocationGroupModel2 = _interopRequireDefault(_CompanyLocationGroupModel);
 
+	var _LocationModel = __webpack_require__(45);
+
+	var _LocationModel2 = _interopRequireDefault(_LocationModel);
+
+	var _NetworkLocationModel = __webpack_require__(57);
+
+	var _NetworkLocationModel2 = _interopRequireDefault(_NetworkLocationModel);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = angular.module('relaymark.model.directory', ['modelFactory']).factory('CompanyModel', _CompanyModel2.default).factory('EventModel', _EventModel2.default).factory('NetworkModel', _NetworkModel2.default).factory('RegistrationModel', _RegistrationModel2.default).factory('UserModel', _UserModel2.default).factory('AffiliatedNetworkModel', _AffiliatedNetworkModel2.default).factory('AffiliationModel', _AffiliationModel2.default).factory('AffiliationRequestModel', _AffiliationRequestModel2.default).factory('AssignmentModel', _AssignmentModel2.default).factory('CompanyLocationGroupModel', _CompanyLocationGroupModel2.default).factory('CompanyLocationModel', _CompanyLocationModel2.default).factory('EmployeeModel', _EmployeeModel2.default).factory('LocationAssignmentModel', _LocationAssignmentModel2.default).factory('OrganizationUnitModel', _OrganizationUnitModel2.default).name;
+	exports.default = angular.module('relaymark.model.directory', ['modelFactory']).factory('CompanyModel', _CompanyModel2.default).factory('EventModel', _EventModel2.default).factory('NetworkModel', _NetworkModel2.default).factory('RegistrationModel', _RegistrationModel2.default).factory('UserModel', _UserModel2.default).factory('AffiliatedNetworkModel', _AffiliatedNetworkModel2.default).factory('AffiliationModel', _AffiliationModel2.default).factory('AffiliationRequestModel', _AffiliationRequestModel2.default).factory('AssignmentModel', _AssignmentModel2.default).factory('CompanyLocationGroupModel', _CompanyLocationGroupModel2.default).factory('CompanyLocationModel', _CompanyLocationModel2.default).factory('EmployeeModel', _EmployeeModel2.default).factory('LocationAssignmentModel', _LocationAssignmentModel2.default).factory('OrganizationUnitModel', _OrganizationUnitModel2.default).factory('LocationModel', _LocationModel2.default).factory('NetworkLocationModel', _NetworkLocationModel2.default).name;
 
 /***/ },
 /* 44 */
@@ -4875,6 +4883,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 45 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = LocationModel;
+	CompanyModel.$inject = ['$modelFactory'];
+	function LocationModel($modelFactory) {
+	  return $modelFactory('directory/locations');
+	}
+
+/***/ },
+/* 46 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4917,7 +4940,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4940,7 +4963,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5003,7 +5026,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5023,7 +5046,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5056,7 +5079,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5076,7 +5099,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5107,7 +5130,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5141,7 +5164,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5179,7 +5202,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5210,7 +5233,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5236,7 +5259,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 56 */
+/* 57 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = CompanyLocationModel;
+	CompanyLocationModel.$inject = ['$modelFactory'];
+	function CompanyLocationModel($modelFactory) {
+	    var result = {
+	        forCompany: function forCompany(networkId) {
+	            return $modelFactory('directory/networks/' + networkId + '/locations');
+	        }
+	    };
+	    return result;
+	}
+
+/***/ },
+/* 58 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5289,7 +5332,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/*eslint-enable no-unused-vars */
 
 /***/ },
-/* 57 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
