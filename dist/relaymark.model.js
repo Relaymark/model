@@ -4489,7 +4489,16 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 31 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = CaptivePortalAccessPointModel;
+	CaptivePortalAccessPointModel.$inject = ['$modelFactory'];
+	function CaptivePortalAccessPointModel($modelFactory) {
+	    return $modelFactory('captive-portal/access-point', {});
+	}
 
 /***/ },
 /* 32 */
