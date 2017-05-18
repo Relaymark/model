@@ -14,6 +14,7 @@ import AffiliatedNetworkModel from './nested/AffiliatedNetworkModel.js';
 import CompanyLocationGroupModel from './nested/CompanyLocationGroupModel.js';
 
 import LocationModel from './LocationModel';
+import LocationsAvailableTimeZonesModel from './LocationsAvailableTimeZonesModel';
 import NetworkLocationModel from './nested/NetworkLocationModel';
 
 export default angular.module('relaymark.model.directory', ['modelFactory'])
@@ -32,5 +33,6 @@ export default angular.module('relaymark.model.directory', ['modelFactory'])
     .factory('LocationAssignmentModel', LocationAssignmentModel)
     .factory('OrganizationUnitModel', OrganizationUnitModel)
     .factory('LocationModel', LocationModel)
+    .factory('LocationsAvailableTimeZonesModel', LocationsAvailableTimeZonesModel)
     .factory('NetworkLocationModel', NetworkLocationModel)
     .name;
