@@ -4086,7 +4086,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	RbDriverRegistrationCountersConfigurationModel.$inject = ['$relayboxApiModelFactory'];
 	function RbDriverRegistrationCountersConfigurationModel($relayboxApiModelFactory) {
 	    return {
-	        forNetwork: function forNetwork(registrationShortid) {
+	        forRegistration: function forRegistration(registrationShortid) {
 	            return $relayboxApiModelFactory("registration/" + registrationShortid + "/counters-configuration");
 	        }
 	    };

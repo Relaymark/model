@@ -1,7 +1,7 @@
 RbDriverRegistrationCountersConfigurationModel.$inject = ['$relayboxApiModelFactory'];
 export default function RbDriverRegistrationCountersConfigurationModel($relayboxApiModelFactory) {
   return {
-      forNetwork: function (registrationShortid) {
+      forRegistration: function (registrationShortid) {
           return $relayboxApiModelFactory("registration/"+ registrationShortid + "/counters-configuration");
         }
     };
