@@ -16,6 +16,7 @@ import RbDriverCmxNetworkCountersConfigurationModel from './Relaybox-driver-api/
 import RbDriverCmxNetworkCloudtraxConfigurationModel from './Relaybox-driver-api/RbDriverCmxNetworkCloudtraxConfigurationModel';
 import RbDriverCmxNetworkCaptivePortalConfigurationModel from './Relaybox-driver-api/RbDriverCmxNetworkCaptivePortalConfigurationModel';
 import RbDriverRegistrationCountersConfigurationModel from './Relaybox-driver-api/RbDriverRegistrationCountersConfigurationModel';
+import RbDriverCmxNetworkAccessPointModel from './Relaybox-driver-api/RbDriverCmxNetworkAccessPointModel';
 
 export default angular.module('relaymark.model.relayboxDriver', ['relayboxApiModelFactory'])
 // .factory('RbDriverRegistrationModel', RbDriverRegistrationModel)
@@ -28,4 +29,5 @@ export default angular.module('relaymark.model.relayboxDriver', ['relayboxApiMod
   .factory('RbDriverCmxNetworkCloudtraxConfigurationModel', RbDriverCmxNetworkCloudtraxConfigurationModel)
   .factory('RbDriverCmxNetworkCaptivePortalConfigurationModel', RbDriverCmxNetworkCaptivePortalConfigurationModel)
   .factory('RbDriverRegistrationCountersConfigurationModel', RbDriverRegistrationCountersConfigurationModel)
+  .factory('RbDriverCmxNetworkAccessPointModel', RbDriverCmxNetworkAccessPointModel)
   .name;
