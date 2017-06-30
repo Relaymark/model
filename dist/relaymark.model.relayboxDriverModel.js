@@ -63,13 +63,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(1);
 
-	__webpack_require__(68);
+	__webpack_require__(69);
 
 	var _RbDriverCmxNetworkModel = __webpack_require__(13);
 
 	var _RbDriverCmxNetworkModel2 = _interopRequireDefault(_RbDriverCmxNetworkModel);
 
-	var _RbDriverInstallationOptionsModel = __webpack_require__(14);
+	var _RbDriverInstallationOptionsModel = __webpack_require__(15);
 
 	var _RbDriverInstallationOptionsModel2 = _interopRequireDefault(_RbDriverInstallationOptionsModel);
 
@@ -93,7 +93,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _RbDriverCmxNetworkCaptivePortalConfigurationModel2 = _interopRequireDefault(_RbDriverCmxNetworkCaptivePortalConfigurationModel);
 
-	var _RbDriverRegistrationCountersConfigurationModel = __webpack_require__(15);
+	var _RbDriverRegistrationCountersConfigurationModel = __webpack_require__(16);
 
 	var _RbDriverRegistrationCountersConfigurationModel2 = _interopRequireDefault(_RbDriverRegistrationCountersConfigurationModel);
 
@@ -101,11 +101,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _RbDriverCmxNetworkAccessPointModel2 = _interopRequireDefault(_RbDriverCmxNetworkAccessPointModel);
 
-	var _RbDriverRegistrationModel = __webpack_require__(16);
+	var _RbDriverRegistrationModel = __webpack_require__(17);
 
 	var _RbDriverRegistrationModel2 = _interopRequireDefault(_RbDriverRegistrationModel);
 
+	var _RbDriverCmxNetworkRegistrationModel = __webpack_require__(14);
+
+	var _RbDriverCmxNetworkRegistrationModel2 = _interopRequireDefault(_RbDriverCmxNetworkRegistrationModel);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = angular.module('relaymark.model.relayboxDriver', ['relayboxApiModelFactory'])
+	// .factory('RbDriverRegistrationModel', RbDriverRegistrationModel)
+	// .factory('RbDriverEquipmentModel', RbDriverEquipmentModel)
+	.factory('RbDriverCmxNetworkModel', _RbDriverCmxNetworkModel2.default).factory('RbDriverInstallationOptionsModel', _RbDriverInstallationOptionsModel2.default).factory('RbDriverAccessPointModel', _RbDriverAccessPointModel2.default).factory('RbDriverCmxNetworkMerakiConfigurationModel', _RbDriverCmxNetworkMerakiConfigurationModel2.default).factory('RbDriverCmxNetworkCountersConfigurationModel', _RbDriverCmxNetworkCountersConfigurationModel2.default).factory('RbDriverCmxNetworkCloudtraxConfigurationModel', _RbDriverCmxNetworkCloudtraxConfigurationModel2.default).factory('RbDriverCmxNetworkCaptivePortalConfigurationModel', _RbDriverCmxNetworkCaptivePortalConfigurationModel2.default).factory('RbDriverCmxNetworkAccessPointModel', _RbDriverCmxNetworkAccessPointModel2.default).factory('RbDriverCmxNetworkRegistrationModel', _RbDriverCmxNetworkRegistrationModel2.default).factory('RbDriverRegistrationCountersConfigurationModel', _RbDriverRegistrationCountersConfigurationModel2.default).factory('RbDriverRegistrationModel', _RbDriverRegistrationModel2.default).name;
 
 	// import RbDriverRegistrationModel from './Relaybox-driver-api/RbDriverRegistrationModel';
 	// import RbDriverEquipmentModel from './Relaybox-driver-api/RbDriverEquipmentModel';
@@ -113,10 +122,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Created by benoit.bacot on 29/08/2016.
 	 */
-	exports.default = angular.module('relaymark.model.relayboxDriver', ['relayboxApiModelFactory'])
-	// .factory('RbDriverRegistrationModel', RbDriverRegistrationModel)
-	// .factory('RbDriverEquipmentModel', RbDriverEquipmentModel)
-	.factory('RbDriverCmxNetworkModel', _RbDriverCmxNetworkModel2.default).factory('RbDriverInstallationOptionsModel', _RbDriverInstallationOptionsModel2.default).factory('RbDriverAccessPointModel', _RbDriverAccessPointModel2.default).factory('RbDriverCmxNetworkMerakiConfigurationModel', _RbDriverCmxNetworkMerakiConfigurationModel2.default).factory('RbDriverCmxNetworkCountersConfigurationModel', _RbDriverCmxNetworkCountersConfigurationModel2.default).factory('RbDriverCmxNetworkCloudtraxConfigurationModel', _RbDriverCmxNetworkCloudtraxConfigurationModel2.default).factory('RbDriverCmxNetworkCaptivePortalConfigurationModel', _RbDriverCmxNetworkCaptivePortalConfigurationModel2.default).factory('RbDriverRegistrationCountersConfigurationModel', _RbDriverRegistrationCountersConfigurationModel2.default).factory('RbDriverCmxNetworkAccessPointModel', _RbDriverCmxNetworkAccessPointModel2.default).factory('RbDriverRegistrationModel', _RbDriverRegistrationModel2.default).name;
 
 /***/ },
 
@@ -4091,6 +4096,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.default = RbDriverCmxNetworkRegistrationModel;
+	RbDriverCmxNetworkRegistrationModel.$inject = ['$relayboxApiModelFactory'];
+	function RbDriverCmxNetworkRegistrationModel($relayboxApiModelFactory) {
+	  return {
+	    forNetwork: function forNetwork(networkShortId) {
+	      return $relayboxApiModelFactory('networks/' + networkShortId + '/registrations');
+	    }
+	  };
+	}
+
+/***/ },
+
+/***/ 15:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	exports.default = RbDriverInstallationOptionsModel;
 	/**
 	 * Created by benoit.bacot on 02/10/2016.
@@ -4102,7 +4127,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 15:
+/***/ 16:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4122,7 +4147,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 16:
+/***/ 17:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4138,7 +4163,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 68:
+/***/ 69:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
