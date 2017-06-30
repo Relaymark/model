@@ -63,7 +63,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(1);
 
-	__webpack_require__(67);
+	__webpack_require__(68);
 
 	var _RbDriverCmxNetworkModel = __webpack_require__(13);
 
@@ -101,12 +101,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _RbDriverCmxNetworkAccessPointModel2 = _interopRequireDefault(_RbDriverCmxNetworkAccessPointModel);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _RbDriverRegistrationModel = __webpack_require__(16);
 
-	exports.default = angular.module('relaymark.model.relayboxDriver', ['relayboxApiModelFactory'])
-	// .factory('RbDriverRegistrationModel', RbDriverRegistrationModel)
-	// .factory('RbDriverEquipmentModel', RbDriverEquipmentModel)
-	.factory('RbDriverCmxNetworkModel', _RbDriverCmxNetworkModel2.default).factory('RbDriverInstallationOptionsModel', _RbDriverInstallationOptionsModel2.default).factory('RbDriverAccessPointModel', _RbDriverAccessPointModel2.default).factory('RbDriverCmxNetworkMerakiConfigurationModel', _RbDriverCmxNetworkMerakiConfigurationModel2.default).factory('RbDriverCmxNetworkCountersConfigurationModel', _RbDriverCmxNetworkCountersConfigurationModel2.default).factory('RbDriverCmxNetworkCloudtraxConfigurationModel', _RbDriverCmxNetworkCloudtraxConfigurationModel2.default).factory('RbDriverCmxNetworkCaptivePortalConfigurationModel', _RbDriverCmxNetworkCaptivePortalConfigurationModel2.default).factory('RbDriverRegistrationCountersConfigurationModel', _RbDriverRegistrationCountersConfigurationModel2.default).factory('RbDriverCmxNetworkAccessPointModel', _RbDriverCmxNetworkAccessPointModel2.default).name;
+	var _RbDriverRegistrationModel2 = _interopRequireDefault(_RbDriverRegistrationModel);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// import RbDriverRegistrationModel from './Relaybox-driver-api/RbDriverRegistrationModel';
 	// import RbDriverEquipmentModel from './Relaybox-driver-api/RbDriverEquipmentModel';
@@ -114,6 +113,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Created by benoit.bacot on 29/08/2016.
 	 */
+	exports.default = angular.module('relaymark.model.relayboxDriver', ['relayboxApiModelFactory'])
+	// .factory('RbDriverRegistrationModel', RbDriverRegistrationModel)
+	// .factory('RbDriverEquipmentModel', RbDriverEquipmentModel)
+	.factory('RbDriverCmxNetworkModel', _RbDriverCmxNetworkModel2.default).factory('RbDriverInstallationOptionsModel', _RbDriverInstallationOptionsModel2.default).factory('RbDriverAccessPointModel', _RbDriverAccessPointModel2.default).factory('RbDriverCmxNetworkMerakiConfigurationModel', _RbDriverCmxNetworkMerakiConfigurationModel2.default).factory('RbDriverCmxNetworkCountersConfigurationModel', _RbDriverCmxNetworkCountersConfigurationModel2.default).factory('RbDriverCmxNetworkCloudtraxConfigurationModel', _RbDriverCmxNetworkCloudtraxConfigurationModel2.default).factory('RbDriverCmxNetworkCaptivePortalConfigurationModel', _RbDriverCmxNetworkCaptivePortalConfigurationModel2.default).factory('RbDriverRegistrationCountersConfigurationModel', _RbDriverRegistrationCountersConfigurationModel2.default).factory('RbDriverCmxNetworkAccessPointModel', _RbDriverCmxNetworkAccessPointModel2.default).factory('RbDriverRegistrationModel', _RbDriverRegistrationModel2.default).name;
 
 /***/ },
 
@@ -4119,7 +4122,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 67:
+/***/ 16:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = RbDriverRegistrationModel;
+	RbDriverRegistrationModel.$inject = ['$relayboxApiModelFactory'];
+	function RbDriverRegistrationModel($relayboxApiModelFactory) {
+	  return $relayboxApiModelFactory('registrations');
+	}
+
+/***/ },
+
+/***/ 68:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
