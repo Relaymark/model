@@ -19,6 +19,8 @@ import RbDriverRegistrationCountersConfigurationModel from './Relaybox-driver-ap
 import RbDriverCmxNetworkAccessPointModel from './Relaybox-driver-api/RbDriverCmxNetworkAccessPointModel';
 import RbDriverRegistrationModel from './Relaybox-driver-api/RbDriverRegistrationModel';
 import RbDriverCmxNetworkRegistrationModel from './Relaybox-driver-api/RbDriverCmxNetworkRegistrationModel';
+import RbDriverAccessPointHealthStatusModel from './Relaybox-driver-api/RbDriverAccessPointHealthStatusModel';
+import RbDriverAccessPointHealthStatusesModel from './Relaybox-driver-api/RbDriverAccessPointHealthStatusesModel';
 
 export default angular.module('relaymark.model.relayboxDriver', ['relayboxApiModelFactory'])
 // .factory('RbDriverRegistrationModel', RbDriverRegistrationModel)
@@ -34,4 +36,6 @@ export default angular.module('relaymark.model.relayboxDriver', ['relayboxApiMod
   .factory('RbDriverCmxNetworkRegistrationModel', RbDriverCmxNetworkRegistrationModel)
   .factory('RbDriverRegistrationCountersConfigurationModel', RbDriverRegistrationCountersConfigurationModel)
   .factory('RbDriverRegistrationModel', RbDriverRegistrationModel)
+  .factory('RbDriverAccessPointHealthStatusModel', RbDriverAccessPointHealthStatusModel)
+  .factory('RbDriverAccessPointHealthStatusesModel', RbDriverAccessPointHealthStatusesModel)
   .name;
