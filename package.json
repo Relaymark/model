@@ -28,7 +28,7 @@
     "build": "rimraf dist && webpack --debug --progress --display-error-details",
     "clean": "rimraf dist"
   },
-  "version": "1.1.84",
+  "version": "1.1.85",
   "repository": {
     "type": "git",
     "url": "https://github.com/Relaymark/Relaymark.model.git"
