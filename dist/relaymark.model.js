@@ -62,9 +62,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	__webpack_require__(1);
 
-	__webpack_require__(70);
+	__webpack_require__(71);
 
-	var _DirectoryModule = __webpack_require__(53);
+	var _DirectoryModule = __webpack_require__(54);
 
 	var _DirectoryModule2 = _interopRequireDefault(_DirectoryModule);
 
@@ -72,7 +72,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _ApplicationsModule2 = _interopRequireDefault(_ApplicationsModule);
 
-	var _DataEngineModule = __webpack_require__(40);
+	var _DataEngineModule = __webpack_require__(41);
 
 	var _DataEngineModule2 = _interopRequireDefault(_DataEngineModule);
 
@@ -84,15 +84,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _AdminModel2 = _interopRequireDefault(_AdminModel);
 
-	var _CorporateInvitationModel = __webpack_require__(39);
+	var _CorporateInvitationModel = __webpack_require__(40);
 
 	var _CorporateInvitationModel2 = _interopRequireDefault(_CorporateInvitationModel);
 
-	var _CaptivePortalModel = __webpack_require__(38);
+	var _CaptivePortalModel = __webpack_require__(39);
 
 	var _CaptivePortalModel2 = _interopRequireDefault(_CaptivePortalModel);
 
-	var _CaptivePortalAccessPointModel = __webpack_require__(37);
+	var _CaptivePortalAccessPointModel = __webpack_require__(38);
 
 	var _CaptivePortalAccessPointModel2 = _interopRequireDefault(_CaptivePortalAccessPointModel);
 
@@ -3918,16 +3918,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	exports.default = RelayboxPageModel;
-	/**
-	 * Created by benjamin.speth on 24/03/2016.
-	 */
-
 	RelayboxPageModel.$inject = ['$modelFactory'];
 	function RelayboxPageModel($modelFactory) {
-	  return $modelFactory('applications/relaybox/pages', {});
+	    return $modelFactory('applications/relaybox/pages', {});
 	}
 
 /***/ },
@@ -4487,12 +4483,31 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _RelayboxPageModel2 = _interopRequireDefault(_RelayboxPageModel);
 
+	var _RelayboxPageSeedModel = __webpack_require__(37);
+
+	var _RelayboxPageSeedModel2 = _interopRequireDefault(_RelayboxPageSeedModel);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = angular.module('relaymark.model.relaybox', ['modelFactory']).factory('RelayboxPageModel', _RelayboxPageModel2.default).name;
+	exports.default = angular.module('relaymark.model.relaybox', ['modelFactory']).factory('RelayboxPageModel', _RelayboxPageModel2.default).factory('RelayboxPageSeedModel', _RelayboxPageSeedModel2.default).name;
 
 /***/ },
 /* 37 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = RelayboxPageSeedModel;
+	RelayboxPageSeedModel.$inject = ['$modelFactory'];
+	function RelayboxPageSeedModel($modelFactory) {
+	    return $modelFactory('applications/relaybox/pages/seed', {});
+	}
+
+/***/ },
+/* 38 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4507,7 +4522,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4526,7 +4541,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4554,7 +4569,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4563,47 +4578,47 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _DataEngineConsumeCounterSampleLiveModel = __webpack_require__(41);
+	var _DataEngineConsumeCounterSampleLiveModel = __webpack_require__(42);
 
 	var _DataEngineConsumeCounterSampleLiveModel2 = _interopRequireDefault(_DataEngineConsumeCounterSampleLiveModel);
 
-	var _DataEngineConsumeCounterSampleModel = __webpack_require__(42);
+	var _DataEngineConsumeCounterSampleModel = __webpack_require__(43);
 
 	var _DataEngineConsumeCounterSampleModel2 = _interopRequireDefault(_DataEngineConsumeCounterSampleModel);
 
-	var _DataEngineConsumeCounterTypeModel = __webpack_require__(43);
+	var _DataEngineConsumeCounterTypeModel = __webpack_require__(44);
 
 	var _DataEngineConsumeCounterTypeModel2 = _interopRequireDefault(_DataEngineConsumeCounterTypeModel);
 
-	var _DataEngineConsumeCustomerModel = __webpack_require__(44);
+	var _DataEngineConsumeCustomerModel = __webpack_require__(45);
 
 	var _DataEngineConsumeCustomerModel2 = _interopRequireDefault(_DataEngineConsumeCustomerModel);
 
-	var _DataEngineConsumeDataSourcesModel = __webpack_require__(45);
+	var _DataEngineConsumeDataSourcesModel = __webpack_require__(46);
 
 	var _DataEngineConsumeDataSourcesModel2 = _interopRequireDefault(_DataEngineConsumeDataSourcesModel);
 
-	var _DataEngineConsumeEventModel = __webpack_require__(46);
+	var _DataEngineConsumeEventModel = __webpack_require__(47);
 
 	var _DataEngineConsumeEventModel2 = _interopRequireDefault(_DataEngineConsumeEventModel);
 
-	var _DataEngineDeclareDataSourceModel = __webpack_require__(47);
+	var _DataEngineDeclareDataSourceModel = __webpack_require__(48);
 
 	var _DataEngineDeclareDataSourceModel2 = _interopRequireDefault(_DataEngineDeclareDataSourceModel);
 
-	var _DataEngineDeclareRegistrationModel = __webpack_require__(48);
+	var _DataEngineDeclareRegistrationModel = __webpack_require__(49);
 
 	var _DataEngineDeclareRegistrationModel2 = _interopRequireDefault(_DataEngineDeclareRegistrationModel);
 
-	var _DataEnginePopulateCounterSampleModel = __webpack_require__(49);
+	var _DataEnginePopulateCounterSampleModel = __webpack_require__(50);
 
 	var _DataEnginePopulateCounterSampleModel2 = _interopRequireDefault(_DataEnginePopulateCounterSampleModel);
 
-	var _DataEnginePopulateDataChunkModel = __webpack_require__(50);
+	var _DataEnginePopulateDataChunkModel = __webpack_require__(51);
 
 	var _DataEnginePopulateDataChunkModel2 = _interopRequireDefault(_DataEnginePopulateDataChunkModel);
 
-	var _DataEnginePopulateEventModel = __webpack_require__(51);
+	var _DataEnginePopulateEventModel = __webpack_require__(52);
 
 	var _DataEnginePopulateEventModel2 = _interopRequireDefault(_DataEnginePopulateEventModel);
 
@@ -4612,7 +4627,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = angular.module('relaymark.model.data-engine', ['modelFactory']).factory('DataEngineConsumeCounterSampleLiveModel', _DataEngineConsumeCounterSampleLiveModel2.default).factory('DataEngineConsumeCounterSampleModel', _DataEngineConsumeCounterSampleModel2.default).factory('DataEngineConsumeCounterTypeModel', _DataEngineConsumeCounterTypeModel2.default).factory('DataEngineConsumeCustomerModel', _DataEngineConsumeCustomerModel2.default).factory('DataEngineConsumeDataSourcesModel', _DataEngineConsumeDataSourcesModel2.default).factory('DataEngineConsumeEventModel', _DataEngineConsumeEventModel2.default).factory('DataEngineDeclareDataSourceModel', _DataEngineDeclareDataSourceModel2.default).factory('DataEngineDeclareRegistrationModel', _DataEngineDeclareRegistrationModel2.default).factory('DataEnginePopulateCounterSampleModel', _DataEnginePopulateCounterSampleModel2.default).factory('DataEnginePopulateDataChunkModel', _DataEnginePopulateDataChunkModel2.default).factory('DataEnginePopulateEventModel', _DataEnginePopulateEventModel2.default).name;
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4632,7 +4647,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4652,7 +4667,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4667,7 +4682,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4682,7 +4697,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4697,7 +4712,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4712,7 +4727,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4727,7 +4742,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4742,7 +4757,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4762,7 +4777,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4777,7 +4792,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4792,7 +4807,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4817,7 +4832,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4826,71 +4841,71 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 
-	var _AffiliationModel = __webpack_require__(61);
+	var _AffiliationModel = __webpack_require__(62);
 
 	var _AffiliationModel2 = _interopRequireDefault(_AffiliationModel);
 
-	var _AffiliationRequestModel = __webpack_require__(62);
+	var _AffiliationRequestModel = __webpack_require__(63);
 
 	var _AffiliationRequestModel2 = _interopRequireDefault(_AffiliationRequestModel);
 
-	var _AssignmentModel = __webpack_require__(63);
+	var _AssignmentModel = __webpack_require__(64);
 
 	var _AssignmentModel2 = _interopRequireDefault(_AssignmentModel);
 
-	var _EmployeeModel = __webpack_require__(66);
+	var _EmployeeModel = __webpack_require__(67);
 
 	var _EmployeeModel2 = _interopRequireDefault(_EmployeeModel);
 
-	var _OrganizationUnitModel = __webpack_require__(69);
+	var _OrganizationUnitModel = __webpack_require__(70);
 
 	var _OrganizationUnitModel2 = _interopRequireDefault(_OrganizationUnitModel);
 
-	var _CompanyModel = __webpack_require__(52);
+	var _CompanyModel = __webpack_require__(53);
 
 	var _CompanyModel2 = _interopRequireDefault(_CompanyModel);
 
-	var _EventModel = __webpack_require__(54);
+	var _EventModel = __webpack_require__(55);
 
 	var _EventModel2 = _interopRequireDefault(_EventModel);
 
-	var _CompanyLocationModel = __webpack_require__(65);
+	var _CompanyLocationModel = __webpack_require__(66);
 
 	var _CompanyLocationModel2 = _interopRequireDefault(_CompanyLocationModel);
 
-	var _NetworkModel = __webpack_require__(57);
+	var _NetworkModel = __webpack_require__(58);
 
 	var _NetworkModel2 = _interopRequireDefault(_NetworkModel);
 
-	var _RegistrationModel = __webpack_require__(58);
+	var _RegistrationModel = __webpack_require__(59);
 
 	var _RegistrationModel2 = _interopRequireDefault(_RegistrationModel);
 
-	var _UserModel = __webpack_require__(59);
+	var _UserModel = __webpack_require__(60);
 
 	var _UserModel2 = _interopRequireDefault(_UserModel);
 
-	var _LocationAssignmentModel = __webpack_require__(67);
+	var _LocationAssignmentModel = __webpack_require__(68);
 
 	var _LocationAssignmentModel2 = _interopRequireDefault(_LocationAssignmentModel);
 
-	var _AffiliatedNetworkModel = __webpack_require__(60);
+	var _AffiliatedNetworkModel = __webpack_require__(61);
 
 	var _AffiliatedNetworkModel2 = _interopRequireDefault(_AffiliatedNetworkModel);
 
-	var _CompanyLocationGroupModel = __webpack_require__(64);
+	var _CompanyLocationGroupModel = __webpack_require__(65);
 
 	var _CompanyLocationGroupModel2 = _interopRequireDefault(_CompanyLocationGroupModel);
 
-	var _LocationModel = __webpack_require__(55);
+	var _LocationModel = __webpack_require__(56);
 
 	var _LocationModel2 = _interopRequireDefault(_LocationModel);
 
-	var _LocationsAvailableTimeZonesModel = __webpack_require__(56);
+	var _LocationsAvailableTimeZonesModel = __webpack_require__(57);
 
 	var _LocationsAvailableTimeZonesModel2 = _interopRequireDefault(_LocationsAvailableTimeZonesModel);
 
-	var _NetworkLocationModel = __webpack_require__(68);
+	var _NetworkLocationModel = __webpack_require__(69);
 
 	var _NetworkLocationModel2 = _interopRequireDefault(_NetworkLocationModel);
 
@@ -4899,7 +4914,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = angular.module('relaymark.model.directory', ['modelFactory']).factory('CompanyModel', _CompanyModel2.default).factory('EventModel', _EventModel2.default).factory('NetworkModel', _NetworkModel2.default).factory('RegistrationModel', _RegistrationModel2.default).factory('UserModel', _UserModel2.default).factory('AffiliatedNetworkModel', _AffiliatedNetworkModel2.default).factory('AffiliationModel', _AffiliationModel2.default).factory('AffiliationRequestModel', _AffiliationRequestModel2.default).factory('AssignmentModel', _AssignmentModel2.default).factory('CompanyLocationGroupModel', _CompanyLocationGroupModel2.default).factory('CompanyLocationModel', _CompanyLocationModel2.default).factory('EmployeeModel', _EmployeeModel2.default).factory('LocationAssignmentModel', _LocationAssignmentModel2.default).factory('OrganizationUnitModel', _OrganizationUnitModel2.default).factory('LocationModel', _LocationModel2.default).factory('LocationsAvailableTimeZonesModel', _LocationsAvailableTimeZonesModel2.default).factory('NetworkLocationModel', _NetworkLocationModel2.default).name;
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4914,7 +4929,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4929,7 +4944,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4944,7 +4959,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4987,7 +5002,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5010,7 +5025,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5073,7 +5088,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5093,7 +5108,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 61 */
+/* 62 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5126,7 +5141,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5146,7 +5161,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5177,7 +5192,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5211,7 +5226,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 65 */
+/* 66 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5249,7 +5264,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 66 */
+/* 67 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5280,7 +5295,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 67 */
+/* 68 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5306,7 +5321,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 68 */
+/* 69 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5326,7 +5341,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 69 */
+/* 70 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5379,7 +5394,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/*eslint-enable no-unused-vars */
 
 /***/ },
-/* 70 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
