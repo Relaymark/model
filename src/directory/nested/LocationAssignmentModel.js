@@ -7,6 +7,9 @@ export default function LocationAssignmentModel($modelFactory) {
         forNetwork: function (networkId) {
             return $modelFactory('directory/networks/' + networkId + '/location-assignments');
         },
+        forNetworkCsv: function (networkId) {
+            return $modelFactory('directory/networks/' + networkId + '/location-assignments/csv');
+        },
         forNetworkAndOrganizationUnit: function(networkShortId, ouShortId) {
             return $modelFactory('directory/networks/' + networkShortId + '/organization-units/'+ ouShortId+'/location-assignments');
         }

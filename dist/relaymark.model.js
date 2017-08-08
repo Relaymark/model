@@ -5313,6 +5313,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        forNetwork: function forNetwork(networkId) {
 	            return $modelFactory('directory/networks/' + networkId + '/location-assignments');
 	        },
+	        forNetworkCsv: function forNetworkCsv(networkId) {
+	            return $modelFactory('directory/networks/' + networkId + '/location-assignments/csv');
+	        },
 	        forNetworkAndOrganizationUnit: function forNetworkAndOrganizationUnit(networkShortId, ouShortId) {
 	            return $modelFactory('directory/networks/' + networkShortId + '/organization-units/' + ouShortId + '/location-assignments');
 	        }
