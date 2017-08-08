@@ -5311,7 +5311,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return $modelFactory('directory/companies/' + companyId + '/location-assignments');
 	        },
 	        forNetwork: function forNetwork(networkId) {
-	            return $modelFactory('directory/networks/' + networkId + '/location-assignments');
+	            return $modelFactory('directory/networks/' + networkId + '/location-assignments', {
+	                actions: {
+	                    getCsv: {
+	                        method: 'GET',
+	                        url: 'csv',
+	                        wrap: false
+	                    }
+	                }
+	            });
 	        },
 	        forNetworkCsv: function forNetworkCsv(networkId) {
 	            return $modelFactory('directory/networks/' + networkId + '/location-assignments/csv');
